@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'ui/login.dart';
+import 'constants/RouteConstants.dart';
+import 'ui/login/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +28,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+      routes: RouteConstants.routesMap,
       home: const SafeArea(
-        child: Home(),
+        child: Login(),
       ),
     );
   }
