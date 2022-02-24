@@ -5,9 +5,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/RouteConstants.dart';
+import '../../generated/l10n.dart';
 import '../../widgets/text_input.dart';
 import '../../widgets/text_password_input.dart';
-import 'logo_intro.dart';
+import 'widgets/logo_intro.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,13 +46,13 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                       child: TextInput(
-                        hintText: "Enter you email address",
+                        hintText: S.current.enterMail,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                       child: TextPasswordInput(
-                        hintText: "Enter your password",
+                        hintText: S.current.enterPassword,
                       ),
                     ),
                     Row(
@@ -61,16 +61,15 @@ class _LoginState extends State<Login> {
                         RichText(
                           textAlign: TextAlign.end,
                           text: TextSpan(
-                              text: "Forgot password?",
+                              text: S.current.forgotPassword,
                               style: TextStyle(
                                   color: Colors.blue,
                                   decoration: TextDecoration.underline),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   // Navigate to forgot password
-                                  if (kDebugMode) {
-                                    print("Forgot password");
-                                  }
+                                  Navigator.pushNamed(
+                                      context, RouteConstants.forgotPassword);
                                 }),
                         ),
                       ],
@@ -83,7 +82,7 @@ class _LoginState extends State<Login> {
                         Expanded(
                           child: ElevatedButton(
                               onPressed: () {},
-                              child: Text("Login".toUpperCase())),
+                              child: Text(S.current.login.toUpperCase())),
                         ),
                       ],
                     )
@@ -92,7 +91,7 @@ class _LoginState extends State<Login> {
                 // OAuth2 authentication,
                 Column(children: [
                   SizedBox(height: 15),
-                  Text("or with"),
+                  Text(S.current.orWith),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0, right: 50.0),
                     child: Row(
@@ -120,11 +119,11 @@ class _LoginState extends State<Login> {
                 // Register
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   SizedBox(height: 50),
-                  Text("Don't have an account?"),
+                  Text(S.current.dontHaveAccount),
                   SizedBox(width: 5),
                   RichText(
                     text: TextSpan(
-                        text: "Register",
+                        text: S.current.register,
                         style: TextStyle(
                             color: Colors.blue,
                             decoration: TextDecoration.underline),

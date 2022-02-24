@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+
+import '../../../generated/l10n.dart';
 
 class LogoIntro extends StatelessWidget {
   const LogoIntro({Key? key}) : super(key: key);
@@ -19,9 +22,9 @@ class LogoIntro extends StatelessWidget {
                 fontSize: 24),
           ),
         ),
-        const Expanded(
+        Expanded(
           flex: 0,
-          child: Text("1 on 1 online education platform",
+          child: Text(S.current.intro,
               style: TextStyle(fontFamily: "IBM_Mono", fontSize: 14)),
         ),
       ],

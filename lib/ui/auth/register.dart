@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:recase/recase.dart';
 
-import '../constants/RouteConstants.dart';
-import '../widgets/text_input.dart';
-import '../widgets/text_password_input.dart';
-import 'login/logo_intro.dart';
+import '../../constants/RouteConstants.dart';
+import '../../widgets/text_input.dart';
+import '../../widgets/text_password_input.dart';
+import 'widgets/logo_intro.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _RegisterState extends State<Register> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(RouteConstants.register.toUpperCase()),
+          title: Text(RouteConstants.register.pascalCase),
         ),
         body: SingleChildScrollView(
           child: Container(
