@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:leet_tutur/di/service_locator.dart';
 
-import 'constants/RouteConstants.dart';
+import 'constants/route_constants.dart';
 import 'generated/l10n.dart';
 import 'ui/auth/login.dart';
 
 void main() {
+  ServiceLocator.setUp();
+
   runApp(MaterialApp(
     title: 'Leet Tutur',
     debugShowCheckedModeBanner: false,

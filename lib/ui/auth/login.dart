@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
-import '../../constants/RouteConstants.dart';
+import '../../constants/route_constants.dart';
 import '../../generated/l10n.dart';
+import '../../stores/auth_store/auth_store.dart';
 import '../../widgets/text_input.dart';
 import '../../widgets/text_password_input.dart';
 import 'widgets/logo_intro.dart';
@@ -18,6 +20,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final authStore = GetIt.instance.get<AuthStore>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,56 +41,66 @@ class _LoginState extends State<Login> {
                 // LOGO AND INTRO
                 LogoIntro(),
                 // USER INPUT
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-                  child: Column(children: [
-                    SizedBox(
-                      height: 32,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                      child: TextInput(
-                        hintText: S.current.enterMail,
+                Observer(
+                  builder: (context) => Padding(
+                    padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+                    child: Column(children: [
+                      SizedBox(
+                        height: 32,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                      child: TextPasswordInput(
-                        hintText: S.current.enterPassword,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                        child: TextInput(
+                          hintText: S.current.enterMail,
+                          initialValue: authStore.email,
+                          onChanged: (value) => {
+                            authStore.email = value
+                          },
+                        ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        RichText(
-                          textAlign: TextAlign.end,
-                          text: TextSpan(
-                              text: S.current.forgotPassword,
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  // Navigate to forgot password
-                                  Navigator.pushNamed(
-                                      context, RouteConstants.forgotPassword);
-                                }),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                        child: TextPasswordInput(
+                          hintText: S.current.enterPassword,
+                          initialValue: authStore.password,
+                          onChanged: (value) => {
+                            authStore.password = value
+                          },
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text(S.current.login.toUpperCase())),
-                        ),
-                      ],
-                    )
-                  ]),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          RichText(
+                            textAlign: TextAlign.end,
+                            text: TextSpan(
+                                text: S.current.forgotPassword,
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    decoration: TextDecoration.underline),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    // Navigate to forgot password
+                                    Navigator.pushNamed(
+                                        context, RouteConstants.forgotPassword);
+                                  }),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(S.current.login.toUpperCase())),
+                          ),
+                        ],
+                      )
+                    ]),
+                  ),
                 ),
                 // OAuth2 authentication,
                 Column(children: [

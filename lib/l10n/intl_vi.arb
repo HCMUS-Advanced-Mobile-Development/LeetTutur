@@ -6,5 +6,7 @@
 	"forgotPassword": "Quên mật khẩu?",
 	"login": "Đăng nhập",
 	"orWith": "Hoặc với",
-	"register": "Đăng ký"
+	"register": "Đăng ký",
+	"confirmPassword": "Xác nhận mật khẩu của bạn",
+	"resetPassword": "Đặt lại mật khẩu của bạn"
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:recase/recase.dart';
 
-import '../../constants/RouteConstants.dart';
+import '../../constants/route_constants.dart';
+import '../../generated/l10n.dart';
+import '../../stores/auth_store/auth_store.dart';
 import '../../widgets/text_input.dart';
 import 'widgets/logo_intro.dart';
 
@@ -13,6 +17,8 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  final authStore = GetIt.instance.get<AuthStore>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,31 +39,37 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const LogoIntro(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-                  child: Column(children: [
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                      child: TextInput(
-                        hintText: "Enter you email address",
+                Observer(
+                  builder: (context) => Padding(
+                    padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+                    child: Column(children: [
+                      const SizedBox(
+                        height: 32,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text("Reset password".toUpperCase())),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                        child: TextInput(
+                          hintText: S.current.enterMail,
+                          initialValue: authStore.email,
+                          onChanged: (value) => {
+                            authStore.email = value
+                          },
                         ),
-                      ],
-                    )
-                  ]),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(S.current.resetPassword.toUpperCase())),
+                          ),
+                        ],
+                      )
+                    ]),
+                  ),
                 )
               ],
             ),

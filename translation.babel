@@ -17,6 +17,23 @@
         <name/>
         <children>
             <concept_node>
+                <name>confirmPassword</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-US</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>dontHaveAccount</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -137,6 +154,23 @@
             </concept_node>
             <concept_node>
                 <name>register</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-US</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>resetPassword</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
                 <comment/>
