@@ -149,6 +149,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter correct email format`
+  String get pleaseEnterCorrectEmailFormat {
+    return Intl.message(
+      'Please enter correct email format',
+      name: 'pleaseEnterCorrectEmailFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter some value`
+  String get pleaseEnterSomeValue {
+    return Intl.message(
+      'Please enter some value',
+      name: 'pleaseEnterSomeValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password is incorrect`
+  String get yourPasswordIsInCorrect {
+    return Intl.message(
+      'Your password is incorrect',
+      name: 'yourPasswordIsInCorrect',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

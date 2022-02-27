@@ -8,5 +8,8 @@
 	"dontHaveAccount": "Don't have an account?",
 	"register": "Register",
 	"confirmPassword": "Confirm your password",
-	"resetPassword": "Reset your password"
+	"resetPassword": "Reset your password",
+	"pleaseEnterCorrectEmailFormat": "Please enter correct email format",
+	"pleaseEnterSomeValue": "Please enter some value",
+	"yourPasswordIsInCorrect": "Your password is incorrect"
 }

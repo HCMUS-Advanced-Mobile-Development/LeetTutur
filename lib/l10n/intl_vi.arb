@@ -8,5 +8,8 @@
 	"orWith": "Hoặc với",
 	"register": "Đăng ký",
 	"confirmPassword": "Xác nhận mật khẩu của bạn",
-	"resetPassword": "Đặt lại mật khẩu của bạn"
+	"resetPassword": "Đặt lại mật khẩu của bạn",
+	"pleaseEnterCorrectEmailFormat": "Vui lòng nhập đúng định dạng email",
+	"pleaseEnterSomeValue": "Vui lòng nhập giá trị",
+	"yourPasswordIsInCorrect": "Mật khẩu của bạn không chính xác"
 }

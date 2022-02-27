@@ -36,8 +36,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nền tảng học 1 1 trực tuyến"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
+        "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
+            "Vui lòng nhập đúng định dạng email"),
+        "pleaseEnterSomeValue":
+            MessageLookupByLibrary.simpleMessage("Vui lòng nhập giá trị"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "resetPassword":
-            MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn")
+            MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn"),
+        "yourPasswordIsInCorrect": MessageLookupByLibrary.simpleMessage(
+            "Mật khẩu của bạn không chính xác")
       };
 }

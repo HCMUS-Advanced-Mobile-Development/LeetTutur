@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:recase/recase.dart';
+import 'package:validators/validators.dart';
 
 import '../../constants/route_constants.dart';
 import '../../generated/l10n.dart';
@@ -21,6 +22,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final authStore = GetIt.instance.get<AuthStore>();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -44,50 +47,80 @@ class _RegisterState extends State<Register> {
                   LogoIntro(),
                   // USER INPUT
                   Observer(
-                    builder: (BuildContext context) => Padding(
-                      padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-                      child: Column(children: [
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                          child: TextInput(
-                            hintText: S.current.enterMail,
-                            initialValue: authStore.email,
-                            onChanged: (value) => {authStore.email = value},
+                    builder: (BuildContext context) => Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+                        child: Column(children: [
+                          SizedBox(
+                            height: 32,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                          child: TextPasswordInput(
-                            hintText: S.current.enterPassword,
-                            initialValue: authStore.password,
-                            onChanged: (value) => {authStore.password = value},
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                          child: TextPasswordInput(
-                            hintText: S.current.confirmPassword,
-                            onChanged: (value) =>
-                                {authStore.confirmPassword = value},
-                          ),
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                  onPressed: () {},
-                                  child:
-                                      Text(S.current.register.toUpperCase())),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                            child: TextInput(
+                              hintText: S.current.enterMail,
+                              initialValue: authStore.email,
+                              onChanged: (value) => {authStore.email = value},
+                              validator: (value) {
+                                if (isNull(value) || !isEmail(value!)) {
+                                  return S.current.pleaseEnterCorrectEmailFormat;
+                                }
+
+                                return null;
+                              },
                             ),
-                          ],
-                        )
-                      ]),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                            child: TextPasswordInput(
+                              hintText: S.current.enterPassword,
+                              initialValue: authStore.password,
+                              onChanged: (value) => {authStore.password = value},
+                              validator: (value) {
+                                if (isNull(value)) {
+                                  return S.current.pleaseEnterSomeValue;
+                                }
+
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                            child: TextPasswordInput(
+                              hintText: S.current.confirmPassword,
+                              onChanged: (value) =>
+                                  {authStore.confirmPassword = value},
+                              validator: (value) {
+                                if (isNull(value)) {
+                                  return S.current.pleaseEnterSomeValue;
+                                }
+
+                                if (authStore.password != value) {
+                                  return S.current.yourPasswordIsInCorrect;
+                                }
+
+                                return null;
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      _formKey.currentState!.validate();
+                                    },
+                                    child:
+                                        Text(S.current.register.toUpperCase())),
+                              ),
+                            ],
+                          )
+                        ]),
+                      ),
                     ),
                   ),
                 ],

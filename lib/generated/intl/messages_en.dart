@@ -36,8 +36,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "1 on 1 online education platform"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
+        "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
+            "Please enter correct email format"),
+        "pleaseEnterSomeValue":
+            MessageLookupByLibrary.simpleMessage("Please enter some value"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "resetPassword":
-            MessageLookupByLibrary.simpleMessage("Reset your password")
+            MessageLookupByLibrary.simpleMessage("Reset your password"),
+        "yourPasswordIsInCorrect":
+            MessageLookupByLibrary.simpleMessage("Your password is incorrect")
       };
 }
