@@ -25,6 +25,12 @@ class _LoginState extends State<Login> {
 
   final _formKey = GlobalKey<FormState>();
 
+  void _handleLogin() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, RouteConstants.homeTabs);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,9 +119,7 @@ class _LoginState extends State<Login> {
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                  onPressed: () {
-                                    _formKey.currentState!.validate();
-                                  },
+                                  onPressed: _handleLogin,
                                   child: Text(S.current.login.toUpperCase())),
                             ),
                           ],

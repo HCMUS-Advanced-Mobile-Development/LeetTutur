@@ -11,5 +11,10 @@
 	"resetPassword": "Đặt lại mật khẩu của bạn",
 	"pleaseEnterCorrectEmailFormat": "Vui lòng nhập đúng định dạng email",
 	"pleaseEnterSomeValue": "Vui lòng nhập giá trị",
-	"yourPasswordIsInCorrect": "Mật khẩu của bạn không chính xác"
+	"yourPasswordIsInCorrect": "Mật khẩu của bạn không chính xác",
+	"chat": "Chat",
+	"courses": "Khóa học",
+	"schedule": "Lịch trình",
+	"settings": "Cài đặt",
+	"tutor": "Gia sư"
 }

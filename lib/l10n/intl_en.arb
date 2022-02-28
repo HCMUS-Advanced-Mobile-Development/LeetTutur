@@ -11,5 +11,10 @@
 	"resetPassword": "Reset your password",
 	"pleaseEnterCorrectEmailFormat": "Please enter correct email format",
 	"pleaseEnterSomeValue": "Please enter some value",
-	"yourPasswordIsInCorrect": "Your password is incorrect"
+	"yourPasswordIsInCorrect": "Your password is incorrect",
+	"tutor": "Tutor",
+	"chat": "Chat",
+	"schedule": "Schedule",
+	"courses": "Courses",
+	"settings": "Settings"
 }
