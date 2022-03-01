@@ -16,5 +16,7 @@
 	"chat": "Chat",
 	"schedule": "Schedule",
 	"courses": "Courses",
-	"settings": "Settings"
+	"settings": "Settings",
+	"search": "Search...",
+	"book": "Book"
 }

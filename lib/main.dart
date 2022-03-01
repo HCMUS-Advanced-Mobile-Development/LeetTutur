@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:leet_tutur/di/service_locator.dart';
+import 'package:leet_tutur/di/stores_locator.dart';
 import 'package:leet_tutur/ui/home_tabs/home_tabs.dart';
 
 import 'constants/route_constants.dart';
@@ -8,7 +8,7 @@ import 'generated/l10n.dart';
 import 'ui/auth/login.dart';
 
 void main() {
-  ServiceLocator.setUp();
+  StoresLocator.setUp();
 
   runApp(MaterialApp(
     title: 'Leet Tutur',
@@ -20,7 +20,7 @@ void main() {
       GlobalCupertinoLocalizations.delegate,
     ],
     supportedLocales: S.delegate.supportedLocales,
-    theme: ThemeData.light(),
+    theme: ThemeData.dark(),
     routes: RouteConstants.routesMap,
     home: const SafeArea(
       child: HomeTabs(),
