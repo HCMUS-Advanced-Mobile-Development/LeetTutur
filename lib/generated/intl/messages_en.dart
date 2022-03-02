@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your email address"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "intro": MessageLookupByLibrary.simpleMessage(
@@ -44,11 +45,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Please enter some value"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "report": MessageLookupByLibrary.simpleMessage("Report"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Reset your password"),
+        "review": MessageLookupByLibrary.simpleMessage("Review"),
         "schedule": MessageLookupByLibrary.simpleMessage("Schedule"),
         "search": MessageLookupByLibrary.simpleMessage("Search..."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
+        "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
+        "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
         "tutor": MessageLookupByLibrary.simpleMessage("Tutor"),
         "yourPasswordIsInCorrect":
             MessageLookupByLibrary.simpleMessage("Your password is incorrect")

@@ -32,6 +32,7 @@ class _TutorPageState extends State<TutorPage> {
                       ..isFavorited = false
                       ..specialties = [
                         "IELTS",
+
                         "Physics",
                         "Math",
                         "Programming",

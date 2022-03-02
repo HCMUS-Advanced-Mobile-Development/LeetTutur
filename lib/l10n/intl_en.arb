@@ -18,5 +18,11 @@
 	"courses": "Courses",
 	"settings": "Settings",
 	"search": "Search...",
-	"book": "Book"
+	"book": "Book",
+	"showMore": "Show more",
+	"showLess": "Show less",
+	"specialties": "Specialties",
+	"favorite": "Favorite",
+	"report": "Report",
+	"review": "Review"
 }

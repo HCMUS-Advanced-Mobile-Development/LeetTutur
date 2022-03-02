@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:leet_tutur/ui/models/tutor_model.dart';
 
+import '../../../constants/route_constants.dart';
 import '../../../generated/l10n.dart';
 
 class TutorCard extends StatefulWidget {
@@ -21,6 +22,10 @@ class _TutorCardState extends State<TutorCard> {
     });
   }
 
+  void navigateToDetail(TapDownDetails tapDownDetails) {
+    Navigator.pushNamed(context, RouteConstants.tutorDetail);
+  }
+
   Widget renderTutorInfoHeader() {
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -35,9 +40,12 @@ class _TutorCardState extends State<TutorCard> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              tutor.name,
-              style: Theme.of(context).textTheme.headline6,
+            GestureDetector(
+              child: Text(
+                tutor.name,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTapDown: navigateToDetail,
             ),
             Text(
               tutor.nation,

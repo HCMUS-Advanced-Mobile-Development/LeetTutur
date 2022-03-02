@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nhập địa chỉ email của bạn"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Nhập mật khẩu của bạn"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Thích"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Quên mật khẩu?"),
         "intro":
@@ -44,11 +45,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập giá trị"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "report": MessageLookupByLibrary.simpleMessage("Báo cáo"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn"),
+        "review": MessageLookupByLibrary.simpleMessage("Đánh giá"),
         "schedule": MessageLookupByLibrary.simpleMessage("Lịch trình"),
         "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm..."),
         "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
+        "showLess": MessageLookupByLibrary.simpleMessage("Ẩn bớt"),
+        "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
+        "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
         "tutor": MessageLookupByLibrary.simpleMessage("Gia sư"),
         "yourPasswordIsInCorrect": MessageLookupByLibrary.simpleMessage(
             "Mật khẩu của bạn không chính xác")
