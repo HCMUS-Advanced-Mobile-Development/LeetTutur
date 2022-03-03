@@ -309,6 +309,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Your total learned hours are`
+  String get yourTotalLearnedHoursAre {
+    return Intl.message(
+      'Your total learned hours are',
+      name: 'yourTotalLearnedHoursAre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learning History`
+  String get learningHistory {
+    return Intl.message(
+      'Learning History',
+      name: 'learningHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hours`
+  String get hours {
+    return Intl.message(
+      'hours',
+      name: 'hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming Classes`
+  String get upcomingClasses {
+    return Intl.message(
+      'Upcoming Classes',
+      name: 'upcomingClasses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time of the Class`
+  String get timeOfTheClass {
+    return Intl.message(
+      'Time of the Class',
+      name: 'timeOfTheClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Class Requirement`
+  String get classRequirement {
+    return Intl.message(
+      'Class Requirement',
+      name: 'classRequirement',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -24,5 +24,11 @@
 	"specialties": "Specialties",
 	"favorite": "Favorite",
 	"report": "Report",
-	"review": "Review"
+	"review": "Review",
+	"yourTotalLearnedHoursAre": "Your total learned hours are",
+	"learningHistory": "Learning History",
+	"hours": "hours",
+	"upcomingClasses": "Upcoming Classes",
+	"timeOfTheClass": "Time of the Class",
+	"classRequirement": "Class Requirement"
 }

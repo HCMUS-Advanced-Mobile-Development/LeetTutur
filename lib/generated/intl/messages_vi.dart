@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "classRequirement":
+            MessageLookupByLibrary.simpleMessage("Yêu cầu lớp học"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu của bạn"),
         "courses": MessageLookupByLibrary.simpleMessage("Khóa học"),
@@ -36,8 +38,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorite": MessageLookupByLibrary.simpleMessage("Thích"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Quên mật khẩu?"),
+        "hours": MessageLookupByLibrary.simpleMessage("Giờ"),
         "intro":
             MessageLookupByLibrary.simpleMessage("Nền tảng học 1 1 trực tuyến"),
+        "learningHistory":
+            MessageLookupByLibrary.simpleMessage("Lịch sử học tập"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
@@ -55,8 +60,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "showLess": MessageLookupByLibrary.simpleMessage("Ẩn bớt"),
         "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
         "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
+        "timeOfTheClass":
+            MessageLookupByLibrary.simpleMessage("Thời gian của lớp học"),
         "tutor": MessageLookupByLibrary.simpleMessage("Gia sư"),
+        "upcomingClasses":
+            MessageLookupByLibrary.simpleMessage("Các lớp học sắp tới"),
         "yourPasswordIsInCorrect": MessageLookupByLibrary.simpleMessage(
-            "Mật khẩu của bạn không chính xác")
+            "Mật khẩu của bạn không chính xác"),
+        "yourTotalLearnedHoursAre": MessageLookupByLibrary.simpleMessage(
+            "Tổng số giờ đã học của bạn là")
       };
 }

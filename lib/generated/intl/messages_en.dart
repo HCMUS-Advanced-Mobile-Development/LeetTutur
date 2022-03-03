@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "classRequirement":
+            MessageLookupByLibrary.simpleMessage("Class Requirement"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "courses": MessageLookupByLibrary.simpleMessage("Courses"),
@@ -36,8 +38,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "hours": MessageLookupByLibrary.simpleMessage("hours"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
+        "learningHistory":
+            MessageLookupByLibrary.simpleMessage("Learning History"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
@@ -55,8 +60,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
         "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
         "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
+        "timeOfTheClass":
+            MessageLookupByLibrary.simpleMessage("Time of the Class"),
         "tutor": MessageLookupByLibrary.simpleMessage("Tutor"),
+        "upcomingClasses":
+            MessageLookupByLibrary.simpleMessage("Upcoming Classes"),
         "yourPasswordIsInCorrect":
-            MessageLookupByLibrary.simpleMessage("Your password is incorrect")
+            MessageLookupByLibrary.simpleMessage("Your password is incorrect"),
+        "yourTotalLearnedHoursAre":
+            MessageLookupByLibrary.simpleMessage("Your total learned hours are")
       };
 }

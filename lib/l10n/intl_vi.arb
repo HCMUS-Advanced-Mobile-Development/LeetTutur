@@ -24,6 +24,11 @@
 	"specialties": "Chuyên ngành",
 	"favorite": "Thích",
 	"report": "Báo cáo",
-	"reivew": "Đánh giá",
-	"review": "Đánh giá"
+	"review": "Đánh giá",
+	"yourTotalLearnedHoursAre": "Tổng số giờ đã học của bạn là",
+	"learningHistory": "Lịch sử học tập",
+	"hours": "Giờ",
+	"upcomingClasses": "Các lớp học sắp tới",
+	"timeOfTheClass": "Thời gian của lớp học",
+	"classRequirement": "Yêu cầu lớp học"
 }

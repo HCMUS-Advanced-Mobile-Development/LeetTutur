@@ -7,6 +7,7 @@ import '../ui/auth/login.dart';
 import '../ui/auth/register.dart';
 import '../ui/courses_page/courses_page.dart';
 import '../ui/home_tabs/home_tabs.dart';
+import '../ui/learn_history/learn_history.dart';
 import '../ui/schedule_page/schedule_page.dart';
 import '../ui/settings_page/settings_page.dart';
 import '../ui/tutor_detail/tutor_detail.dart';
@@ -18,13 +19,15 @@ class RouteConstants {
   static const forgotPassword = "forgot password";
   static const homeTabs = "home tabs";
   static const tutorDetail = "tutor detail";
+  static const learnHistory = "learn history";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
     register: (BuildContext context) => const Register(),
     forgotPassword: (BuildContext context) => const ForgotPassword(),
     homeTabs: (BuildContext context) => const HomeTabs(),
-    tutorDetail: (BuildContext context) => const TutorDetail()
+    tutorDetail: (BuildContext context) => const TutorDetail(),
+    learnHistory: (BuildContext context) => const LearnHistory()
   };
 
   static final bottomBarItems = <BottomNavigationBarItem>[
