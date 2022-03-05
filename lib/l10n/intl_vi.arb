@@ -49,5 +49,7 @@
 	"level": "Cấp độ",
 	"nation": "Quốc gia",
 	"phone": "Điện thoại",
-	"save": "Lưu"
+	"save": "Lưu",
+	"theme": "Màu sắc",
+	"language": "ngôn ngữ"
 }

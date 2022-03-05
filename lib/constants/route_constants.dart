@@ -12,6 +12,7 @@ import '../ui/learn_history/learn_history.dart';
 import '../ui/profile/profile.dart';
 import '../ui/schedule_page/schedule_page.dart';
 import '../ui/settings_page/settings_page.dart';
+import '../ui/system_settings/system_settings.dart';
 import '../ui/tutor_detail/tutor_detail.dart';
 import '../ui/tutor_page/tuitor_page.dart';
 
@@ -24,6 +25,7 @@ class RouteConstants {
   static const learnHistory = "learn history";
   static const courseDetail = "Course detail";
   static const profile = "Profile";
+  static const systemSettings = "System Settings";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
@@ -34,6 +36,7 @@ class RouteConstants {
     learnHistory: (BuildContext context) => const LearnHistory(),
     courseDetail: (BuildContext context) => const CourseDetail(),
     profile: (BuildContext context) => const Profile(),
+    systemSettings: (BuildContext context) => const SystemSettings(),
   };
 
   static final bottomBarItems = <BottomNavigationBarItem>[

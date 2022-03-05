@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hours": MessageLookupByLibrary.simpleMessage("hours"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "learnHistory": MessageLookupByLibrary.simpleMessage("Learn History"),
         "learningHistory":
             MessageLookupByLibrary.simpleMessage("Learning History"),
@@ -75,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
         "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
+        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Time of the Class"),
         "topics": MessageLookupByLibrary.simpleMessage("Topics"),

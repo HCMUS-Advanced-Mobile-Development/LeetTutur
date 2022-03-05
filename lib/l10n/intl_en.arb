@@ -49,5 +49,7 @@
 	"phone": "Phone",
 	"dateOfBirth": "Date of birth",
 	"level": "Level",
-	"save": "Save"
+	"save": "Save",
+	"theme": "Theme",
+	"language": "Language"
 }

@@ -57,5 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
     Navigator.pushNamed(context, RouteConstants.profile);
   }
 
-  void _handlePressSystemSettings() {}
+  void _handlePressSystemSettings() {
+    Navigator.pushNamed(context, RouteConstants.systemSettings);
+  }
 }

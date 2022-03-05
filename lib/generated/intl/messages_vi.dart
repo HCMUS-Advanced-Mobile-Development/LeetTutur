@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hours": MessageLookupByLibrary.simpleMessage("Giờ"),
         "intro":
             MessageLookupByLibrary.simpleMessage("Nền tảng học 1 1 trực tuyến"),
+        "language": MessageLookupByLibrary.simpleMessage("ngôn ngữ"),
         "learnHistory": MessageLookupByLibrary.simpleMessage("Lịch sử học"),
         "learningHistory":
             MessageLookupByLibrary.simpleMessage("Lịch sử học tập"),
@@ -76,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
         "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
         "system": MessageLookupByLibrary.simpleMessage("Hệ thống"),
+        "theme": MessageLookupByLibrary.simpleMessage("Màu sắc"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Thời gian của lớp học"),
         "topics": MessageLookupByLibrary.simpleMessage("Chủ đề"),

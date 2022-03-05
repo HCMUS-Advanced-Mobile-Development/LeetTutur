@@ -23,7 +23,7 @@ class SquareButton extends StatelessWidget {
                 children: [
                   icon ?? const SizedBox.shrink(),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   text ?? const SizedBox.shrink(),
                 ],
