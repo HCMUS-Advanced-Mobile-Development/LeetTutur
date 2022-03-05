@@ -14,23 +14,25 @@ class _HomeTabsState extends State<HomeTabs> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Theme.of(context).bottomAppBarColor,
-          selectedItemColor: Colors.indigoAccent,
-          unselectedItemColor: Theme.of(context).unselectedWidgetColor,
-          items: RouteConstants.bottomBarItems,
-          currentIndex: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          }),
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: RouteConstants.tabScreens.elementAt(_selectedIndex),
+    return SafeArea(
+      child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Theme.of(context).bottomAppBarColor,
+            selectedItemColor: Colors.indigoAccent,
+            unselectedItemColor: Theme.of(context).unselectedWidgetColor,
+            items: RouteConstants.bottomBarItems,
+            currentIndex: _selectedIndex,
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            }),
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: RouteConstants.tabScreens.elementAt(_selectedIndex),
+        ),
       ),
     );
   }
