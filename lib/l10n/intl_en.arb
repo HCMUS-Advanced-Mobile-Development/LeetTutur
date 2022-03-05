@@ -51,5 +51,7 @@
 	"level": "Level",
 	"save": "Save",
 	"theme": "Theme",
-	"language": "Language"
+	"language": "Language",
+	"studyRoom": "Study Room",
+	"waitTime": "Wait Time"
 }

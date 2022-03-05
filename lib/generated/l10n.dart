@@ -579,6 +579,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Study Room`
+  String get studyRoom {
+    return Intl.message(
+      'Study Room',
+      name: 'studyRoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wait Time`
+  String get waitTime {
+    return Intl.message(
+      'Wait Time',
+      name: 'waitTime',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

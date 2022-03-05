@@ -75,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
         "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
         "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
+        "studyRoom": MessageLookupByLibrary.simpleMessage("Study Room"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "timeOfTheClass":
@@ -84,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tutorDetails": MessageLookupByLibrary.simpleMessage("Tutor details"),
         "upcomingClasses":
             MessageLookupByLibrary.simpleMessage("Upcoming Classes"),
+        "waitTime": MessageLookupByLibrary.simpleMessage("Wait Time"),
         "whatYouAchieve":
             MessageLookupByLibrary.simpleMessage("What you achieved"),
         "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(

@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showLess": MessageLookupByLibrary.simpleMessage("Ẩn bớt"),
         "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
         "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
+        "studyRoom": MessageLookupByLibrary.simpleMessage("Phòng học"),
         "system": MessageLookupByLibrary.simpleMessage("Hệ thống"),
         "theme": MessageLookupByLibrary.simpleMessage("Màu sắc"),
         "timeOfTheClass":
@@ -85,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tutorDetails": MessageLookupByLibrary.simpleMessage("Chi tiết gia sư"),
         "upcomingClasses":
             MessageLookupByLibrary.simpleMessage("Các lớp học sắp tới"),
+        "waitTime": MessageLookupByLibrary.simpleMessage("Thời gian chờ đợi"),
         "whatYouAchieve":
             MessageLookupByLibrary.simpleMessage("Những gì bạn đạt được"),
         "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(

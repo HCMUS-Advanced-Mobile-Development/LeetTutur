@@ -32,7 +32,7 @@ class _TextInputState extends State<TextInput> {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         hintText: widget.hintText,
-        fillColor: Theme.of(context).primaryColor,
+        fillColor: Theme.of(context).cardColor,
         filled: true,
         labelText: widget.labelText,
       ),

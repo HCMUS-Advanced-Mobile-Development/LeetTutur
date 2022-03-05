@@ -20,10 +20,10 @@ void main() {
       S.delegate,
     ],
     supportedLocales: S.delegate.supportedLocales,
-    theme: ThemeData.dark(),
+    theme: ThemeData.light(),
     routes: RouteConstants.routesMap,
     home: const SafeArea(
-      child: HomeTabs(),
+      child: Login(),
     ),
   ));
 }

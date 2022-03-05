@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../constants/route_constants.dart';
 import '../../../generated/l10n.dart';
 import '../../../models/tutor_model.dart';
 
@@ -57,7 +58,7 @@ class _UpcomingClassesState extends State<UpcomingClasses> {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 5),
                           child: ElevatedButton(
-                            onPressed: (){},
+                            onPressed: _handleJoinClass,
                             child: Text(
                               TimeOfDay.fromDateTime(startTime
                                           .add(Duration(minutes: index * 30)))
@@ -98,5 +99,9 @@ class _UpcomingClassesState extends State<UpcomingClasses> {
         renderClass(),
       ],
     );
+  }
+
+  void _handleJoinClass() {
+    Navigator.pushNamed(context, RouteConstants.studyRoom);
   }
 }
