@@ -40,5 +40,14 @@
 	"overall": "Overall",
 	"whyYouShouldLearnThisCourse": "Why you should learn this course",
 	"whatYouAchieve": "What you achieved",
-	"topics": "Topics"
+	"topics": "Topics",
+	"profile": "Profile",
+	"system": "System",
+	"fullName": "Full Name",
+	"email": "Email",
+	"nation": "Nation",
+	"phone": "Phone",
+	"dateOfBirth": "Date of birth",
+	"level": "Level",
+	"save": "Save"
 }

@@ -9,6 +9,7 @@ import '../ui/course_detail/course_detail.dart';
 import '../ui/courses_page/courses_page.dart';
 import '../ui/home_tabs/home_tabs.dart';
 import '../ui/learn_history/learn_history.dart';
+import '../ui/profile/profile.dart';
 import '../ui/schedule_page/schedule_page.dart';
 import '../ui/settings_page/settings_page.dart';
 import '../ui/tutor_detail/tutor_detail.dart';
@@ -21,7 +22,8 @@ class RouteConstants {
   static const homeTabs = "home tabs";
   static const tutorDetail = "tutor detail";
   static const learnHistory = "learn history";
-  static String courseDetail = "Course detail";
+  static const courseDetail = "Course detail";
+  static const profile = "Profile";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
@@ -30,7 +32,8 @@ class RouteConstants {
     homeTabs: (BuildContext context) => const HomeTabs(),
     tutorDetail: (BuildContext context) => const TutorDetail(),
     learnHistory: (BuildContext context) => const LearnHistory(),
-    courseDetail: (BuildContext context) => const CourseDetail()
+    courseDetail: (BuildContext context) => const CourseDetail(),
+    profile: (BuildContext context) => const Profile(),
   };
 
   static final bottomBarItems = <BottomNavigationBarItem>[

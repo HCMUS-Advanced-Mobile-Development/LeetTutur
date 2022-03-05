@@ -31,8 +31,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "courseDetail":
             MessageLookupByLibrary.simpleMessage("Chi tiết khóa học"),
         "courses": MessageLookupByLibrary.simpleMessage("Khóa học"),
+        "dateOfBirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Không có tài khoản?"),
+        "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "enterMail":
             MessageLookupByLibrary.simpleMessage("Nhập địa chỉ email của bạn"),
         "enterPassword":
@@ -41,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favorite": MessageLookupByLibrary.simpleMessage("Thích"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Quên mật khẩu?"),
+        "fullName": MessageLookupByLibrary.simpleMessage("Họ và tên"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "hours": MessageLookupByLibrary.simpleMessage("Giờ"),
         "intro":
@@ -49,24 +52,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "learningHistory":
             MessageLookupByLibrary.simpleMessage("Lịch sử học tập"),
         "lessons": MessageLookupByLibrary.simpleMessage("Buổi học"),
+        "level": MessageLookupByLibrary.simpleMessage("Cấp độ"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
         "overall": MessageLookupByLibrary.simpleMessage("Tổng quan"),
+        "phone": MessageLookupByLibrary.simpleMessage("Điện thoại"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
             "Vui lòng nhập đúng định dạng email"),
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập giá trị"),
+        "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "report": MessageLookupByLibrary.simpleMessage("Báo cáo"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn"),
         "review": MessageLookupByLibrary.simpleMessage("Đánh giá"),
+        "save": MessageLookupByLibrary.simpleMessage("Lưu"),
         "schedule": MessageLookupByLibrary.simpleMessage("Lịch trình"),
         "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm..."),
         "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
         "showLess": MessageLookupByLibrary.simpleMessage("Ẩn bớt"),
         "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
         "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
+        "system": MessageLookupByLibrary.simpleMessage("Hệ thống"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Thời gian của lớp học"),
         "topics": MessageLookupByLibrary.simpleMessage("Chủ đề"),

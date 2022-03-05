@@ -469,6 +469,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System`
+  String get system {
+    return Intl.message(
+      'System',
+      name: 'system',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get fullName {
+    return Intl.message(
+      'Full Name',
+      name: 'fullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nation`
+  String get nation {
+    return Intl.message(
+      'Nation',
+      name: 'nation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get phone {
+    return Intl.message(
+      'Phone',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth`
+  String get dateOfBirth {
+    return Intl.message(
+      'Date of birth',
+      name: 'dateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Level`
+  String get level {
+    return Intl.message(
+      'Level',
+      name: 'level',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -40,5 +40,14 @@
 	"overall": "Tổng quan",
 	"whyYouShouldLearnThisCourse": "Tại sao bạn nên học khóa học này",
 	"whatYouAchieve": "Những gì bạn đạt được",
-	"topics": "Chủ đề"
+	"topics": "Chủ đề",
+	"profile": "Hồ sơ",
+	"system": "Hệ thống",
+	"fullName": "Họ và tên",
+	"dateOfBirth": "Ngày sinh",
+	"email": "E-mail",
+	"level": "Cấp độ",
+	"nation": "Quốc gia",
+	"phone": "Điện thoại",
+	"save": "Lưu"
 }

@@ -27,7 +27,9 @@ class _HomeTabsState extends State<HomeTabs> {
               _selectedIndex = index;
             });
           }),
-      body: Center(
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         child: RouteConstants.tabScreens.elementAt(_selectedIndex),
       ),
     );
