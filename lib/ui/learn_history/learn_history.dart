@@ -4,7 +4,7 @@ import 'package:recase/recase.dart';
 
 import '../../constants/route_constants.dart';
 import '../../generated/l10n.dart';
-import '../models/tutor_model.dart';
+import '../../models/tutor_model.dart';
 
 class LearnHistory extends StatefulWidget {
   const LearnHistory({Key? key}) : super(key: key);

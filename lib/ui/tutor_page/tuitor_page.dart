@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:leet_tutur/ui/models/tutor_model.dart';
-import 'package:leet_tutur/ui/tutor_page/widgets/search_bar.dart';
+import 'package:leet_tutur/widgets/search_bar.dart';
 import 'package:leet_tutur/ui/tutor_page/widgets/tutor_card.dart';
 
 import '../../constants/search_bar_constants.dart';
+import '../../models/tutor_model.dart';
 
 class TutorPage extends StatefulWidget {
   const TutorPage({Key? key}) : super(key: key);

@@ -12,9 +12,12 @@
 	"pleaseEnterCorrectEmailFormat": "Please enter correct email format",
 	"pleaseEnterSomeValue": "Please enter some value",
 	"yourPasswordIsInCorrect": "Your password is incorrect",
+	"home": "Home",
 	"tutor": "Tutor",
+	"tutorDetails": "Tutor details",
 	"chat": "Chat",
 	"schedule": "Schedule",
+	"learnHistory": "Learn History",
 	"courses": "Courses",
 	"settings": "Settings",
 	"search": "Search...",
@@ -30,5 +33,12 @@
 	"hours": "hours",
 	"upcomingClasses": "Upcoming Classes",
 	"timeOfTheClass": "Time of the Class",
-	"classRequirement": "Class Requirement"
+	"classRequirement": "Class Requirement",
+	"lessons": "Lessons",
+	"courseDetail": "Course Details",
+	"explore": "Explore",
+	"overall": "Overall",
+	"whyYouShouldLearnThisCourse": "Why you should learn this course",
+	"whatYouAchieve": "What you achieved",
+	"topics": "Topics"
 }

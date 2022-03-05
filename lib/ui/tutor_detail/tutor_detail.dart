@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 
 import '../../generated/l10n.dart';
-import '../models/tutor_model.dart';
+import '../../models/tutor_model.dart';
 import 'widgets/tutor_review.dart';
 
 class TutorDetail extends StatefulWidget {

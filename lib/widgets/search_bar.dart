@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:validators/validators.dart';
 
-import '../../../generated/l10n.dart';
+import '../generated/l10n.dart';
 
 class SearchBar extends StatefulWidget {
   final void Function()? onFilterTapped;

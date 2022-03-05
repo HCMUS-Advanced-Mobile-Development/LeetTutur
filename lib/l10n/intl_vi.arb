@@ -12,11 +12,14 @@
 	"pleaseEnterCorrectEmailFormat": "Vui lòng nhập đúng định dạng email",
 	"pleaseEnterSomeValue": "Vui lòng nhập giá trị",
 	"yourPasswordIsInCorrect": "Mật khẩu của bạn không chính xác",
+	"home": "Trang chủ",
 	"chat": "Chat",
 	"courses": "Khóa học",
 	"schedule": "Lịch trình",
+	"learnHistory": "Lịch sử học",
 	"settings": "Cài đặt",
 	"tutor": "Gia sư",
+	"tutorDetails": "Chi tiết gia sư",
 	"search": "Tìm kiếm...",
 	"book": "Đăng ký",
 	"showMore": "Xem thêm",
@@ -30,5 +33,12 @@
 	"hours": "Giờ",
 	"upcomingClasses": "Các lớp học sắp tới",
 	"timeOfTheClass": "Thời gian của lớp học",
-	"classRequirement": "Yêu cầu lớp học"
+	"classRequirement": "Yêu cầu lớp học",
+	"courseDetail": "Chi tiết khóa học",
+	"lessons": "Buổi học",
+	"explore": "Khám phá",
+	"overall": "Tổng quan",
+	"whyYouShouldLearnThisCourse": "Tại sao bạn nên học khóa học này",
+	"whatYouAchieve": "Những gì bạn đạt được",
+	"topics": "Chủ đề"
 }

@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Class Requirement"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
+        "courseDetail": MessageLookupByLibrary.simpleMessage("Course Details"),
         "courses": MessageLookupByLibrary.simpleMessage("Courses"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
@@ -35,16 +36,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your email address"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "explore": MessageLookupByLibrary.simpleMessage("Explore"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "hours": MessageLookupByLibrary.simpleMessage("hours"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
+        "learnHistory": MessageLookupByLibrary.simpleMessage("Learn History"),
         "learningHistory":
             MessageLookupByLibrary.simpleMessage("Learning History"),
+        "lessons": MessageLookupByLibrary.simpleMessage("Lessons"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
+        "overall": MessageLookupByLibrary.simpleMessage("Overall"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
             "Please enter correct email format"),
         "pleaseEnterSomeValue":
@@ -62,9 +68,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Time of the Class"),
+        "topics": MessageLookupByLibrary.simpleMessage("Topics"),
         "tutor": MessageLookupByLibrary.simpleMessage("Tutor"),
+        "tutorDetails": MessageLookupByLibrary.simpleMessage("Tutor details"),
         "upcomingClasses":
             MessageLookupByLibrary.simpleMessage("Upcoming Classes"),
+        "whatYouAchieve":
+            MessageLookupByLibrary.simpleMessage("What you achieved"),
+        "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(
+            "Why you should learn this course"),
         "yourPasswordIsInCorrect":
             MessageLookupByLibrary.simpleMessage("Your password is incorrect"),
         "yourTotalLearnedHoursAre":

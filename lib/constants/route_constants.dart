@@ -5,6 +5,7 @@ import 'package:leet_tutur/ui/chat_page/chat_page.dart';
 import '../ui/auth/forgot_password.dart';
 import '../ui/auth/login.dart';
 import '../ui/auth/register.dart';
+import '../ui/course_detail/course_detail.dart';
 import '../ui/courses_page/courses_page.dart';
 import '../ui/home_tabs/home_tabs.dart';
 import '../ui/learn_history/learn_history.dart';
@@ -20,6 +21,7 @@ class RouteConstants {
   static const homeTabs = "home tabs";
   static const tutorDetail = "tutor detail";
   static const learnHistory = "learn history";
+  static String courseDetail = "Course detail";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
@@ -27,7 +29,8 @@ class RouteConstants {
     forgotPassword: (BuildContext context) => const ForgotPassword(),
     homeTabs: (BuildContext context) => const HomeTabs(),
     tutorDetail: (BuildContext context) => const TutorDetail(),
-    learnHistory: (BuildContext context) => const LearnHistory()
+    learnHistory: (BuildContext context) => const LearnHistory(),
+    courseDetail: (BuildContext context) => const CourseDetail()
   };
 
   static final bottomBarItems = <BottomNavigationBarItem>[

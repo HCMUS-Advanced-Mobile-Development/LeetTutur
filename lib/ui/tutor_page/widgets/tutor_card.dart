@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:leet_tutur/ui/models/tutor_model.dart';
 
 import '../../../constants/route_constants.dart';
 import '../../../generated/l10n.dart';
+import '../../../models/tutor_model.dart';
 
 class TutorCard extends StatefulWidget {
   final TutorModel tutorModel;

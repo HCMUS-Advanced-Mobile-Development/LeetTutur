@@ -180,11 +180,31 @@ class S {
     );
   }
 
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tutor`
   String get tutor {
     return Intl.message(
       'Tutor',
       name: 'tutor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tutor details`
+  String get tutorDetails {
+    return Intl.message(
+      'Tutor details',
+      name: 'tutorDetails',
       desc: '',
       args: [],
     );
@@ -205,6 +225,16 @@ class S {
     return Intl.message(
       'Schedule',
       name: 'schedule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn History`
+  String get learnHistory {
+    return Intl.message(
+      'Learn History',
+      name: 'learnHistory',
       desc: '',
       args: [],
     );
@@ -365,6 +395,76 @@ class S {
     return Intl.message(
       'Class Requirement',
       name: 'classRequirement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lessons`
+  String get lessons {
+    return Intl.message(
+      'Lessons',
+      name: 'lessons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Course Details`
+  String get courseDetail {
+    return Intl.message(
+      'Course Details',
+      name: 'courseDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore`
+  String get explore {
+    return Intl.message(
+      'Explore',
+      name: 'explore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overall`
+  String get overall {
+    return Intl.message(
+      'Overall',
+      name: 'overall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Why you should learn this course`
+  String get whyYouShouldLearnThisCourse {
+    return Intl.message(
+      'Why you should learn this course',
+      name: 'whyYouShouldLearnThisCourse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What you achieved`
+  String get whatYouAchieve {
+    return Intl.message(
+      'What you achieved',
+      name: 'whatYouAchieve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Topics`
+  String get topics {
+    return Intl.message(
+      'Topics',
+      name: 'topics',
       desc: '',
       args: [],
     );

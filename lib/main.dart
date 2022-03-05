@@ -14,10 +14,10 @@ void main() {
     title: 'Leet Tutur',
     debugShowCheckedModeBanner: false,
     localizationsDelegates: const [
-      S.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
+      S.delegate,
     ],
     supportedLocales: S.delegate.supportedLocales,
     theme: ThemeData.dark(),
