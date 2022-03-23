@@ -179,6 +179,426 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tutor`
+  String get tutor {
+    return Intl.message(
+      'Tutor',
+      name: 'tutor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tutor details`
+  String get tutorDetails {
+    return Intl.message(
+      'Tutor details',
+      name: 'tutorDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chat`
+  String get chat {
+    return Intl.message(
+      'Chat',
+      name: 'chat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Schedule`
+  String get schedule {
+    return Intl.message(
+      'Schedule',
+      name: 'schedule',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn History`
+  String get learnHistory {
+    return Intl.message(
+      'Learn History',
+      name: 'learnHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Courses`
+  String get courses {
+    return Intl.message(
+      'Courses',
+      name: 'courses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search...`
+  String get search {
+    return Intl.message(
+      'Search...',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book`
+  String get book {
+    return Intl.message(
+      'Book',
+      name: 'book',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show more`
+  String get showMore {
+    return Intl.message(
+      'Show more',
+      name: 'showMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show less`
+  String get showLess {
+    return Intl.message(
+      'Show less',
+      name: 'showLess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specialties`
+  String get specialties {
+    return Intl.message(
+      'Specialties',
+      name: 'specialties',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite`
+  String get favorite {
+    return Intl.message(
+      'Favorite',
+      name: 'favorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report`
+  String get report {
+    return Intl.message(
+      'Report',
+      name: 'report',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review`
+  String get review {
+    return Intl.message(
+      'Review',
+      name: 'review',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your total learned hours are`
+  String get yourTotalLearnedHoursAre {
+    return Intl.message(
+      'Your total learned hours are',
+      name: 'yourTotalLearnedHoursAre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learning History`
+  String get learningHistory {
+    return Intl.message(
+      'Learning History',
+      name: 'learningHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hours`
+  String get hours {
+    return Intl.message(
+      'hours',
+      name: 'hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upcoming Classes`
+  String get upcomingClasses {
+    return Intl.message(
+      'Upcoming Classes',
+      name: 'upcomingClasses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time of the Class`
+  String get timeOfTheClass {
+    return Intl.message(
+      'Time of the Class',
+      name: 'timeOfTheClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Class Requirement`
+  String get classRequirement {
+    return Intl.message(
+      'Class Requirement',
+      name: 'classRequirement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lessons`
+  String get lessons {
+    return Intl.message(
+      'Lessons',
+      name: 'lessons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Course Details`
+  String get courseDetail {
+    return Intl.message(
+      'Course Details',
+      name: 'courseDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore`
+  String get explore {
+    return Intl.message(
+      'Explore',
+      name: 'explore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overall`
+  String get overall {
+    return Intl.message(
+      'Overall',
+      name: 'overall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Why you should learn this course`
+  String get whyYouShouldLearnThisCourse {
+    return Intl.message(
+      'Why you should learn this course',
+      name: 'whyYouShouldLearnThisCourse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What you achieved`
+  String get whatYouAchieve {
+    return Intl.message(
+      'What you achieved',
+      name: 'whatYouAchieve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Topics`
+  String get topics {
+    return Intl.message(
+      'Topics',
+      name: 'topics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System`
+  String get system {
+    return Intl.message(
+      'System',
+      name: 'system',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get fullName {
+    return Intl.message(
+      'Full Name',
+      name: 'fullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nation`
+  String get nation {
+    return Intl.message(
+      'Nation',
+      name: 'nation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get phone {
+    return Intl.message(
+      'Phone',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth`
+  String get dateOfBirth {
+    return Intl.message(
+      'Date of birth',
+      name: 'dateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Level`
+  String get level {
+    return Intl.message(
+      'Level',
+      name: 'level',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get theme {
+    return Intl.message(
+      'Theme',
+      name: 'theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Study Room`
+  String get studyRoom {
+    return Intl.message(
+      'Study Room',
+      name: 'studyRoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wait Time`
+  String get waitTime {
+    return Intl.message(
+      'Wait Time',
+      name: 'waitTime',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

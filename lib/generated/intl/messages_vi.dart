@@ -22,28 +22,78 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "classRequirement":
+            MessageLookupByLibrary.simpleMessage("Yêu cầu lớp học"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Xác nhận mật khẩu của bạn"),
+        "courseDetail":
+            MessageLookupByLibrary.simpleMessage("Chi tiết khóa học"),
+        "courses": MessageLookupByLibrary.simpleMessage("Khóa học"),
+        "dateOfBirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Không có tài khoản?"),
+        "email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "enterMail":
             MessageLookupByLibrary.simpleMessage("Nhập địa chỉ email của bạn"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Nhập mật khẩu của bạn"),
+        "explore": MessageLookupByLibrary.simpleMessage("Khám phá"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Thích"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Quên mật khẩu?"),
+        "fullName": MessageLookupByLibrary.simpleMessage("Họ và tên"),
+        "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
+        "hours": MessageLookupByLibrary.simpleMessage("Giờ"),
         "intro":
             MessageLookupByLibrary.simpleMessage("Nền tảng học 1 1 trực tuyến"),
+        "language": MessageLookupByLibrary.simpleMessage("ngôn ngữ"),
+        "learnHistory": MessageLookupByLibrary.simpleMessage("Lịch sử học"),
+        "learningHistory":
+            MessageLookupByLibrary.simpleMessage("Lịch sử học tập"),
+        "lessons": MessageLookupByLibrary.simpleMessage("Buổi học"),
+        "level": MessageLookupByLibrary.simpleMessage("Cấp độ"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
+        "overall": MessageLookupByLibrary.simpleMessage("Tổng quan"),
+        "phone": MessageLookupByLibrary.simpleMessage("Điện thoại"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
             "Vui lòng nhập đúng định dạng email"),
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập giá trị"),
+        "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "report": MessageLookupByLibrary.simpleMessage("Báo cáo"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn"),
+        "review": MessageLookupByLibrary.simpleMessage("Đánh giá"),
+        "save": MessageLookupByLibrary.simpleMessage("Lưu"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Lịch trình"),
+        "search": MessageLookupByLibrary.simpleMessage("Tìm kiếm..."),
+        "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
+        "showLess": MessageLookupByLibrary.simpleMessage("Ẩn bớt"),
+        "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
+        "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
+        "studyRoom": MessageLookupByLibrary.simpleMessage("Phòng học"),
+        "system": MessageLookupByLibrary.simpleMessage("Hệ thống"),
+        "theme": MessageLookupByLibrary.simpleMessage("Màu sắc"),
+        "timeOfTheClass":
+            MessageLookupByLibrary.simpleMessage("Thời gian của lớp học"),
+        "topics": MessageLookupByLibrary.simpleMessage("Chủ đề"),
+        "tutor": MessageLookupByLibrary.simpleMessage("Gia sư"),
+        "tutorDetails": MessageLookupByLibrary.simpleMessage("Chi tiết gia sư"),
+        "upcomingClasses":
+            MessageLookupByLibrary.simpleMessage("Các lớp học sắp tới"),
+        "waitTime": MessageLookupByLibrary.simpleMessage("Thời gian chờ đợi"),
+        "whatYouAchieve":
+            MessageLookupByLibrary.simpleMessage("Những gì bạn đạt được"),
+        "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(
+            "Tại sao bạn nên học khóa học này"),
         "yourPasswordIsInCorrect": MessageLookupByLibrary.simpleMessage(
-            "Mật khẩu của bạn không chính xác")
+            "Mật khẩu của bạn không chính xác"),
+        "yourTotalLearnedHoursAre": MessageLookupByLibrary.simpleMessage(
+            "Tổng số giờ đã học của bạn là")
       };
 }

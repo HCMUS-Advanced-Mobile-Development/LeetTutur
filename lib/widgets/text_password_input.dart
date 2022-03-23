@@ -31,7 +31,7 @@ class _TextPasswordInputState extends State<TextPasswordInput> {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         hintText: widget.hintText,
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).cardColor,
         filled: true,
         suffixIcon: IconButton(
           icon:

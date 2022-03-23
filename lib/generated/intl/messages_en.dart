@@ -22,28 +22,77 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "book": MessageLookupByLibrary.simpleMessage("Book"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "classRequirement":
+            MessageLookupByLibrary.simpleMessage("Class Requirement"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
+        "courseDetail": MessageLookupByLibrary.simpleMessage("Course Details"),
+        "courses": MessageLookupByLibrary.simpleMessage("Courses"),
+        "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enterMail":
             MessageLookupByLibrary.simpleMessage("Enter your email address"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "explore": MessageLookupByLibrary.simpleMessage("Explore"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "hours": MessageLookupByLibrary.simpleMessage("hours"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "learnHistory": MessageLookupByLibrary.simpleMessage("Learn History"),
+        "learningHistory":
+            MessageLookupByLibrary.simpleMessage("Learning History"),
+        "lessons": MessageLookupByLibrary.simpleMessage("Lessons"),
+        "level": MessageLookupByLibrary.simpleMessage("Level"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "nation": MessageLookupByLibrary.simpleMessage("Nation"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
+        "overall": MessageLookupByLibrary.simpleMessage("Overall"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
             "Please enter correct email format"),
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Please enter some value"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "report": MessageLookupByLibrary.simpleMessage("Report"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Reset your password"),
+        "review": MessageLookupByLibrary.simpleMessage("Review"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "schedule": MessageLookupByLibrary.simpleMessage("Schedule"),
+        "search": MessageLookupByLibrary.simpleMessage("Search..."),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
+        "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
+        "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
+        "studyRoom": MessageLookupByLibrary.simpleMessage("Study Room"),
+        "system": MessageLookupByLibrary.simpleMessage("System"),
+        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "timeOfTheClass":
+            MessageLookupByLibrary.simpleMessage("Time of the Class"),
+        "topics": MessageLookupByLibrary.simpleMessage("Topics"),
+        "tutor": MessageLookupByLibrary.simpleMessage("Tutor"),
+        "tutorDetails": MessageLookupByLibrary.simpleMessage("Tutor details"),
+        "upcomingClasses":
+            MessageLookupByLibrary.simpleMessage("Upcoming Classes"),
+        "waitTime": MessageLookupByLibrary.simpleMessage("Wait Time"),
+        "whatYouAchieve":
+            MessageLookupByLibrary.simpleMessage("What you achieved"),
+        "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(
+            "Why you should learn this course"),
         "yourPasswordIsInCorrect":
-            MessageLookupByLibrary.simpleMessage("Your password is incorrect")
+            MessageLookupByLibrary.simpleMessage("Your password is incorrect"),
+        "yourTotalLearnedHoursAre":
+            MessageLookupByLibrary.simpleMessage("Your total learned hours are")
       };
 }
