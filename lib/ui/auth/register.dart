@@ -3,15 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/stores/auth_store/auth_store.dart';
+import 'package:leet_tutur/ui/auth/widgets/logo_intro.dart';
+import 'package:leet_tutur/widgets/text_input.dart';
+import 'package:leet_tutur/widgets/text_password_input.dart';
 import 'package:recase/recase.dart';
 import 'package:validators/validators.dart';
-
-import '../../constants/route_constants.dart';
-import '../../generated/l10n.dart';
-import '../../stores/auth_store/auth_store.dart';
-import '../../widgets/text_input.dart';
-import '../../widgets/text_password_input.dart';
-import 'widgets/logo_intro.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -111,9 +110,7 @@ class _RegisterState extends State<Register> {
                             children: [
                               Expanded(
                                 child: ElevatedButton(
-                                    onPressed: () {
-                                      _formKey.currentState!.validate();
-                                    },
+                                    onPressed: _handleRegister,
                                     child:
                                         Text(S.current.register.toUpperCase())),
                               ),
@@ -128,5 +125,11 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  void _handleRegister() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, RouteConstants.login);
+    }
   }
 }

@@ -42,6 +42,12 @@ dependencies:
   flutter_mobx: ^2.0.4
   get_it: ^7.2.0
   validators: ^3.0.0
+  material_floating_search_bar: ^0.3.6
+  expandable_text: ^2.2.0
+  json_annotation: ^4.4.0
+  json_serializable: ^6.1.5
+  shared_preferences: ^2.0.13
+  logger: ^1.1.0
 
 dev_dependencies:
   flutter_test:

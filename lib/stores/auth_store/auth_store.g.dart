@@ -54,12 +54,35 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
+  final _$loginResponseAtom = Atom(name: '_AuthStore.loginResponse');
+
+  @override
+  ObservableFuture<LoginResponse>? get loginResponse {
+    _$loginResponseAtom.reportRead();
+    return super.loginResponse;
+  }
+
+  @override
+  set loginResponse(ObservableFuture<LoginResponse>? value) {
+    _$loginResponseAtom.reportWrite(value, super.loginResponse, () {
+      super.loginResponse = value;
+    });
+  }
+
+  final _$loginAsyncAction = AsyncAction('_AuthStore.login');
+
+  @override
+  Future<dynamic> loginAsync() {
+    return _$loginAsyncAction.run(() => super.loginAsync());
+  }
+
   @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
-confirmPassword: ${confirmPassword}
+confirmPassword: ${confirmPassword},
+loginResponse: ${loginResponse}
     ''';
   }
 }

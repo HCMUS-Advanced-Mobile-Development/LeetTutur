@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:leet_tutur/di/service_locator.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/di/misc_locator.dart';
+import 'package:leet_tutur/di/stores_locator.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/ui/auth/login.dart';
 
-import 'constants/route_constants.dart';
-import 'generated/l10n.dart';
-import 'ui/auth/login.dart';
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  ServiceLocator.setUp();
+  StoresLocator.setUp();
+  MiscLocator.setUp();
 
   runApp(MaterialApp(
     title: 'Leet Tutur',
