@@ -69,11 +69,20 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$loginAsyncAction = AsyncAction('_AuthStore.login');
+  final _$loginAsyncAsyncAction = AsyncAction('_AuthStore.loginAsync');
 
   @override
   Future<dynamic> loginAsync() {
-    return _$loginAsyncAction.run(() => super.loginAsync());
+    return _$loginAsyncAsyncAction.run(() => super.loginAsync());
+  }
+
+  final _$retrieveLocalLoginResponseAsyncAsyncAction =
+      AsyncAction('_AuthStore.retrieveLocalLoginResponseAsync');
+
+  @override
+  Future<dynamic> retrieveLocalLoginResponseAsync() {
+    return _$retrieveLocalLoginResponseAsyncAsyncAction
+        .run(() => super.retrieveLocalLoginResponseAsync());
   }
 
   @override

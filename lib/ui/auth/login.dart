@@ -4,17 +4,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/login_response.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/stores/auth_store/auth_store.dart';
+import 'package:leet_tutur/ui/auth/widgets/logo_intro.dart';
+import 'package:leet_tutur/widgets/text_input.dart';
+import 'package:leet_tutur/widgets/text_password_input.dart';
 import 'package:logger/logger.dart';
 import 'package:mobx/mobx.dart';
 import 'package:validators/validators.dart';
-
-import '../../constants/route_constants.dart';
-import '../../generated/l10n.dart';
-import '../../stores/auth_store/auth_store.dart';
-import '../../widgets/text_input.dart';
-import '../../widgets/text_password_input.dart';
-import 'widgets/logo_intro.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

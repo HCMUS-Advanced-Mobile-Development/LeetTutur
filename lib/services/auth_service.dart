@@ -8,11 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   static final _logger = GetIt.instance.get<Logger>();
-  static Future<LoginResponse> loginAsync(
-      String username, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
 
-    const jsonResponse = """
+  final jsonResponse = """
     {
           "user": {
         "id": "f569c202-7bbf-4620-af77-ecc1419a6b28",
@@ -64,6 +61,10 @@ class AuthService {
     }
     """;
 
+  Future<LoginResponse> loginAsync(
+      String username, String password) async {
+    await Future.delayed(const Duration(seconds: 2));
+
     var loginResponse = LoginResponse.fromJson(jsonDecode(jsonResponse));
 
     final prefs = await SharedPreferences.getInstance();
@@ -75,7 +76,7 @@ class AuthService {
     return loginResponse;
   }
 
-  static Future<LoginResponse> retrieveLocalLoginResponseAsync() async {
+  Future<LoginResponse> retrieveLocalLoginResponseAsync() async {
     final prefs = await SharedPreferences.getInstance();
     var jsonString = prefs.getString(SharedPreferencesConstants.loginResponse) ?? "{}";
 

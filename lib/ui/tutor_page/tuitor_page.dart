@@ -22,13 +22,13 @@ class _TutorPageState extends State<TutorPage> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      var future = authStore.loginResponse;
+      var loginResponse = authStore.loginResponse;
       return Stack(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(
                 10, SearchBarConstants.defaultHeight + 20, 10, 0),
-            child: future == null || future.status == FutureStatus.pending
+            child: loginResponse == null || loginResponse.status == FutureStatus.pending
                 ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
                     child: Column(
