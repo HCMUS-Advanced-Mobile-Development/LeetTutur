@@ -135,9 +135,7 @@ class _LoginState extends State<Login> {
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                  onPressed: () {
-                                    _formKey.currentState!.validate();
-                                  },
+                                  onPressed: _handleLogin,
                                   child: Text(S.current.login.toUpperCase())),
                             ),
                           ],
