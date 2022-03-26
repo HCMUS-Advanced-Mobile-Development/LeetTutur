@@ -46,45 +46,55 @@ class Tutor {
 
   Tutor(
       {this.level,
-        this.email,
-        this.google,
-        this.facebook,
-        this.apple,
-        this.avatar,
-        this.name,
-        this.country,
-        this.phone,
-        this.language,
-        this.birthday,
-        this.requestPassword,
-        this.isActivated,
-        this.isPhoneActivated,
-        this.requireNote,
-        this.timezone,
-        this.phoneAuth,
-        this.isPhoneAuthActivated,
-        this.createdAt,
-        this.updatedAt,
-        this.deletedAt,
-        this.feedbacks,
-        this.id,
-        this.userId,
-        this.video,
-        this.bio,
-        this.education,
-        this.experience,
-        this.profession,
-        this.accent,
-        this.targetStudent,
-        this.interests,
-        this.languages,
-        this.specialties,
-        this.resume,
-        this.isNative,
-        this.price,
-        this.isOnline});
+      this.email,
+      this.google,
+      this.facebook,
+      this.apple,
+      this.avatar,
+      this.name,
+      this.country,
+      this.phone,
+      this.language,
+      this.birthday,
+      this.requestPassword,
+      this.isActivated,
+      this.isPhoneActivated,
+      this.requireNote,
+      this.timezone,
+      this.phoneAuth,
+      this.isPhoneAuthActivated,
+      this.createdAt,
+      this.updatedAt,
+      this.deletedAt,
+      this.feedbacks,
+      this.id,
+      this.userId,
+      this.video,
+      this.bio,
+      this.education,
+      this.experience,
+      this.profession,
+      this.accent,
+      this.targetStudent,
+      this.interests,
+      this.languages,
+      this.specialties,
+      this.resume,
+      this.isNative,
+      this.price,
+      this.isOnline});
 
   factory Tutor.fromJson(Map<String, dynamic> json) => _$TutorFromJson(json);
 
-    Map<String, dynamic> toJson() => _$TutorToJson(this);
+  Map<String, dynamic> toJson() => _$TutorToJson(this);
+
+  int getStars() {
+    var totalRating = feedbacks
+            ?.map((e) => e.rating)
+            .reduce((value, element) => value! + element!)
+            ?.floor() ??
+        0;
+
+    return totalRating ~/ (feedbacks?.length ?? 1);
+  }
 }

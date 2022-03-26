@@ -8,7 +8,7 @@ part 'auth_store.g.dart';
 class AuthStore = _AuthStore with _$AuthStore;
 
 abstract class _AuthStore with Store {
-  final authService = GetIt.instance.get<AuthService>();
+  final _authService = GetIt.instance.get<AuthService>();
 
   @observable
   String email = '';
@@ -23,8 +23,8 @@ abstract class _AuthStore with Store {
   ObservableFuture<LoginResponse>? loginResponse;
 
   @action
-  Future loginAsync() async => loginResponse = ObservableFuture(authService.loginAsync(email, password));
+  Future loginAsync() async => loginResponse = ObservableFuture(_authService.loginAsync(email, password));
 
   @action
-  Future retrieveLocalLoginResponseAsync() async => loginResponse = ObservableFuture(authService.retrieveLocalLoginResponseAsync());
+  Future retrieveLocalLoginResponseAsync() async => loginResponse = ObservableFuture(_authService.retrieveLocalLoginResponseAsync());
 }

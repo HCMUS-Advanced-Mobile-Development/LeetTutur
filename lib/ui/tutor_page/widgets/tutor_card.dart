@@ -1,24 +1,65 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/route_constants.dart';
-import '../../../generated/l10n.dart';
-import '../../../models/tutor_model.dart';
+import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/models/tutor.dart';
+import 'package:leet_tutur/stores/tutor_store/tutor_store.dart';
 
 class TutorCard extends StatefulWidget {
-  final TutorModel tutorModel;
+  final Tutor tutor;
 
-  const TutorCard({Key? key, required this.tutorModel}) : super(key: key);
+  const TutorCard({Key? key, required this.tutor}) : super(key: key);
 
   @override
   _TutorCardState createState() => _TutorCardState();
 }
 
 class _TutorCardState extends State<TutorCard> {
-  late final TutorModel tutor;
+  final tutorStore = GetIt.instance.get<TutorStore>();
+
+  late final Tutor tutor;
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      tutor = widget.tutor;
+      isFavorite = tutorStore.isFavoriteTutor(tutor);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Wrap(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                renderTutorInfoHeader(),
+                renderSpecialties(),
+                Text(
+                  tutor.bio!,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                renderButtons()
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
 
   void handleFavorite() {
     setState(() {
-      tutor.isFavorited = !tutor.isFavorited;
+      isFavorite = !isFavorite;
     });
   }
 
@@ -33,7 +74,7 @@ class _TutorCardState extends State<TutorCard> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundImage: Image.network(tutor.avatar).image,
+          backgroundImage: Image.network(tutor.avatar!).image,
           radius: 50,
         ),
         Column(
@@ -42,13 +83,13 @@ class _TutorCardState extends State<TutorCard> {
           children: [
             GestureDetector(
               child: Text(
-                tutor.name,
+                tutor.name!,
                 style: Theme.of(context).textTheme.headline6,
               ),
               onTapDown: navigateToDetail,
             ),
             Text(
-              tutor.nation,
+              tutor.country!,
               style: Theme.of(context).textTheme.bodyText1,
             ),
             renderStars()
@@ -56,7 +97,7 @@ class _TutorCardState extends State<TutorCard> {
         ),
         Center(
           child: IconButton(
-            icon: tutor.isFavorited
+            icon: isFavorite
                 ? const Icon(Icons.favorite, color: Colors.red, size: 30)
                 : const Icon(Icons.favorite_border, size: 30),
             onPressed: handleFavorite,
@@ -70,12 +111,12 @@ class _TutorCardState extends State<TutorCard> {
     return Row(
       children: [
         ...List.filled(
-            tutor.stars,
+            tutor.getStars(),
             const Icon(
               Icons.star,
               color: Colors.amber,
             )),
-        ...List.filled(5 - tutor.stars, const Icon(Icons.star_border))
+        ...List.filled(5 - tutor.getStars(), const Icon(Icons.star_border))
       ],
     );
   }
@@ -83,23 +124,30 @@ class _TutorCardState extends State<TutorCard> {
   Widget renderSpecialties() {
     return Wrap(
         children: tutor.specialties
-            .map((e) => Container(
-                margin: const EdgeInsets.only(left: 5, right: 5),
-                child: Chip(
-                  label: Text(e),
-                  backgroundColor: Theme.of(context).cardColor,
-                  shape: StadiumBorder(
-                      side: BorderSide(color: Theme.of(context).primaryColor)),
-                )))
-            .toList());
+                ?.split(",")
+                .map((e) => Container(
+                    margin: const EdgeInsets.only(left: 5, right: 5),
+                    child: Chip(
+                      label: Text(e),
+                      backgroundColor: Theme.of(context).cardColor,
+                      shape: StadiumBorder(
+                          side: BorderSide(
+                              color: Theme.of(context).primaryColor)),
+                    )))
+                .toList() ??
+            []);
   }
 
   Widget renderButtons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        TextButton(onPressed: handleBookTutor, child: Text(S.current.book.toUpperCase())),
-        TextButton(onPressed: handleChatTutor, child: Text(S.current.chat.toUpperCase())),
+        TextButton(
+            onPressed: handleBookTutor,
+            child: Text(S.current.book.toUpperCase())),
+        TextButton(
+            onPressed: handleChatTutor,
+            child: Text(S.current.chat.toUpperCase())),
       ],
     );
   }
@@ -107,38 +155,4 @@ class _TutorCardState extends State<TutorCard> {
   void handleBookTutor() {}
 
   void handleChatTutor() {}
-
-  @override
-  void initState() {
-    super.initState();
-
-    setState(() {
-      tutor = widget.tutorModel;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Wrap(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-            child: Column(
-              children: [
-                renderTutorInfoHeader(),
-                renderSpecialties(),
-                Text(
-                  tutor.description,
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                renderButtons()
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
 }

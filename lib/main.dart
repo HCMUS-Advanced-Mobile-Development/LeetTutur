@@ -10,9 +10,9 @@ import 'package:leet_tutur/ui/auth/login.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  MiscLocator.setUp();
   ServiceLocator.setUp();
   StoresLocator.setUp();
-  MiscLocator.setUp();
 
   runApp(MaterialApp(
     title: 'Leet Tutur',

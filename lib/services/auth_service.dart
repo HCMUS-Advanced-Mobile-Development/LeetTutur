@@ -3,14 +3,15 @@ import 'dart:convert';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
 import 'package:leet_tutur/models/login_response.dart';
+import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static final _logger = GetIt.instance.get<Logger>();
+  final _logger = GetIt.instance.get<Logger>();
 
   final jsonResponse = """
-    {
+  {
           "user": {
         "id": "f569c202-7bbf-4620-af77-ecc1419a6b28",
         "email": "student@lettutor.com",
@@ -58,11 +59,9 @@ class AuthService {
         "expires": "2022-04-22T14:28:12.178Z"
         }
         }
-    }
-    """;
+    }""";
 
-  Future<LoginResponse> loginAsync(
-      String username, String password) async {
+  Future<LoginResponse> loginAsync(String username, String password) async {
     await Future.delayed(const Duration(seconds: 2));
 
     var loginResponse = LoginResponse.fromJson(jsonDecode(jsonResponse));
@@ -71,16 +70,19 @@ class AuthService {
     prefs.setString(
         SharedPreferencesConstants.loginResponse, jsonEncode(loginResponse));
 
-    _logger.i("Save login response to shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: ${jsonEncode(loginResponse)}");
+    _logger.i(
+        "Save login response to shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: ${loginResponse.toJson().beautifyJson()}");
 
     return loginResponse;
   }
 
   Future<LoginResponse> retrieveLocalLoginResponseAsync() async {
     final prefs = await SharedPreferences.getInstance();
-    var jsonString = prefs.getString(SharedPreferencesConstants.loginResponse) ?? "{}";
+    var jsonString =
+        prefs.getString(SharedPreferencesConstants.loginResponse) ?? "{}";
 
-    _logger.i("Read from shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: $jsonString");
+    _logger.i(
+        "Read from shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: $jsonString");
 
     return LoginResponse.fromJson(jsonDecode(jsonString));
   }
