@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:leet_tutur/models/feedback.dart';
+import 'package:leet_tutur/models/user_feedback.dart';
 import 'package:leet_tutur/models/learn_topic.dart';
 
 part 'user.g.dart';
@@ -29,7 +29,7 @@ class User {
   String? createdAt;
   String? updatedAt;
   dynamic deletedAt;
-  List<Feedback>? feedbacks;
+  List<UserFeedback>? feedbacks;
   List<dynamic>? courses;
 
   User(

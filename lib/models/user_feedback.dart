@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:leet_tutur/models/first_info.dart';
 
-part 'feedback.g.dart';
+part 'user_feedback.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Feedback {
+class UserFeedback {
     String? id;
     String? bookingId;
     String? firstId;
@@ -15,7 +15,7 @@ class Feedback {
     String? updatedAt;
     FirstInfo? firstInfo;
 
-    Feedback(
+    UserFeedback(
         {this.id,
             this.bookingId,
             this.firstId,
@@ -26,7 +26,7 @@ class Feedback {
             this.updatedAt,
             this.firstInfo});
 
-    factory Feedback.fromJson(Map<String, dynamic> json) => _$FeedbackFromJson(json);
+    factory UserFeedback.fromJson(Map<String, dynamic> json) => _$UserFeedbackFromJson(json);
 
-    Map<String, dynamic> toJson() => _$FeedbackToJson(this);
+    Map<String, dynamic> toJson() => _$UserFeedbackToJson(this);
 }

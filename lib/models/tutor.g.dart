@@ -29,7 +29,7 @@ Tutor _$TutorFromJson(Map<String, dynamic> json) => Tutor(
       updatedAt: json['updatedAt'] as String?,
       deletedAt: json['deletedAt'],
       feedbacks: (json['feedbacks'] as List<dynamic>?)
-          ?.map((e) => Feedback.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => UserFeedback.fromJson(e as Map<String, dynamic>))
           .toList(),
       id: json['id'] as String?,
       userId: json['userId'] as String?,
@@ -45,6 +45,11 @@ Tutor _$TutorFromJson(Map<String, dynamic> json) => Tutor(
       specialties: json['specialties'] as String?,
       resume: json['resume'],
       isNative: json['isNative'],
+      user: json['User'] == null
+          ? null
+          : User.fromJson(json['User'] as Map<String, dynamic>),
+      isFavorite: json['isFavorite'] as bool?,
+      avgRating: (json['avgRating'] as num?)?.toDouble(),
       price: json['price'] as int?,
       isOnline: json['isOnline'] as bool?,
     );
@@ -86,6 +91,9 @@ Map<String, dynamic> _$TutorToJson(Tutor instance) => <String, dynamic>{
       'specialties': instance.specialties,
       'resume': instance.resume,
       'isNative': instance.isNative,
+      'User': instance.user?.toJson(),
+      'isFavorite': instance.isFavorite,
+      'avgRating': instance.avgRating,
       'price': instance.price,
       'isOnline': instance.isOnline,
     };

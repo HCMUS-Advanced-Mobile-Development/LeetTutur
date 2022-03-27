@@ -97,7 +97,7 @@ class _TutorCardState extends State<TutorCard> {
         ),
         Center(
           child: IconButton(
-            icon: isFavorite
+            icon: tutor.isFavorite != null && tutor.isFavorite!
                 ? const Icon(Icons.favorite, color: Colors.red, size: 30)
                 : const Icon(Icons.favorite_border, size: 30),
             onPressed: handleFavorite,

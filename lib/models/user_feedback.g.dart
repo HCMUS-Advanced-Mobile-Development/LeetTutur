@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'feedback.dart';
+part of 'user_feedback.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Feedback _$FeedbackFromJson(Map<String, dynamic> json) => Feedback(
+UserFeedback _$UserFeedbackFromJson(Map<String, dynamic> json) => UserFeedback(
       id: json['id'] as String?,
       bookingId: json['bookingId'] as String?,
       firstId: json['firstId'] as String?,
@@ -20,7 +20,8 @@ Feedback _$FeedbackFromJson(Map<String, dynamic> json) => Feedback(
           : FirstInfo.fromJson(json['firstInfo'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$FeedbackToJson(Feedback instance) => <String, dynamic>{
+Map<String, dynamic> _$UserFeedbackToJson(UserFeedback instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'bookingId': instance.bookingId,
       'firstId': instance.firstId,

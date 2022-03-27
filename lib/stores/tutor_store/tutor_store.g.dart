@@ -24,33 +24,35 @@ mixin _$TutorStore on _TutorStore, Store {
               name: '_TutorStore.favoriteTutorList'))
       .value;
 
-  final _$tutorResponseAtom = Atom(name: '_TutorStore.tutorResponse');
+  final _$tutorResponseFutureAtom =
+      Atom(name: '_TutorStore.tutorResponseFuture');
 
   @override
-  ObservableFuture<TutorResponse>? get tutorResponse {
-    _$tutorResponseAtom.reportRead();
-    return super.tutorResponse;
+  ObservableFuture<TutorResponse>? get tutorResponseFuture {
+    _$tutorResponseFutureAtom.reportRead();
+    return super.tutorResponseFuture;
   }
 
   @override
-  set tutorResponse(ObservableFuture<TutorResponse>? value) {
-    _$tutorResponseAtom.reportWrite(value, super.tutorResponse, () {
-      super.tutorResponse = value;
+  set tutorResponseFuture(ObservableFuture<TutorResponse>? value) {
+    _$tutorResponseFutureAtom.reportWrite(value, super.tutorResponseFuture, () {
+      super.tutorResponseFuture = value;
     });
   }
 
-  final _$selectedTutorAtom = Atom(name: '_TutorStore.selectedTutor');
+  final _$selectedTutorFutureAtom =
+      Atom(name: '_TutorStore.selectedTutorFuture');
 
   @override
-  Tutor? get selectedTutor {
-    _$selectedTutorAtom.reportRead();
-    return super.selectedTutor;
+  ObservableFuture<Tutor>? get selectedTutorFuture {
+    _$selectedTutorFutureAtom.reportRead();
+    return super.selectedTutorFuture;
   }
 
   @override
-  set selectedTutor(Tutor? value) {
-    _$selectedTutorAtom.reportWrite(value, super.selectedTutor, () {
-      super.selectedTutor = value;
+  set selectedTutorFuture(ObservableFuture<Tutor>? value) {
+    _$selectedTutorFutureAtom.reportWrite(value, super.selectedTutorFuture, () {
+      super.selectedTutorFuture = value;
     });
   }
 
@@ -62,11 +64,31 @@ mixin _$TutorStore on _TutorStore, Store {
         .run(() => super.searchTutors(request: request));
   }
 
+  final _$getTutorDetailAsyncAction = AsyncAction('_TutorStore.getTutorDetail');
+
+  @override
+  Future<dynamic> getTutorDetail({String id = "0"}) {
+    return _$getTutorDetailAsyncAction.run(() => super.getTutorDetail(id: id));
+  }
+
+  final _$_TutorStoreActionController = ActionController(name: '_TutorStore');
+
+  @override
+  void unSelectTutor() {
+    final _$actionInfo = _$_TutorStoreActionController.startAction(
+        name: '_TutorStore.unSelectTutor');
+    try {
+      return super.unSelectTutor();
+    } finally {
+      _$_TutorStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-tutorResponse: ${tutorResponse},
-selectedTutor: ${selectedTutor},
+tutorResponseFuture: ${tutorResponseFuture},
+selectedTutorFuture: ${selectedTutorFuture},
 rowOfTutor: ${rowOfTutor},
 favoriteTutorList: ${favoriteTutorList}
     ''';

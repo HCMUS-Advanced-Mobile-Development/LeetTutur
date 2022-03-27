@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:leet_tutur/models/feedback.dart';
+import 'package:leet_tutur/models/user_feedback.dart';
+import 'package:leet_tutur/models/user.dart';
 
 part 'tutor.g.dart';
 
@@ -26,7 +27,7 @@ class Tutor {
   String? createdAt;
   String? updatedAt;
   dynamic deletedAt;
-  List<Feedback>? feedbacks;
+  List<UserFeedback>? feedbacks;
   String? id;
   String? userId;
   String? video;
@@ -41,6 +42,10 @@ class Tutor {
   String? specialties;
   dynamic resume;
   dynamic isNative;
+  @JsonKey(name: "User")
+  User? user;
+  bool? isFavorite;
+  double? avgRating;
   int? price;
   bool? isOnline;
 
@@ -81,6 +86,9 @@ class Tutor {
       this.specialties,
       this.resume,
       this.isNative,
+      this.user,
+      this.isFavorite,
+      this.avgRating,
       this.price,
       this.isOnline});
 
@@ -89,11 +97,18 @@ class Tutor {
   Map<String, dynamic> toJson() => _$TutorToJson(this);
 
   int getStars() {
-    var totalRating = feedbacks
-            ?.map((e) => e.rating)
-            .reduce((value, element) => value! + element!)
-            ?.floor() ??
-        0;
+    var totalRating = 0;
+    final avgRating = this.avgRating;
+    if (avgRating != null) {
+      totalRating = avgRating.toInt();
+    }
+    else {
+      totalRating = feedbacks
+          ?.map((e) => e.rating)
+          .reduce((value, element) => value! + element!)
+          ?.floor() ??
+          0;
+    }
 
     return totalRating ~/ (feedbacks?.length ?? 1);
   }

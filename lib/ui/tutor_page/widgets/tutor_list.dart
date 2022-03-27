@@ -23,7 +23,7 @@ class _TutorListState extends State<TutorList> {
 
   @override
   Widget build(BuildContext context) {
-    var tutorFuture = tutorStore.tutorResponse;
+    var tutorFuture = tutorStore.tutorResponseFuture;
 
     return Observer(builder: (context) {
       var rowOfTutor = tutorStore.rowOfTutor;

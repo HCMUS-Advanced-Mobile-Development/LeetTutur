@@ -34,7 +34,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       updatedAt: json['updatedAt'] as String?,
       deletedAt: json['deletedAt'],
       feedbacks: (json['feedbacks'] as List<dynamic>?)
-          ?.map((e) => Feedback.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => UserFeedback.fromJson(e as Map<String, dynamic>))
           .toList(),
       courses: json['courses'] as List<dynamic>?,
     );

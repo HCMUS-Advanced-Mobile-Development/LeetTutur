@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/login_response.dart';
+import 'package:leet_tutur/models/responses/login_response.dart';
 import 'package:leet_tutur/services/auth_service.dart';
 import 'package:mobx/mobx.dart';
 

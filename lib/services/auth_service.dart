@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
-import 'package:leet_tutur/models/login_response.dart';
+import 'package:leet_tutur/models/responses/login_response.dart';
 import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
