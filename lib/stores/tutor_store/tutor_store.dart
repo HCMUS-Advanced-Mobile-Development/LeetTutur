@@ -17,6 +17,9 @@ abstract class _TutorStore with Store {
   @observable
   ObservableFuture<TutorResponse>? tutorResponse;
 
+  @observable
+  Tutor? selectedTutor;
+
   @computed
   RowOfTutor? get rowOfTutor => tutorResponse?.value?.tutors;
 

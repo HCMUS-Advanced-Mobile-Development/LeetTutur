@@ -4,6 +4,7 @@ part 'first_info.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class FirstInfo {
+  String? id;
   String? level;
   String? email;
   String? google;
@@ -27,7 +28,8 @@ class FirstInfo {
   dynamic deletedAt;
 
   FirstInfo(
-      {this.level,
+      {this.id,
+      this.level,
       this.email,
       this.google,
       this.facebook,

@@ -39,6 +39,21 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
+  final _$selectedTutorAtom = Atom(name: '_TutorStore.selectedTutor');
+
+  @override
+  Tutor? get selectedTutor {
+    _$selectedTutorAtom.reportRead();
+    return super.selectedTutor;
+  }
+
+  @override
+  set selectedTutor(Tutor? value) {
+    _$selectedTutorAtom.reportWrite(value, super.selectedTutor, () {
+      super.selectedTutor = value;
+    });
+  }
+
   final _$searchTutorsAsyncAction = AsyncAction('_TutorStore.searchTutors');
 
   @override
@@ -51,6 +66,7 @@ mixin _$TutorStore on _TutorStore, Store {
   String toString() {
     return '''
 tutorResponse: ${tutorResponse},
+selectedTutor: ${selectedTutor},
 rowOfTutor: ${rowOfTutor},
 favoriteTutorList: ${favoriteTutorList}
     ''';
