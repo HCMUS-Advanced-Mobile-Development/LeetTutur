@@ -204,6 +204,7 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
                 style: Theme.of(context).textTheme.headline6),
           ],
         ),
+        const SizedBox(height: 15,),
         IndexedStack(
           index: selectedIndex,
           children: [

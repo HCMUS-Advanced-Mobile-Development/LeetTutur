@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/user_feedback.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/tutor_review.dart';
 

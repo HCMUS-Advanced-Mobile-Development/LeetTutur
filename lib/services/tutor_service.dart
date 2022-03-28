@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/requests/tutor_request.dart';
 import 'package:leet_tutur/models/responses/tutor_response.dart';
 import 'package:leet_tutur/models/tutor.dart';
-import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 
 class TutorService {
