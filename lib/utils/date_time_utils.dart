@@ -19,4 +19,8 @@ class DateTimeUtils {
     return DateFormat(DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
         .format(date);
   }
+
+  static String formatTime(DateTime date) {
+    return DateFormat(DateFormat.HOUR_MINUTE).format(date);
+  }
 }

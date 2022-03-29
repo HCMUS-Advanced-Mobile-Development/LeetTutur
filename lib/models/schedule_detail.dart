@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:leet_tutur/models/booking_info.dart';
+import 'package:leet_tutur/models/schedule.dart';
 
 part 'schedule_detail.g.dart';
 
@@ -15,6 +16,8 @@ class ScheduleDetail {
   String? updatedAt;
   List<BookingInfo>? bookingInfo;
   bool? isBooked;
+  Schedule? scheduleInfo;
+
 
   ScheduleDetail(
       {this.startPeriodTimestamp,
@@ -26,7 +29,8 @@ class ScheduleDetail {
       this.createdAt,
       this.updatedAt,
       this.bookingInfo,
-      this.isBooked});
+      this.isBooked,
+      this.scheduleInfo});
 
   factory ScheduleDetail.fromJson(Map<String, dynamic> json) =>
       _$ScheduleDetailFromJson(json);
