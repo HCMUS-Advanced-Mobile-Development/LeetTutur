@@ -31,26 +31,27 @@ class _UpcomingItemState extends State<UpcomingItem> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        bookedDate,
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                      Text(
-                        tutorName,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      )
-                    ],
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5, right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          bookedDate,
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                        Text(
+                          tutorName,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  width: 5,
-                ),
                 Expanded(
+                  flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: bookingInfos.map((e) {
