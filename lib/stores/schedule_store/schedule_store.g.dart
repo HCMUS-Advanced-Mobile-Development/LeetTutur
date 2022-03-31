@@ -54,6 +54,39 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
+  final _$totalLearnedHoursFutureAtom =
+      Atom(name: '_ScheduleStore.totalLearnedHoursFuture');
+
+  @override
+  ObservableFuture<Duration>? get totalLearnedHoursFuture {
+    _$totalLearnedHoursFutureAtom.reportRead();
+    return super.totalLearnedHoursFuture;
+  }
+
+  @override
+  set totalLearnedHoursFuture(ObservableFuture<Duration>? value) {
+    _$totalLearnedHoursFutureAtom
+        .reportWrite(value, super.totalLearnedHoursFuture, () {
+      super.totalLearnedHoursFuture = value;
+    });
+  }
+
+  final _$learnHistoryFutureAtom =
+      Atom(name: '_ScheduleStore.learnHistoryFuture');
+
+  @override
+  ObservableFuture<BookingListResponse>? get learnHistoryFuture {
+    _$learnHistoryFutureAtom.reportRead();
+    return super.learnHistoryFuture;
+  }
+
+  @override
+  set learnHistoryFuture(ObservableFuture<BookingListResponse>? value) {
+    _$learnHistoryFutureAtom.reportWrite(value, super.learnHistoryFuture, () {
+      super.learnHistoryFuture = value;
+    });
+  }
+
   final _$getScheduleAsyncAsyncAction =
       AsyncAction('_ScheduleStore.getScheduleAsync');
 
@@ -82,11 +115,23 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getTotalLearnedHoursAsync());
   }
 
+  final _$getLearnHistoryAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getLearnHistoryAsync');
+
+  @override
+  Future<dynamic> getLearnHistoryAsync(
+      {BookingListRequest? bookingListRequest}) {
+    return _$getLearnHistoryAsyncAsyncAction.run(() =>
+        super.getLearnHistoryAsync(bookingListRequest: bookingListRequest));
+  }
+
   @override
   String toString() {
     return '''
 scheduleResponseFuture: ${scheduleResponseFuture},
 bookingListResponseFuture: ${bookingListResponseFuture},
+totalLearnedHoursFuture: ${totalLearnedHoursFuture},
+learnHistoryFuture: ${learnHistoryFuture},
 bookInfosGroupByTutorAndDate: ${bookInfosGroupByTutorAndDate}
     ''';
   }

@@ -64,4 +64,19 @@ class ScheduleService {
 
     return Duration(minutes: totalPeriod * 30);
   }
+
+  Future<BookingListResponse> getLearnHistoryAsync(
+      {BookingListRequest? bookingListRequest}) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    var bookingListResponseJson =
+    await rootBundle.loadString("assets/data/learn_history.json");
+    var bookingListResponse = BookingListResponse.fromJson(
+        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+
+    _logger.i(
+        "Get history list. Found: ${bookingListResponse.data?.rows?.length} items");
+
+    return bookingListResponse;
+  }
 }

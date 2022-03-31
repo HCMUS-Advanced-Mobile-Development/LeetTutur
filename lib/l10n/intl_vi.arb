@@ -53,5 +53,6 @@
 	"theme": "Màu sắc",
 	"language": "ngôn ngữ",
 	"studyRoom": "Phòng học",
-	"waitTime": "Thời gian chờ đợi"
+	"waitTime": "Thời gian chờ đợi",
+	"empty": "Không có nội dung"
 }

@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Không có tài khoản?"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "empty": MessageLookupByLibrary.simpleMessage("Không có nội dung"),
         "enterMail":
             MessageLookupByLibrary.simpleMessage("Nhập địa chỉ email của bạn"),
         "enterPassword":

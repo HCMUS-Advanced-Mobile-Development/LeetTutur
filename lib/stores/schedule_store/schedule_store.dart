@@ -5,8 +5,8 @@ import 'package:leet_tutur/models/responses/booking_list_response.dart';
 import 'package:leet_tutur/models/responses/schedule_response.dart';
 import 'package:leet_tutur/services/schedule_service.dart';
 import 'package:leet_tutur/utils/date_time_utils.dart';
-import 'package:mobx/mobx.dart';
 import 'package:leet_tutur/utils/iterable_extensions.dart';
+import 'package:mobx/mobx.dart';
 
 part 'schedule_store.g.dart';
 
@@ -21,7 +21,11 @@ abstract class _ScheduleStore with Store {
   @observable
   ObservableFuture<BookingListResponse>? bookingListResponseFuture;
 
+  @observable
   ObservableFuture<Duration>? totalLearnedHoursFuture;
+
+  @observable
+  ObservableFuture<BookingListResponse>? learnHistoryFuture;
 
   @computed
   Map<String, List<BookingInfo>> get bookInfosGroupByTutorAndDate =>
@@ -48,5 +52,11 @@ abstract class _ScheduleStore with Store {
           _scheduleService.getBookingsList(tutorId, request: request));
 
   @action
-  Future getTotalLearnedHoursAsync() async => totalLearnedHoursFuture = ObservableFuture(_scheduleService.getTotalLearnedHours());
+  Future getTotalLearnedHoursAsync() async => totalLearnedHoursFuture =
+      ObservableFuture(_scheduleService.getTotalLearnedHours());
+
+  @action
+  Future getLearnHistoryAsync({BookingListRequest? bookingListRequest}) async =>
+      learnHistoryFuture = ObservableFuture(_scheduleService
+          .getLearnHistoryAsync(bookingListRequest: bookingListRequest));
 }

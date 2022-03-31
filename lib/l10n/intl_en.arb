@@ -53,5 +53,6 @@
 	"theme": "Theme",
 	"language": "Language",
 	"studyRoom": "Study Room",
-	"waitTime": "Wait Time"
+	"waitTime": "Wait Time",
+	"empty": "Empty"
 }
