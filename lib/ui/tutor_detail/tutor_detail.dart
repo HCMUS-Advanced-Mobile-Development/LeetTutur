@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
-import 'package:leet_tutur/stores/tutor_store/tutor_store.dart';
+import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/feedback_list.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/schedule_list.dart';
 import 'package:mobx/mobx.dart';

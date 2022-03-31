@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
-import 'package:leet_tutur/stores/tutor_store/tutor_store.dart';
+import 'package:leet_tutur/stores/tutor_store.dart';
 
 class TutorCard extends StatefulWidget {
   final Tutor tutor;

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-
-import '../generated/l10n.dart';
-import '../models/course_model.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/models/course.dart';
+import 'package:leet_tutur/models/course_model.dart';
 
 class CourseCard extends StatelessWidget {
-  final CourseModel courseModel;
+  final Course course;
 
   final void Function()? onTap;
 
-  const CourseCard({Key? key, required this.courseModel, this.onTap}) : super(key: key);
+  const CourseCard({Key? key, this.onTap, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CourseCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Image.network(
-                courseModel.thumbnail!,
+                course.imageUrl ?? "",
                 width: MediaQuery.of(context).size.width,
                 height: 200,
                 fit: BoxFit.cover,
@@ -30,16 +30,16 @@ class CourseCard extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                courseModel.title!,
+                course.name ?? "",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Text(
-                courseModel.subTitle!,
+                course.description ?? "",
                 style: Theme.of(context).textTheme.caption,
               ),
               Row(
                 children: [
-                  Text(courseModel.level!),
+                  Text(course.getLevelName()),
                   const Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 5,
@@ -47,7 +47,7 @@ class CourseCard extends StatelessWidget {
                     child: Text("·", style: TextStyle(fontSize: 30)),
                   ),
                   Text(
-                      "${courseModel.numberOfCourse!.toString()} ${S.current.lessons}")
+                      "${course.topics?.length ?? 0} ${S.current.lessons}")
                 ],
               ),
             ],

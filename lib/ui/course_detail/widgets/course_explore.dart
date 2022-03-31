@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leet_tutur/widgets/course_card.dart';
+import 'package:leet_tutur/ui/courses_page/widgets/course_card.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../models/course_model.dart';
@@ -21,7 +21,7 @@ class CourseExplore extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        CourseCard(courseModel: course),
+        // CourseCard(courseModel: course),
         ElevatedButton(onPressed: _handleExploreButton, child: Text(S.current.explore.toUpperCase()))
       ],
     );

@@ -10,7 +10,7 @@ import 'package:logger/logger.dart';
 class ScheduleService {
   final _logger = GetIt.instance.get<Logger>();
 
-  Future<ScheduleResponse> getScheduleByTutorId({String id = ""}) async {
+  Future<ScheduleResponse> getScheduleByTutorIdAsync({String id = ""}) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
     var tutorScheduleJson =
@@ -35,7 +35,7 @@ class ScheduleService {
     return scheduleResponse;
   }
 
-  Future<BookingListResponse> getBookingsList(String tutorId,
+  Future<BookingListResponse> getBookingsListAsync(String tutorId,
       {BookingListRequest? request}) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
@@ -50,7 +50,7 @@ class ScheduleService {
     return bookingListResponse;
   }
 
-  Future<Duration> getTotalLearnedHours() async {
+  Future<Duration> getTotalLearnedHoursAsync() async {
     await Future.delayed(const Duration(milliseconds: 500));
 
     var bookingListResponseJson =

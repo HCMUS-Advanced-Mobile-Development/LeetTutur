@@ -6,8 +6,9 @@ part 'base_request.g.dart';
 class BaseRequest {
   int? page;
   int? perPage;
+  int? size;
 
-  BaseRequest({this.page, this.perPage});
+  BaseRequest({this.page, this.perPage, this.size});
 
   factory BaseRequest.fromJson(Map<String, dynamic> json) =>
       _$BaseRequestFromJson(json);

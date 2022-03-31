@@ -43,17 +43,17 @@ abstract class _ScheduleStore with Store {
 
   @action
   Future getScheduleAsync({String id = ""}) async => scheduleResponseFuture =
-      ObservableFuture(_scheduleService.getScheduleByTutorId(id: id));
+      ObservableFuture(_scheduleService.getScheduleByTutorIdAsync(id: id));
 
   @action
   Future getBookingsListAsync(String tutorId,
           {BookingListRequest? request}) async =>
       bookingListResponseFuture = ObservableFuture(
-          _scheduleService.getBookingsList(tutorId, request: request));
+          _scheduleService.getBookingsListAsync(tutorId, request: request));
 
   @action
   Future getTotalLearnedHoursAsync() async => totalLearnedHoursFuture =
-      ObservableFuture(_scheduleService.getTotalLearnedHours());
+      ObservableFuture(_scheduleService.getTotalLearnedHoursAsync());
 
   @action
   Future getLearnHistoryAsync({BookingListRequest? bookingListRequest}) async =>

@@ -54,5 +54,13 @@
 	"language": "Language",
 	"studyRoom": "Study Room",
 	"waitTime": "Wait Time",
-	"empty": "Empty"
+	"empty": "Empty",
+	"anyLevel": "Any Level",
+	"beginners": "Beginners",
+	"upperBeginners": "Upper Beginners",
+	"preIntermediate": "Pre-intermediate",
+	"intermediate": "Intermediate",
+	"upperIntermediate": "Upper Intermediate",
+	"preAdvance": "Pre-Advance",
+	"advance": "Advance"
 }

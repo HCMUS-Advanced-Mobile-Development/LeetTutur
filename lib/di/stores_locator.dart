@@ -1,7 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/stores/auth_store/auth_store.dart';
-import 'package:leet_tutur/stores/schedule_store/schedule_store.dart';
-import 'package:leet_tutur/stores/tutor_store/tutor_store.dart';
+import 'package:leet_tutur/stores/auth_store.dart';
+import 'package:leet_tutur/stores/course_store.dart';
+import 'package:leet_tutur/stores/schedule_store.dart';
+import 'package:leet_tutur/stores/tutor_store.dart';
 
 class StoresLocator {
   static void setUp() {
@@ -10,5 +11,6 @@ class StoresLocator {
     getIt.registerSingleton(AuthStore());
     getIt.registerSingleton(TutorStore());
     getIt.registerSingleton(ScheduleStore());
+    getIt.registerSingleton(CourseStore());
   }
 }

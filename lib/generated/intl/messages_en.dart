@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "advance": MessageLookupByLibrary.simpleMessage("Advance"),
+        "anyLevel": MessageLookupByLibrary.simpleMessage("Any Level"),
+        "beginners": MessageLookupByLibrary.simpleMessage("Beginners"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
@@ -46,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "hours": MessageLookupByLibrary.simpleMessage("hours"),
+        "intermediate": MessageLookupByLibrary.simpleMessage("Intermediate"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
@@ -63,6 +67,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter correct email format"),
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Please enter some value"),
+        "preAdvance": MessageLookupByLibrary.simpleMessage("Pre-Advance"),
+        "preIntermediate":
+            MessageLookupByLibrary.simpleMessage("Pre-intermediate"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
@@ -86,6 +93,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "tutorDetails": MessageLookupByLibrary.simpleMessage("Tutor details"),
         "upcomingClasses":
             MessageLookupByLibrary.simpleMessage("Upcoming Classes"),
+        "upperBeginners":
+            MessageLookupByLibrary.simpleMessage("Upper Beginners"),
+        "upperIntermediate":
+            MessageLookupByLibrary.simpleMessage("Upper Intermediate"),
         "waitTime": MessageLookupByLibrary.simpleMessage("Wait Time"),
         "whatYouAchieve":
             MessageLookupByLibrary.simpleMessage("What you achieved"),

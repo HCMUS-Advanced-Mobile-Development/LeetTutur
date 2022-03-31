@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/stores/tutor_store/tutor_store.dart';
+import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/ui/tutor_page/widgets/tutor_card.dart';
 import 'package:mobx/mobx.dart';
 

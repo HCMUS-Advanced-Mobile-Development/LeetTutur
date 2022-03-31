@@ -6,7 +6,7 @@ import 'package:validators/validators.dart';
 
 import '../../constants/route_constants.dart';
 import '../../generated/l10n.dart';
-import '../../stores/auth_store/auth_store.dart';
+import '../../stores/auth_store.dart';
 import '../../widgets/text_input.dart';
 import 'widgets/logo_intro.dart';
 

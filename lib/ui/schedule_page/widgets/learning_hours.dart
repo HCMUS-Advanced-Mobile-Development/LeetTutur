@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
-import 'package:leet_tutur/stores/schedule_store/schedule_store.dart';
+import 'package:leet_tutur/stores/schedule_store.dart';
 import 'package:mobx/mobx.dart';
 
 class LearningHours extends StatefulWidget {

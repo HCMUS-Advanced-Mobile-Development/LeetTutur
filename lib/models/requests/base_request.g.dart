@@ -9,10 +9,12 @@ part of 'base_request.dart';
 BaseRequest _$BaseRequestFromJson(Map<String, dynamic> json) => BaseRequest(
       page: json['page'] as int?,
       perPage: json['perPage'] as int?,
+      size: json['size'] as int?,
     );
 
 Map<String, dynamic> _$BaseRequestToJson(BaseRequest instance) =>
     <String, dynamic>{
       'page': instance.page,
       'perPage': instance.perPage,
+      'size': instance.size,
     };

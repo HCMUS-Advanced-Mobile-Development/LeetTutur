@@ -12,11 +12,13 @@ TutorRequest _$TutorRequestFromJson(Map<String, dynamic> json) => TutorRequest(
           : TutorFilter.fromJson(json['filters'] as Map<String, dynamic>),
     )
       ..page = json['page'] as int?
-      ..perPage = json['perPage'] as int?;
+      ..perPage = json['perPage'] as int?
+      ..size = json['size'] as int?;
 
 Map<String, dynamic> _$TutorRequestToJson(TutorRequest instance) =>
     <String, dynamic>{
       'page': instance.page,
       'perPage': instance.perPage,
+      'size': instance.size,
       'filters': instance.filters?.toJson(),
     };
