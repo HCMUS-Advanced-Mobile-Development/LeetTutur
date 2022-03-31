@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/route_constants.dart';
-import '../../../generated/l10n.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/stores/schedule_store/schedule_store.dart';
+import 'package:mobx/mobx.dart';
 
 class LearningHours extends StatefulWidget {
   const LearningHours({Key? key}) : super(key: key);
@@ -11,8 +14,13 @@ class LearningHours extends StatefulWidget {
 }
 
 class _LearningHoursState extends State<LearningHours> {
-  void _handleLearnHistory() {
-    Navigator.pushNamed(context, RouteConstants.learnHistory);
+  final _scheduleStore = GetIt.instance.get<ScheduleStore>();
+
+  @override
+  void initState() {
+    _scheduleStore.getTotalLearnedHoursAsync();
+
+    super.initState();
   }
 
   @override
@@ -29,11 +37,18 @@ class _LearningHoursState extends State<LearningHours> {
                 S.current.yourTotalLearnedHoursAre,
                 textAlign: TextAlign.center,
               ),
-              Text(
-                "86.5 ${S.current.hours}",
-                style: Theme.of(context).textTheme.headline6,
-                textAlign: TextAlign.center,
-              ),
+              Observer(builder: (context) {
+                var future = _scheduleStore.totalLearnedHoursFuture;
+                var duration = future?.value ?? Duration.zero;
+
+                return future?.status == FutureStatus.fulfilled
+                    ? Text(
+                        "${duration.inHours} ${S.current.hours}",
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.center,
+                      )
+                    : const CircularProgressIndicator();
+              }),
               const SizedBox(
                 height: 10,
               ),
@@ -45,5 +60,9 @@ class _LearningHoursState extends State<LearningHours> {
         ),
       ),
     );
+  }
+
+  void _handleLearnHistory() {
+    Navigator.pushNamed(context, RouteConstants.learnHistory);
   }
 }

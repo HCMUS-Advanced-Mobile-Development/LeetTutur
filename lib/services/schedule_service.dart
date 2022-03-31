@@ -44,8 +44,24 @@ class ScheduleService {
     var bookingListResponse = BookingListResponse.fromJson(
         jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
 
-    _logger.i("Get booking list. Found: ${bookingListResponse.data?.rows?.length} items");
+    _logger.i(
+        "Get booking list. Found: ${bookingListResponse.data?.rows?.length} items");
 
     return bookingListResponse;
+  }
+
+  Future<Duration> getTotalLearnedHours() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    var bookingListResponseJson =
+        await rootBundle.loadString("assets/data/learn_hours.json");
+    var bookingListResponse = BookingListResponse.fromJson(
+        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+
+    var totalPeriod = bookingListResponse.data?.count ?? 0;
+
+    _logger.i("Get total period: $totalPeriod");
+
+    return Duration(minutes: totalPeriod * 30);
   }
 }

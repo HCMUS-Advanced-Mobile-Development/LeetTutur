@@ -73,6 +73,15 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getBookingsListAsync(tutorId, request: request));
   }
 
+  final _$getTotalLearnedHoursAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getTotalLearnedHoursAsync');
+
+  @override
+  Future<dynamic> getTotalLearnedHoursAsync() {
+    return _$getTotalLearnedHoursAsyncAsyncAction
+        .run(() => super.getTotalLearnedHoursAsync());
+  }
+
   @override
   String toString() {
     return '''

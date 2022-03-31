@@ -21,6 +21,8 @@ abstract class _ScheduleStore with Store {
   @observable
   ObservableFuture<BookingListResponse>? bookingListResponseFuture;
 
+  ObservableFuture<Duration>? totalLearnedHoursFuture;
+
   @computed
   Map<String, List<BookingInfo>> get bookInfosGroupByTutorAndDate =>
       bookingListResponseFuture?.value?.data?.rows?.groupBy((e) {
@@ -44,4 +46,7 @@ abstract class _ScheduleStore with Store {
           {BookingListRequest? request}) async =>
       bookingListResponseFuture = ObservableFuture(
           _scheduleService.getBookingsList(tutorId, request: request));
+
+  @action
+  Future getTotalLearnedHoursAsync() async => totalLearnedHoursFuture = ObservableFuture(_scheduleService.getTotalLearnedHours());
 }
