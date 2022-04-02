@@ -6,14 +6,18 @@ import 'package:leet_tutur/models/course_model.dart';
 class CourseCard extends StatelessWidget {
   final Course course;
 
-  final void Function()? onTap;
+  final void Function(Course? course)? onTap;
 
   const CourseCard({Key? key, this.onTap, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        if (onTap != null) {
+          onTap!(course);
+        }
+      },
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

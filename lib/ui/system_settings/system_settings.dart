@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/stores/system_store.dart';
+import 'package:leet_tutur/utils/i18_utils.dart';
 import 'package:recase/recase.dart';
 
 import '../../generated/l10n.dart';
@@ -11,8 +15,18 @@ class SystemSettings extends StatefulWidget {
 }
 
 class _SystemSettingsState extends State<SystemSettings> {
+  final _systemStore = GetIt.instance.get<SystemStore>();
+
   String theme = "Light";
-  String language = "English";
+
+  @override
+  void initState() {
+    if (_systemStore.systemSettingFuture == null) {
+      _systemStore.getSystemSettingAsync();
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +49,20 @@ class _SystemSettingsState extends State<SystemSettings> {
                 const SizedBox(
                   width: 20,
                 ),
-                DropdownButton(
-                  value: language,
-                  items: ["English", "Vietnam"].map((e) {
-                    return DropdownMenuItem(
-                      child: Text(e),
-                      value: e,
+                Observer(
+                  builder: (context) {
+                    return DropdownButton(
+                      value: _systemStore.systemSettingFuture?.value?.language,
+                      items: ["en", "vi"].map((e) {
+                        var languages = I18Utils.getDisplayLanguage(e);
+                        return DropdownMenuItem(
+                          child: Text(languages["nativeName"] ?? ""),
+                          value: e,
+                        );
+                      }).toList(),
+                      onChanged: _handleChangeLanguage,
                     );
-                  }).toList(),
-                  onChanged: _handleChangeLanguage,
+                  }
                 ),
               ],
             ),
@@ -76,9 +95,7 @@ class _SystemSettingsState extends State<SystemSettings> {
   }
 
   void _handleChangeLanguage(String? value) {
-    setState(() {
-      language = value ?? "English";
-    });
+    _systemStore.setLanguage(value ?? "en");
   }
 
   void _handleChangeTheme(String? value) {

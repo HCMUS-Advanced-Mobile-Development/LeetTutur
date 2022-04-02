@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/courses_page/widgets/course_card.dart';
 import 'package:leet_tutur/utils/iterable_extensions.dart';
@@ -26,17 +27,17 @@ class _CourseListState extends State<CourseList> {
 
   @override
   Widget build(BuildContext context) {
-    const englishForKid = "English for Kid";
-
     return Observer(builder: (context) {
       var courses = _courseStore.courseResponseFuture?.value?.data?.rows ?? [];
-      var coursesGroupByCategory = courses.groupBy((c) => c.categories?[0].key ?? "");
+      var coursesGroupByCategory =
+          courses.groupBy((c) => c.categories?[0].key ?? "");
 
       return _courseStore.courseResponseFuture?.status == FutureStatus.fulfilled
           ? ListView.separated(
               itemCount: coursesGroupByCategory.length,
               itemBuilder: (context, index) {
-                var coursesByLevel = coursesGroupByCategory.values.elementAt(index);
+                var coursesByLevel =
+                    coursesGroupByCategory.values.elementAt(index);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -47,7 +48,10 @@ class _CourseListState extends State<CourseList> {
                       primary: false,
                       itemCount: coursesByLevel.length,
                       itemBuilder: (context, index) {
-                        return CourseCard(course: coursesByLevel[index]);
+                        return CourseCard(
+                          course: coursesByLevel[index],
+                          onTap: _handleTap,
+                        );
                       },
                     ),
                   ],
@@ -63,7 +67,8 @@ class _CourseListState extends State<CourseList> {
     });
   }
 
-  void _handleTap() {
+  void _handleTap(Course? course) {
+    _courseStore.selectedCourse = course;
     Navigator.pushNamed(context, RouteConstants.courseDetail);
   }
 }

@@ -1,33 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:leet_tutur/generated/l10n.dart';
-import 'package:leet_tutur/models/course_model.dart';
+import 'package:leet_tutur/models/course.dart';
 
 
 class CourseDescription extends StatelessWidget {
-  CourseDescription({Key? key}) : super(key: key);
+  final Course course;
 
-  final course = CourseModel(
-      title: "IELTS Speaking Part 1",
-      subTitle:
-          "Practice answering Part 1 questions from past years' IELTS exams",
-      level: "Any Level",
-      numberOfCourse: 8,
-      thumbnail:
-          "https://camblycurriculumicons.s3.amazonaws.com/5e2b9a72db0da5490226b6b5?h=d41d8cd98f00b204e9800998ecf8427e",
-      courseTarget:
-          "Feeling confident answering Part 1 questions will help you get off to a strong start on your IELTS speaking exam.",
-      courseOutcome:
-          "You'll practice giving strong answers in Part 1, with tips and tricks recommended by real IELTS examiners.",
-      topics: [
-        "Holidays and Vacations",
-        "Art",
-        "Education",
-        "News and Media",
-        "Nature and Environment",
-        "Friends",
-        "Food and Restaurants",
-        "Technology"
-      ]);
+  const CourseDescription({Key? key, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +18,6 @@ class CourseDescription extends StatelessWidget {
           height: 10,
         ),
         _renderTopics(context),
-        const SizedBox(height: 100)
       ],
     );
   }
@@ -70,7 +48,7 @@ class CourseDescription extends StatelessWidget {
             ),
           ],
         ),
-        Text(course.courseTarget!),
+        Text(course.reason ?? ""),
         const SizedBox(
           height: 10,
         ),
@@ -89,12 +67,15 @@ class CourseDescription extends StatelessWidget {
             ),
           ],
         ),
-        Text(course.courseOutcome!),
+        Text(course.purpose ?? ""),
       ],
     );
   }
 
   Widget _renderTopics(BuildContext context) {
+    var topics = course.topics ?? [];
+    topics.sort((a, b) => a.orderCourse?.compareTo(b.orderCourse ?? 0) ?? 0);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -102,8 +83,11 @@ class CourseDescription extends StatelessWidget {
           S.current.topics,
           style: Theme.of(context).textTheme.headline6,
         ),
-        ...List.generate(course.topics?.length ?? 0, (index) {
-          return Text("${index + 1} ${course.topics![index]}");
+        ...List.generate(topics.length, (index) {
+          return Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text("${index + 1} ${topics[index].name}"),
+          );
         })
       ],
     );

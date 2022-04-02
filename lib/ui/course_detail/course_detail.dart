@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
-import 'package:leet_tutur/models/course_model.dart';
+import 'package:leet_tutur/models/course.dart';
+import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/course_detail/widgets/course_description.dart';
 import 'package:leet_tutur/ui/course_detail/widgets/course_explore.dart';
 import 'package:recase/recase.dart';
@@ -13,17 +16,10 @@ class CourseDetail extends StatefulWidget {
 }
 
 class _CourseDetailState extends State<CourseDetail> {
-  var course = CourseModel(
-      title: "IELTS Speaking Part 1",
-      subTitle:
-          "Practice answering Part 1 questions from past years' IELTS exams",
-      level: "Any Level",
-      numberOfCourse: 8,
-      thumbnail:
-          "https://camblycurriculumicons.s3.amazonaws.com/5e2b9a72db0da5490226b6b5?h=d41d8cd98f00b204e9800998ecf8427e");
-
   @override
   Widget build(BuildContext context) {
+    final _courseStore = GetIt.instance.get<CourseStore>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(RouteConstants.courseDetail.titleCase),
@@ -31,19 +27,29 @@ class _CourseDetailState extends State<CourseDetail> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CourseExplore(),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Divider(
-                  height: 1,
-                ),
-              ),
-              CourseDescription()
-            ],
-          ),
+          child: Observer(builder: (context) {
+            return _courseStore.selectedCourse != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CourseExplore(
+                        course: _courseStore.selectedCourse ?? Course(),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Divider(
+                          height: 1,
+                        ),
+                      ),
+                      CourseDescription(
+                        course: _courseStore.selectedCourse ?? Course(),
+                      ),
+                    ],
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  );
+          }),
         ),
       ),
     );
