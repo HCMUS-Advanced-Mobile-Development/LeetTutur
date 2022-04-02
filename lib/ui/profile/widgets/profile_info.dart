@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/widgets/text_input.dart';
 
 import '../../../generated/l10n.dart';
 import '../../../models/user_model.dart';
 
 class ProfileInfo extends StatefulWidget {
-  const ProfileInfo({Key? key}) : super(key: key);
+  final User user;
+
+  const ProfileInfo({Key? key, required this.user}) : super(key: key);
 
   @override
   State<ProfileInfo> createState() => _ProfileInfoState();
 }
 
 class _ProfileInfoState extends State<ProfileInfo> {
-  final userModel = UserModel(
-      avatar: "https://picsum.photos/id/244/200/300",
-      name: "Kafka Wanna Fly",
-      email: "kafka@hcmus.com",
-      nation: "Vietnam",
-      phone: "0909123456",
-      level: "Junior",
-      birthDate: DateTime.now());
-
   @override
   Widget build(BuildContext context) {
+    var user = widget.user;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -32,7 +28,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           child: TextInput(
             hintText: S.current.fullName,
             labelText: S.current.fullName,
-            initialValue: userModel.name,
+            initialValue: user.name,
           ),
         ),
         Padding(
@@ -40,7 +36,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           child: TextInput(
             hintText: S.current.email,
             labelText: S.current.email,
-            initialValue: userModel.email,
+            initialValue: user.email,
             enabled: false,
           ),
         ),
@@ -49,7 +45,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           child: TextInput(
             hintText: S.current.nation,
             labelText: S.current.nation,
-            initialValue: userModel.nation,
+            initialValue: user.country,
           ),
         ),
         Padding(
@@ -57,7 +53,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           child: TextInput(
             hintText: S.current.phone,
             labelText: S.current.phone,
-            initialValue: userModel.phone,
+            initialValue: user.phone,
             enabled: false,
           ),
         ),
@@ -66,8 +62,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           child: TextInput(
             hintText: S.current.dateOfBirth,
             labelText: S.current.dateOfBirth,
-            initialValue:
-                DateFormat("dd-MMM-yyyy").format(userModel.birthDate!),
+            initialValue: user.birthday,
           ),
         ),
         Padding(
@@ -75,7 +70,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           child: TextInput(
             hintText: S.current.level,
             labelText: S.current.level,
-            initialValue: userModel.level,
+            initialValue: user.level,
           ),
         ),
         Padding(
