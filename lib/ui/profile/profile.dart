@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/models/user.dart';
+import 'package:leet_tutur/stores/auth_store.dart';
 import 'package:leet_tutur/ui/profile/widgets/profile_avatar.dart';
 import 'package:leet_tutur/ui/profile/widgets/profile_info.dart';
+import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
 
 import '../../generated/l10n.dart';
@@ -13,6 +18,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _authStore = GetIt.instance.get<AuthStore>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,24 +34,34 @@ class _ProfileState extends State<Profile> {
             top: 8,
             bottom: 50,
           ),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                ProfileAvatar(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                    horizontal: 10,
-                  ),
-                  child: Divider(
-                    thickness: 2,
-                  ),
-                ),
-                const ProfileInfo()
-              ],
-            ),
-          ),
+          child: Observer(builder: (context) {
+            return _authStore.loginResponse?.status == FutureStatus.fulfilled
+                ? SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        ProfileAvatar(
+                          user: _authStore.loginResponse?.value?.user ?? User(),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 10,
+                          ),
+                          child: Divider(
+                            thickness: 2,
+                          ),
+                        ),
+                        ProfileInfo(
+                          user: _authStore.loginResponse?.value?.user ?? User(),
+                        )
+                      ],
+                    ),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  );
+          }),
         ),
       ),
     );

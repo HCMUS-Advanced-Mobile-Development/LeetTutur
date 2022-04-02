@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/route_constants.dart';
-import '../../../models/course_model.dart';
-import '../../../widgets/course_card.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/models/course.dart';
+import 'package:leet_tutur/stores/course_store.dart';
+import 'package:leet_tutur/ui/courses_page/widgets/course_card.dart';
+import 'package:leet_tutur/utils/iterable_extensions.dart';
+import 'package:mobx/mobx.dart';
 
 class CourseList extends StatefulWidget {
   const CourseList({Key? key}) : super(key: key);
@@ -12,40 +16,59 @@ class CourseList extends StatefulWidget {
 }
 
 class _CourseListState extends State<CourseList> {
-  @override
-  Widget build(BuildContext context) {
-    const englishForKid = "English for Kid";
-    var course = CourseModel(
-        title: "IELTS Speaking Part 1",
-        subTitle:
-            "Practice answering Part 1 questions from past years' IELTS exams",
-        level: "Any Level",
-        numberOfCourse: 8,
-        thumbnail:
-            "https://camblycurriculumicons.s3.amazonaws.com/5e2b9a72db0da5490226b6b5?h=d41d8cd98f00b204e9800998ecf8427e");
+  final _courseStore = GetIt.instance.get<CourseStore>();
 
-    return SingleChildScrollView(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(englishForKid, style: Theme.of(context).textTheme.headline6),
-        CourseCard(
-          courseModel: course,
-          onTap: _handleTap,
-        ),
-        CourseCard(
-          courseModel: course,
-          onTap: _handleTap,
-        ),
-        CourseCard(
-          courseModel: course,
-          onTap: _handleTap,
-        )
-      ],
-    ));
+  @override
+  void initState() {
+    _courseStore.getCoursesAsync();
+
+    super.initState();
   }
 
-  void _handleTap() {
+  @override
+  Widget build(BuildContext context) {
+    return Observer(builder: (context) {
+      var courses = _courseStore.courseResponseFuture?.value?.data?.rows ?? [];
+      var coursesGroupByCategory =
+          courses.groupBy((c) => c.categories?[0].key ?? "");
+
+      return _courseStore.courseResponseFuture?.status == FutureStatus.fulfilled
+          ? ListView.separated(
+              itemCount: coursesGroupByCategory.length,
+              itemBuilder: (context, index) {
+                var coursesByLevel =
+                    coursesGroupByCategory.values.elementAt(index);
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(coursesByLevel.first.categories?[0].title ?? "",
+                        style: Theme.of(context).textTheme.headline6),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      primary: false,
+                      itemCount: coursesByLevel.length,
+                      itemBuilder: (context, index) {
+                        return CourseCard(
+                          course: coursesByLevel[index],
+                          onTap: _handleTap,
+                        );
+                      },
+                    ),
+                  ],
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Divider();
+              },
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
+            );
+    });
+  }
+
+  void _handleTap(Course? course) {
+    _courseStore.selectedCourse = course;
     Navigator.pushNamed(context, RouteConstants.courseDetail);
   }
 }

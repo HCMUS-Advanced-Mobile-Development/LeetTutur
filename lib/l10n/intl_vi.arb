@@ -53,5 +53,14 @@
 	"theme": "Màu sắc",
 	"language": "ngôn ngữ",
 	"studyRoom": "Phòng học",
-	"waitTime": "Thời gian chờ đợi"
+	"waitTime": "Thời gian chờ đợi",
+	"empty": "Không có nội dung",
+	"anyLevel": "Tay mơ",
+	"beginners": "Hạ tân thủ",
+	"upperBeginners": "Thượng tân thủ",
+	"preIntermediate": "Hạ",
+	"intermediate": "Trung",
+	"upperIntermediate": "Thượng",
+	"preAdvance": "Hạ Cao thủ",
+	"advance": "Cao Thủ"
 }

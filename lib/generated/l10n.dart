@@ -599,6 +599,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Empty`
+  String get empty {
+    return Intl.message(
+      'Empty',
+      name: 'empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Any Level`
+  String get anyLevel {
+    return Intl.message(
+      'Any Level',
+      name: 'anyLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beginners`
+  String get beginners {
+    return Intl.message(
+      'Beginners',
+      name: 'beginners',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upper Beginners`
+  String get upperBeginners {
+    return Intl.message(
+      'Upper Beginners',
+      name: 'upperBeginners',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pre-intermediate`
+  String get preIntermediate {
+    return Intl.message(
+      'Pre-intermediate',
+      name: 'preIntermediate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Intermediate`
+  String get intermediate {
+    return Intl.message(
+      'Intermediate',
+      name: 'intermediate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upper Intermediate`
+  String get upperIntermediate {
+    return Intl.message(
+      'Upper Intermediate',
+      name: 'upperIntermediate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pre-Advance`
+  String get preAdvance {
+    return Intl.message(
+      'Pre-Advance',
+      name: 'preAdvance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Advance`
+  String get advance {
+    return Intl.message(
+      'Advance',
+      name: 'advance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

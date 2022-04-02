@@ -41,25 +41,4 @@ class RouteConstants {
     systemSettings: (BuildContext context) => const SystemSettings(),
     studyRoom: (BuildContext context) => const StudyRoom(),
   };
-
-  static final bottomBarItems = <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-        icon: const Icon(Icons.school), label: S.current.tutor),
-    BottomNavigationBarItem(
-        icon: const Icon(Icons.chat), label: S.current.chat),
-    BottomNavigationBarItem(
-        icon: const Icon(Icons.event_note), label: S.current.schedule),
-    BottomNavigationBarItem(
-        icon: const Icon(Icons.book), label: S.current.courses),
-    BottomNavigationBarItem(
-        icon: const Icon(Icons.settings), label: S.current.settings)
-  ];
-
-  static final tabScreens = <Widget>[
-    const TutorPage(),
-    const ChatPage(),
-    const SchedulePage(),
-    const CoursesPage(),
-    const SettingsPage(),
-  ];
 }

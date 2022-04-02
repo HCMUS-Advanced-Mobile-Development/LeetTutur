@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leet_tutur/generated/l10n.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:validators/validators.dart';
-
-import '../generated/l10n.dart';
 
 class SearchBar extends StatefulWidget {
   final void Function()? onFilterTapped;
@@ -16,6 +14,19 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
+  late final FloatingSearchBarController controller;
+
+  @override
+  void initState() {
+    controller = FloatingSearchBarController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +42,15 @@ class _SearchBarState extends State<SearchBar> {
       openAxisAlignment: 0.0,
       width: isPortrait ? 600 : 500,
       debounceDelay: const Duration(milliseconds: 500),
+      controller: controller,
       onQueryChanged: widget.onQueryChanged,
-      onSubmitted: widget.onSubmitted,
+      onSubmitted: (query) {
+        if (widget.onSubmitted != null) {
+          widget.onSubmitted!(query);
+        }
+
+        controller.close();
+      },
       // Specify a custom transition to be used for
       // animating between opened and closed stated.
       transition: CircularFloatingSearchBarTransition(),
@@ -53,19 +71,20 @@ class _SearchBarState extends State<SearchBar> {
         ),
       ],
       builder: (context, transition) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Material(
-            color: Colors.white,
-            elevation: 4.0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: Colors.accents.map((color) {
-                return Container(height: 112, color: color);
-              }).toList(),
-            ),
-          ),
-        );
+        return const SizedBox.shrink();
+        // return ClipRRect(
+        //   borderRadius: BorderRadius.circular(8),
+        //   child: Material(
+        //     color: Colors.white,
+        //     elevation: 4.0,
+        //     child: Column(
+        //       mainAxisSize: MainAxisSize.min,
+        //       children: Colors.accents.map((color) {
+        //         return Container(height: 112, color: color);
+        //       }).toList(),
+        //     ),
+        //   ),
+        // );
       },
     );
   }

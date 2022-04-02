@@ -4,14 +4,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/stores/auth_store.dart';
+import 'package:leet_tutur/ui/auth/widgets/logo_intro.dart';
+import 'package:leet_tutur/widgets/text_input.dart';
+import 'package:leet_tutur/widgets/text_password_input.dart';
+import 'package:logger/logger.dart';
+import 'package:mobx/mobx.dart';
 import 'package:validators/validators.dart';
-
-import '../../constants/route_constants.dart';
-import '../../generated/l10n.dart';
-import '../../stores/auth_store/auth_store.dart';
-import '../../widgets/text_input.dart';
-import '../../widgets/text_password_input.dart';
-import 'widgets/logo_intro.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -22,11 +23,28 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final authStore = GetIt.instance.get<AuthStore>();
+  final logger = GetIt.instance.get<Logger>();
 
   final _formKey = GlobalKey<FormState>();
 
+  late final ReactionDisposer reactionDisposer;
+
+  @override
+  void initState() {
+    authStore.retrieveLocalLoginResponseAsync().then((value) {
+      logger.i("Detect tokens in local shared preferences. Auto login.");
+      Navigator.pushNamed(context, RouteConstants.homeTabs);
+    })
+    .onError((error, stackTrace) {
+      logger.e("Can't get token from local shared preferences", error, stackTrace);
+    });
+
+    super.initState();
+  }
+
   void _handleLogin() {
     if (_formKey.currentState!.validate()) {
+      authStore.loginAsync();
       Navigator.pushNamed(context, RouteConstants.homeTabs);
     }
   }
@@ -64,9 +82,7 @@ class _LoginState extends State<Login> {
                           child: TextInput(
                             hintText: S.current.enterMail,
                             initialValue: authStore.email,
-                            onChanged: (value) => {
-                              authStore.email = value
-                            },
+                            onChanged: (value) => {authStore.email = value},
                             validator: (value) {
                               if (isNull(value) || !isEmail(value!)) {
                                 return S.current.pleaseEnterCorrectEmailFormat;
@@ -81,9 +97,7 @@ class _LoginState extends State<Login> {
                           child: TextPasswordInput(
                             hintText: S.current.enterPassword,
                             initialValue: authStore.password,
-                            onChanged: (value) => {
-                              authStore.password = value
-                            },
+                            onChanged: (value) => {authStore.password = value},
                             validator: (value) {
                               if (isNull(value)) {
                                 return S.current.pleaseEnterSomeValue;
@@ -106,8 +120,8 @@ class _LoginState extends State<Login> {
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       // Navigate to forgot password
-                                      Navigator.pushNamed(
-                                          context, RouteConstants.forgotPassword);
+                                      Navigator.pushNamed(context,
+                                          RouteConstants.forgotPassword);
                                     }),
                             ),
                           ],
