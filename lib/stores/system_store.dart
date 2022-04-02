@@ -14,12 +14,24 @@ abstract class _SystemStore with Store {
   @observable
   ObservableFuture<SystemSetting>? systemSettingFuture;
 
+  @computed
+  ThemeData get currentTheme =>
+      systemSettingFuture?.value?.theme?.toLowerCase() == "dark"
+          ? ThemeData.dark()
+          : ThemeData.light();
+
   @action
   Future getSystemSettingAsync() async =>
       systemSettingFuture = ObservableFuture(_systemService.getSettingsAsync());
 
   @action
-  Future setLanguage(String language) async {
-    systemSettingFuture = ObservableFuture(_systemService.setLanguage(language));
+  Future setLanguageAsync(String language) async {
+    systemSettingFuture =
+        ObservableFuture(_systemService.setLanguageAsync(language));
+  }
+
+  @action
+  Future setThemeAsync(String theme) async {
+    systemSettingFuture = ObservableFuture(_systemService.setThemeAsync(theme));
   }
 }

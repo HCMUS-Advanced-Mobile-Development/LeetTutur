@@ -4,11 +4,13 @@ part 'system_setting.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class SystemSetting {
-    String? language;
-    String? theme;
-    SystemSetting({this.language = "vi", this.theme = "light"});
+  String? language;
+  String? theme;
 
-    factory SystemSetting.fromJson(Map<String, dynamic> json) => _$SystemSettingFromJson(json);
+  SystemSetting({this.language = "vi", this.theme = "Light"});
 
-    Map<String, dynamic> toJson() => _$SystemSettingToJson(this);
+  factory SystemSetting.fromJson(Map<String, dynamic> json) =>
+      _$SystemSettingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SystemSettingToJson(this);
 }

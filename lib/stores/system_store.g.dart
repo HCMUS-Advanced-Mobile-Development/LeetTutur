@@ -9,6 +9,14 @@ part of 'system_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SystemStore on _SystemStore, Store {
+  Computed<ThemeData>? _$currentThemeComputed;
+
+  @override
+  ThemeData get currentTheme =>
+      (_$currentThemeComputed ??= Computed<ThemeData>(() => super.currentTheme,
+              name: '_SystemStore.currentTheme'))
+          .value;
+
   final _$systemSettingFutureAtom =
       Atom(name: '_SystemStore.systemSettingFuture');
 
@@ -34,17 +42,27 @@ mixin _$SystemStore on _SystemStore, Store {
         .run(() => super.getSystemSettingAsync());
   }
 
-  final _$setLanguageAsyncAction = AsyncAction('_SystemStore.setLanguage');
+  final _$setLanguageAsyncAsyncAction =
+      AsyncAction('_SystemStore.setLanguageAsync');
 
   @override
-  Future<dynamic> setLanguage(String language) {
-    return _$setLanguageAsyncAction.run(() => super.setLanguage(language));
+  Future<dynamic> setLanguageAsync(String language) {
+    return _$setLanguageAsyncAsyncAction
+        .run(() => super.setLanguageAsync(language));
+  }
+
+  final _$setThemeAsyncAsyncAction = AsyncAction('_SystemStore.setThemeAsync');
+
+  @override
+  Future<dynamic> setThemeAsync(String theme) {
+    return _$setThemeAsyncAsyncAction.run(() => super.setThemeAsync(theme));
   }
 
   @override
   String toString() {
     return '''
-systemSettingFuture: ${systemSettingFuture}
+systemSettingFuture: ${systemSettingFuture},
+currentTheme: ${currentTheme}
     ''';
   }
 }

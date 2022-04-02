@@ -3989,7 +3989,7 @@ class TutorService {
   """;
 
   Future<TutorResponse> getTutors({TutorRequest? request}) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     var tutorResponse = TutorResponse.fromJson(
         jsonDecode(tutorJsonResponse.replaceAll("\n", "")));
@@ -4000,7 +4000,7 @@ class TutorService {
   }
 
   Future<Tutor> getTutorDetail({String id = "0"}) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     var response =
         Tutor.fromJson(jsonDecode(tutorDetailResponse.replaceAll("\n", "")));

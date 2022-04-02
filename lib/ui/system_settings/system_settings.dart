@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/theme_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/stores/system_store.dart';
 import 'package:leet_tutur/utils/i18_utils.dart';
 import 'package:recase/recase.dart';
-
-import '../../generated/l10n.dart';
 
 class SystemSettings extends StatefulWidget {
   const SystemSettings({Key? key}) : super(key: key);
@@ -77,8 +77,8 @@ class _SystemSettingsState extends State<SystemSettings> {
                   width: 20,
                 ),
                 DropdownButton(
-                  value: theme,
-                  items: ["Light", "Dark"].map((e) {
+                  value: _systemStore.systemSettingFuture?.value?.theme?.titleCase ?? ThemeConstants.defaultTheme,
+                  items: ThemeConstants.themes.map((e) {
                     return DropdownMenuItem(
                       child: Text(e),
                       value: e,
@@ -95,12 +95,10 @@ class _SystemSettingsState extends State<SystemSettings> {
   }
 
   void _handleChangeLanguage(String? value) {
-    _systemStore.setLanguage(value ?? "en");
+    _systemStore.setLanguageAsync(value ?? "en");
   }
 
   void _handleChangeTheme(String? value) {
-    setState(() {
-      theme = value ?? "Light";
-    });
+    _systemStore.setThemeAsync(value ?? ThemeConstants.defaultTheme);
   }
 }

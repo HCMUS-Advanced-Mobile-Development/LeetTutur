@@ -62,7 +62,7 @@ class AuthService {
     }""";
 
   Future<LoginResponse> loginAsync(String username, String password) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
 
     var loginResponse = LoginResponse.fromJson(jsonDecode(jsonResponse));
 

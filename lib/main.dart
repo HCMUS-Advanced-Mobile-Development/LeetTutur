@@ -33,7 +33,7 @@ Future main() async {
         ],
         supportedLocales: S.delegate.supportedLocales,
         locale: Locale(systemStore.systemSettingFuture?.value?.language ?? "en"),
-        theme: ThemeData.light(),
+        theme: systemStore.currentTheme,
         routes: RouteConstants.routesMap,
         home: const SafeArea(
           child: Login(),
