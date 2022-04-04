@@ -1,4 +1,4 @@
-class I18Utils {
+class I18Constants {
   static getDisplayLanguage(key) {
     final isoLangs = {
       // "ab": {"name": "Abkhaz", "nativeName": "аҧсуа"},

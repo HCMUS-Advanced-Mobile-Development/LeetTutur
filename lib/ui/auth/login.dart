@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
 
   void _handleLogin() {
     if (_formKey.currentState!.validate()) {
-      authStore.loginAsync();
+      authStore.loginAsync(authStore.email, authStore.password);
       Navigator.pushNamed(context, RouteConstants.homeTabs);
     }
   }

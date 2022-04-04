@@ -48,6 +48,8 @@ dependencies:
   json_serializable: ^6.1.5
   shared_preferences: ^2.0.13
   logger: ^1.1.0
+  dio: ^4.0.6
+  pretty_dio_logger: ^1.1.1
 
 dev_dependencies:
   flutter_test:

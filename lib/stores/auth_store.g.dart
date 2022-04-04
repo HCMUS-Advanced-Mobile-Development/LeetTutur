@@ -72,8 +72,8 @@ mixin _$AuthStore on _AuthStore, Store {
   final _$loginAsyncAsyncAction = AsyncAction('_AuthStore.loginAsync');
 
   @override
-  Future<dynamic> loginAsync() {
-    return _$loginAsyncAsyncAction.run(() => super.loginAsync());
+  Future<dynamic> loginAsync(String email, String password) {
+    return _$loginAsyncAsyncAction.run(() => super.loginAsync(email, password));
   }
 
   final _$retrieveLocalLoginResponseAsyncAsyncAction =
