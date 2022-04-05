@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyLevel": MessageLookupByLibrary.simpleMessage("Tay mơ"),
         "beginners": MessageLookupByLibrary.simpleMessage("Hạ tân thủ"),
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Hủy bỏ"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
             MessageLookupByLibrary.simpleMessage("Yêu cầu lớp học"),
@@ -70,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập giá trị"),
         "preAdvance": MessageLookupByLibrary.simpleMessage("Hạ Cao thủ"),
         "preIntermediate": MessageLookupByLibrary.simpleMessage("Hạ"),
+        "processing": MessageLookupByLibrary.simpleMessage("Đang xử lý"),
         "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "report": MessageLookupByLibrary.simpleMessage("Báo cáo"),

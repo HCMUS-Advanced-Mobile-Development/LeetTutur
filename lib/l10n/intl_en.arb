@@ -62,5 +62,7 @@
 	"intermediate": "Intermediate",
 	"upperIntermediate": "Upper Intermediate",
 	"preAdvance": "Pre-Advance",
-	"advance": "Advance"
+	"advance": "Advance",
+	"cancel": "Cancel",
+	"processing": "Processing"
 }

@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyLevel": MessageLookupByLibrary.simpleMessage("Any Level"),
         "beginners": MessageLookupByLibrary.simpleMessage("Beginners"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
             MessageLookupByLibrary.simpleMessage("Class Requirement"),
@@ -70,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "preAdvance": MessageLookupByLibrary.simpleMessage("Pre-Advance"),
         "preIntermediate":
             MessageLookupByLibrary.simpleMessage("Pre-intermediate"),
+        "processing": MessageLookupByLibrary.simpleMessage("Processing"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),

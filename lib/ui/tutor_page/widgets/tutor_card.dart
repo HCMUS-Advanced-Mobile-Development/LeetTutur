@@ -84,7 +84,9 @@ class _TutorCardState extends State<TutorCard> {
             GestureDetector(
               child: Text(
                 tutor.name!,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               onTapDown: navigateToDetail,
             ),

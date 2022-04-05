@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:async/async.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -12,6 +12,7 @@ import 'package:leet_tutur/widgets/text_input.dart';
 import 'package:leet_tutur/widgets/text_password_input.dart';
 import 'package:logger/logger.dart';
 import 'package:mobx/mobx.dart';
+import 'package:recase/recase.dart';
 import 'package:validators/validators.dart';
 
 class Login extends StatefulWidget {
@@ -22,8 +23,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final authStore = GetIt.instance.get<AuthStore>();
-  final logger = GetIt.instance.get<Logger>();
+  final _authStore = GetIt.instance.get<AuthStore>();
+  final _logger = GetIt.instance.get<Logger>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -31,22 +32,15 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    authStore.retrieveLocalLoginResponseAsync().then((value) {
-      logger.i("Detect tokens in local shared preferences. Auto login.");
+    _authStore.retrieveLocalLoginResponseAsync().then((value) {
+      _logger.i("Detect tokens in local shared preferences. Auto login.");
       Navigator.pushNamed(context, RouteConstants.homeTabs);
-    })
-    .onError((error, stackTrace) {
-      logger.e("Can't get token from local shared preferences", error, stackTrace);
+    }).onError((error, stackTrace) {
+      _logger.e(
+          "Can't get token from local shared preferences", error, stackTrace);
     });
 
     super.initState();
-  }
-
-  void _handleLogin() {
-    if (_formKey.currentState!.validate()) {
-      authStore.loginAsync(authStore.email, authStore.password);
-      Navigator.pushNamed(context, RouteConstants.homeTabs);
-    }
   }
 
   @override
@@ -66,7 +60,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // LOGO AND INTRO
-                LogoIntro(),
+                const LogoIntro(),
                 // USER INPUT
                 Observer(
                   builder: (context) => Form(
@@ -74,15 +68,15 @@ class _LoginState extends State<Login> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                       child: Column(children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 32,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                           child: TextInput(
                             hintText: S.current.enterMail,
-                            initialValue: authStore.email,
-                            onChanged: (value) => {authStore.email = value},
+                            initialValue: _authStore.email,
+                            onChanged: (value) => {_authStore.email = value},
                             validator: (value) {
                               if (isNull(value) || !isEmail(value!)) {
                                 return S.current.pleaseEnterCorrectEmailFormat;
@@ -96,8 +90,8 @@ class _LoginState extends State<Login> {
                           padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
                           child: TextPasswordInput(
                             hintText: S.current.enterPassword,
-                            initialValue: authStore.password,
-                            onChanged: (value) => {authStore.password = value},
+                            initialValue: _authStore.password,
+                            onChanged: (value) => {_authStore.password = value},
                             validator: (value) {
                               if (isNull(value)) {
                                 return S.current.pleaseEnterSomeValue;
@@ -114,7 +108,7 @@ class _LoginState extends State<Login> {
                               textAlign: TextAlign.end,
                               text: TextSpan(
                                   text: S.current.forgotPassword,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.blue,
                                       decoration: TextDecoration.underline),
                                   recognizer: TapGestureRecognizer()
@@ -126,7 +120,7 @@ class _LoginState extends State<Login> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -144,7 +138,7 @@ class _LoginState extends State<Login> {
                 ),
                 // OAuth2 authentication,
                 Column(children: [
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Text(S.current.orWith),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0, right: 50.0),
@@ -172,13 +166,13 @@ class _LoginState extends State<Login> {
                 ]),
                 // Register
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Text(S.current.dontHaveAccount),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   RichText(
                     text: TextSpan(
                         text: S.current.register,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.blue,
                             decoration: TextDecoration.underline),
                         recognizer: TapGestureRecognizer()
@@ -194,5 +188,73 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  Future _handleLogin() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        showDialog<void>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext dialogContext) {
+            var isLoginFailed = false;
+            var errMessage = "";
+
+            return StatefulBuilder(builder: (context, setDialogState) {
+              var cancelableLogin = CancelableOperation.fromFuture(
+                _authStore.loginAsync(_authStore.email, _authStore.password),
+              );
+
+              cancelableLogin.then(
+                (_) {
+                  // Dismiss dialog
+                  Navigator.of(context, rootNavigator: true).pop();
+                  // Go to home
+                  Navigator.pushNamed(context, RouteConstants.homeTabs);
+                },
+                onCancel: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pop(); // Dismiss alert dialog
+                },
+                onError: (err, trace) {
+                  setDialogState(() {
+                    isLoginFailed = true;
+
+                    var dioErr = err as DioError;
+                    errMessage = dioErr.response?.data["message"];
+
+                    _logger.e(errMessage);
+                  });
+
+                  // Navigator.of(context, rootNavigator: true)
+                  //     .pop();
+                },
+              );
+
+              return AlertDialog(
+                title: Center(child: Text(S.current.processing.titleCase)),
+                content: Align(
+                  heightFactor: 1,
+                  alignment: Alignment.center,
+                  child: !isLoginFailed
+                      ? const CircularProgressIndicator()
+                      : Text(errMessage),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text(S.current.cancel.toUpperCase()),
+                    onPressed: () {
+                      cancelableLogin.cancel();
+                    },
+                  ),
+                ],
+              );
+            });
+          },
+        );
+      } on DioError catch (e) {
+        rethrow;
+      }
+    }
   }
 }

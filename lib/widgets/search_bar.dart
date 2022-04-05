@@ -40,7 +40,6 @@ class _SearchBarState extends State<SearchBar> {
       physics: const BouncingScrollPhysics(),
       axisAlignment: isPortrait ? 0.0 : -1.0,
       openAxisAlignment: 0.0,
-      width: isPortrait ? 600 : 500,
       debounceDelay: const Duration(milliseconds: 500),
       controller: controller,
       onQueryChanged: widget.onQueryChanged,

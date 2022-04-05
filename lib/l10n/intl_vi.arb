@@ -62,5 +62,7 @@
 	"intermediate": "Trung",
 	"upperIntermediate": "Thượng",
 	"preAdvance": "Hạ Cao thủ",
-	"advance": "Cao Thủ"
+	"advance": "Cao Thủ",
+	"cancel": "Hủy bỏ",
+	"processing": "Đang xử lý"
 }
