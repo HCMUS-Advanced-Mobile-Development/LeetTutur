@@ -35,13 +35,13 @@ class _ProfileState extends State<Profile> {
             bottom: 50,
           ),
           child: Observer(builder: (context) {
-            return _authStore.loginResponse?.status == FutureStatus.fulfilled
+            return _authStore.authResponse?.status == FutureStatus.fulfilled
                 ? SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
                         ProfileAvatar(
-                          user: _authStore.loginResponse?.value?.user ?? User(),
+                          user: _authStore.authResponse?.value?.user ?? User(),
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(
@@ -53,7 +53,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         ProfileInfo(
-                          user: _authStore.loginResponse?.value?.user ?? User(),
+                          user: _authStore.authResponse?.value?.user ?? User(),
                         )
                       ],
                     ),

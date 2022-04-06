@@ -33,8 +33,10 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     _authStore.retrieveLocalLoginResponseAsync().then((value) {
-      _logger.i("Detect tokens in local shared preferences. Auto login.");
-      Navigator.pushNamed(context, RouteConstants.homeTabs);
+      if (_authStore.authResponse?.value?.tokens != null) {
+        _logger.i("Detect tokens in local shared preferences. Auto login.");
+        Navigator.pushNamed(context, RouteConstants.homeTabs);
+      }
     }).onError((error, stackTrace) {
       _logger.e(
           "Can't get token from local shared preferences", error, stackTrace);
@@ -193,41 +195,36 @@ class _LoginState extends State<Login> {
   Future _handleLogin() async {
     if (_formKey.currentState!.validate()) {
       try {
+        var cancelableLogin = CancelableOperation.fromFuture(
+          _authStore.loginAsync(_authStore.email, _authStore.password),
+        );
+
+        cancelableLogin.then(
+          (_) {
+            // Dismiss dialog
+            Navigator.of(context, rootNavigator: true).pop();
+            // Go to home
+            Navigator.pushNamed(context, RouteConstants.homeTabs);
+          },
+        );
+
         showDialog<void>(
           context: context,
-          barrierDismissible: false,
+          barrierDismissible: true,
           builder: (BuildContext dialogContext) {
             var isLoginFailed = false;
             var errMessage = "";
 
             return StatefulBuilder(builder: (context, setDialogState) {
-              var cancelableLogin = CancelableOperation.fromFuture(
-                _authStore.loginAsync(_authStore.email, _authStore.password),
-              );
-
               cancelableLogin.then(
-                (_) {
-                  // Dismiss dialog
-                  Navigator.of(context, rootNavigator: true).pop();
-                  // Go to home
-                  Navigator.pushNamed(context, RouteConstants.homeTabs);
-                },
-                onCancel: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .pop(); // Dismiss alert dialog
-                },
+                (_) {},
                 onError: (err, trace) {
                   setDialogState(() {
                     isLoginFailed = true;
 
                     var dioErr = err as DioError;
                     errMessage = dioErr.response?.data["message"];
-
-                    _logger.e(errMessage);
                   });
-
-                  // Navigator.of(context, rootNavigator: true)
-                  //     .pop();
                 },
               );
 
@@ -244,6 +241,9 @@ class _LoginState extends State<Login> {
                   TextButton(
                     child: Text(S.current.cancel.toUpperCase()),
                     onPressed: () {
+                      if (cancelableLogin.isCompleted) {
+                        Navigator.of(context, rootNavigator: true).pop();
+                      }
                       cancelableLogin.cancel();
                     },
                   ),

@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/responses/login_response.dart';
+import 'package:leet_tutur/models/responses/auth_response.dart';
 import 'package:leet_tutur/services/auth_service.dart';
 import 'package:mobx/mobx.dart';
 
@@ -20,11 +20,17 @@ abstract class _AuthStore with Store {
   String confirmPassword = '';
 
   @observable
-  ObservableFuture<LoginResponse>? loginResponse;
+  ObservableFuture<AuthResponse>? authResponse;
 
   @action
-  Future loginAsync(String email, String password) async => loginResponse = ObservableFuture(_authService.loginAsync(email, password));
+  Future loginAsync(String email, String password) async => authResponse =
+      ObservableFuture(_authService.loginAsync(email, password));
 
   @action
-  Future retrieveLocalLoginResponseAsync() async => loginResponse = ObservableFuture(_authService.retrieveLocalLoginResponseAsync());
+  Future retrieveLocalLoginResponseAsync() async => authResponse =
+      ObservableFuture(_authService.retrieveLocalLoginResponseAsync());
+
+  @action
+  Future registerAsync(String email, String password) async => authResponse =
+      ObservableFuture(_authService.registerAsync(email, password));
 }

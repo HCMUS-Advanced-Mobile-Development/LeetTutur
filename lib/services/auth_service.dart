@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
-import 'package:leet_tutur/models/responses/login_response.dart';
+import 'package:leet_tutur/models/responses/auth_response.dart';
 import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,22 +13,20 @@ class AuthService {
   final _logger = GetIt.instance.get<Logger>();
   final _dio = GetIt.instance.get<Dio>();
 
-  Future<LoginResponse> loginAsync(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 1));
-
+  Future<AuthResponse> loginAsync(String email, String password) async {
     try {
       var res = await _dio
           .post("/auth/login", data: {"email": email, "password": password});
 
-      var loginResponse = LoginResponse.fromJson(res.data);
+      var loginResponse = AuthResponse.fromJson(res.data);
 
       final prefs = await SharedPreferences.getInstance();
       prefs.setString(
-          SharedPreferencesConstants.loginResponse, jsonEncode(loginResponse));
+          SharedPreferencesConstants.authResponse, jsonEncode(loginResponse));
 
       _logger.i("""
           Login successfully. Save login response to shared preferences. 
-          Key: ${SharedPreferencesConstants.loginResponse}. 
+          Key: ${SharedPreferencesConstants.authResponse}. 
           Value: 
           ${loginResponse.toJson().beautifyJson()}
           """);
@@ -40,14 +39,36 @@ class AuthService {
     }
   }
 
-  Future<LoginResponse> retrieveLocalLoginResponseAsync() async {
+  Future<AuthResponse> retrieveLocalLoginResponseAsync() async {
     final prefs = await SharedPreferences.getInstance();
     var jsonString =
-        prefs.getString(SharedPreferencesConstants.loginResponse) ?? "{}";
+        prefs.getString(SharedPreferencesConstants.authResponse) ?? "{}";
 
     _logger.i(
-        "Read from shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: $jsonString");
+        "Read from shared preferences. Key: ${SharedPreferencesConstants.authResponse}. Value: $jsonString");
 
-    return LoginResponse.fromJson(jsonDecode(jsonString));
+    return AuthResponse.fromJson(jsonDecode(jsonString));
+  }
+
+  Future<AuthResponse> registerAsync(String email, String password) async {
+    try {
+      var res = await _dio.post("/auth/register", data: {
+        "email": email,
+        "password": password,
+      });
+
+      var authRes = AuthResponse.fromJson(res.data);
+
+      _logger.i("""
+          Register successfully.
+          ${authRes.toJson().beautifyJson()}
+          """);
+
+      return authRes;
+    } on DioError catch (e) {
+      _logger.e("Register failed. ${e.message}");
+      rethrow;
+    }
+
   }
 }

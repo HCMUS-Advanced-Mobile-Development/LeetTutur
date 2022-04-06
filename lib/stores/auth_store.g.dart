@@ -54,18 +54,18 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$loginResponseAtom = Atom(name: '_AuthStore.loginResponse');
+  final _$authResponseAtom = Atom(name: '_AuthStore.authResponse');
 
   @override
-  ObservableFuture<LoginResponse>? get loginResponse {
-    _$loginResponseAtom.reportRead();
-    return super.loginResponse;
+  ObservableFuture<AuthResponse>? get authResponse {
+    _$authResponseAtom.reportRead();
+    return super.authResponse;
   }
 
   @override
-  set loginResponse(ObservableFuture<LoginResponse>? value) {
-    _$loginResponseAtom.reportWrite(value, super.loginResponse, () {
-      super.loginResponse = value;
+  set authResponse(ObservableFuture<AuthResponse>? value) {
+    _$authResponseAtom.reportWrite(value, super.authResponse, () {
+      super.authResponse = value;
     });
   }
 
@@ -85,13 +85,21 @@ mixin _$AuthStore on _AuthStore, Store {
         .run(() => super.retrieveLocalLoginResponseAsync());
   }
 
+  final _$registerAsyncAsyncAction = AsyncAction('_AuthStore.registerAsync');
+
+  @override
+  Future<dynamic> registerAsync(String email, String password) {
+    return _$registerAsyncAsyncAction
+        .run(() => super.registerAsync(email, password));
+  }
+
   @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
 confirmPassword: ${confirmPassword},
-loginResponse: ${loginResponse}
+authResponse: ${authResponse}
     ''';
   }
 }
