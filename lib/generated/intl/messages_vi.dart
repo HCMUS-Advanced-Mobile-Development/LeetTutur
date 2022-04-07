@@ -74,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "processing": MessageLookupByLibrary.simpleMessage("Đang xử lý"),
         "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "registerSuccessfullyCheckYourMail":
+            MessageLookupByLibrary.simpleMessage(
+                "Đăng ký thành công. Kiểm tra mail của bạn"),
         "report": MessageLookupByLibrary.simpleMessage("Báo cáo"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn"),

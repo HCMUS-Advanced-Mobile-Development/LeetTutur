@@ -709,6 +709,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Register Successfully. Check Your Mail`
+  String get registerSuccessfullyCheckYourMail {
+    return Intl.message(
+      'Register Successfully. Check Your Mail',
+      name: 'registerSuccessfullyCheckYourMail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

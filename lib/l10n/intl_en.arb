@@ -64,5 +64,6 @@
 	"preAdvance": "Pre-Advance",
 	"advance": "Advance",
 	"cancel": "Cancel",
-	"processing": "Processing"
+	"processing": "Processing",
+	"registerSuccessfullyCheckYourMail": "Register Successfully. Check Your Mail"
 }

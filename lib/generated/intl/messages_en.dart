@@ -74,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "registerSuccessfullyCheckYourMail":
+            MessageLookupByLibrary.simpleMessage(
+                "Register Successfully. Check Your Mail"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Reset your password"),

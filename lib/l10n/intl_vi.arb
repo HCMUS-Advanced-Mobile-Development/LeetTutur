@@ -64,5 +64,6 @@
 	"preAdvance": "Hạ Cao thủ",
 	"advance": "Cao Thủ",
 	"cancel": "Hủy bỏ",
-	"processing": "Đang xử lý"
+	"processing": "Đang xử lý",
+	"registerSuccessfullyCheckYourMail": "Đăng ký thành công. Kiểm tra mail của bạn"
 }

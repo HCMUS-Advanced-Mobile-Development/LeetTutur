@@ -141,14 +141,15 @@ class _RegisterState extends State<Register> {
           _authStore.registerAsync(_authStore.email, _authStore.password),
         );
 
-        cancelableLogin.then(
-          (_) {
-            // Dismiss dialog
-            Navigator.of(context, rootNavigator: true).pop();
-            // Go to login
-            Navigator.pushNamed(context, RouteConstants.login);
-          }
-        );
+        cancelableLogin.then((_) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(S.current.registerSuccessfullyCheckYourMail),
+          ));
+          // Dismiss dialog
+          Navigator.of(context, rootNavigator: true).pop();
+          // Go to login
+          Navigator.pushNamed(context, RouteConstants.login);
+        });
 
         showDialog<void>(
           context: context,
