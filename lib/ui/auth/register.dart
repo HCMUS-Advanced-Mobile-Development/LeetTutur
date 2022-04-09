@@ -137,11 +137,11 @@ class _RegisterState extends State<Register> {
   void _handleRegister() {
     if (_formKey.currentState!.validate()) {
       try {
-        var cancelableLogin = CancelableOperation.fromFuture(
+        var cancelableOperation = CancelableOperation.fromFuture(
           _authStore.registerAsync(_authStore.email, _authStore.password),
         );
 
-        cancelableLogin.then((_) {
+        cancelableOperation.then((_) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(S.current.registerSuccessfullyCheckYourMail),
           ));
@@ -159,7 +159,7 @@ class _RegisterState extends State<Register> {
             var msg = "";
 
             return StatefulBuilder(builder: (context, setDialogState) {
-              cancelableLogin.then(
+              cancelableOperation.then(
                 (_) {},
                 onError: (err, trace) {
                   setDialogState(() {
@@ -184,10 +184,10 @@ class _RegisterState extends State<Register> {
                   TextButton(
                     child: Text(S.current.cancel.toUpperCase()),
                     onPressed: () {
-                      if (cancelableLogin.isCompleted) {
+                      if (cancelableOperation.isCompleted) {
                         Navigator.of(context, rootNavigator: true).pop();
                       }
-                      cancelableLogin.cancel();
+                      cancelableOperation.cancel();
                     },
                   ),
                 ],

@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Reset your password"),
+        "resetPasswordCheckYourMail": MessageLookupByLibrary.simpleMessage(
+            "Reset Password. Please check your email"),
         "review": MessageLookupByLibrary.simpleMessage("Review"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "schedule": MessageLookupByLibrary.simpleMessage("Schedule"),

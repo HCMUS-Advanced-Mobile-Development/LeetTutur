@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "report": MessageLookupByLibrary.simpleMessage("Báo cáo"),
         "resetPassword":
             MessageLookupByLibrary.simpleMessage("Đặt lại mật khẩu của bạn"),
+        "resetPasswordCheckYourMail": MessageLookupByLibrary.simpleMessage(
+            "Đặt lại mật khẩu. Vui lòng kiểm tra mail của bạn"),
         "review": MessageLookupByLibrary.simpleMessage("Đánh giá"),
         "save": MessageLookupByLibrary.simpleMessage("Lưu"),
         "schedule": MessageLookupByLibrary.simpleMessage("Lịch trình"),

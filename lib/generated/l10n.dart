@@ -719,6 +719,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Reset Password. Please check your email`
+  String get resetPasswordCheckYourMail {
+    return Intl.message(
+      'Reset Password. Please check your email',
+      name: 'resetPasswordCheckYourMail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

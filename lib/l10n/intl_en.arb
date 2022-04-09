@@ -65,5 +65,6 @@
 	"advance": "Advance",
 	"cancel": "Cancel",
 	"processing": "Processing",
-	"registerSuccessfullyCheckYourMail": "Register Successfully. Check Your Mail"
+	"registerSuccessfullyCheckYourMail": "Register Successfully. Check Your Mail",
+	"resetPasswordCheckYourMail": "Reset Password. Please check your email"
 }

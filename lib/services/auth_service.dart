@@ -69,6 +69,22 @@ class AuthService {
       _logger.e("Register failed. ${e.message}");
       rethrow;
     }
+  }
 
+  Future forgotPasswordAsync(String email) async {
+    try {
+      var res = await _dio.post("/user/forgotPassword", data: {
+        "email": email,
+      });
+
+      _logger.i("""
+          Forget successfully.
+          ${res.data}
+          """);
+
+    } on DioError catch (e) {
+      _logger.e("Can't forget password. ${e.message}");
+      rethrow;
+    }
   }
 }

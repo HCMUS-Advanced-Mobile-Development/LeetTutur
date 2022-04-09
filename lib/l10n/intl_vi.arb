@@ -65,5 +65,6 @@
 	"advance": "Cao Thủ",
 	"cancel": "Hủy bỏ",
 	"processing": "Đang xử lý",
-	"registerSuccessfullyCheckYourMail": "Đăng ký thành công. Kiểm tra mail của bạn"
+	"registerSuccessfullyCheckYourMail": "Đăng ký thành công. Kiểm tra mail của bạn",
+	"resetPasswordCheckYourMail": "Đặt lại mật khẩu. Vui lòng kiểm tra mail của bạn"
 }

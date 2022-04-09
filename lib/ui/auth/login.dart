@@ -195,11 +195,11 @@ class _LoginState extends State<Login> {
   Future _handleLogin() async {
     if (_formKey.currentState!.validate()) {
       try {
-        var cancelableLogin = CancelableOperation.fromFuture(
+        var cancelableOperation = CancelableOperation.fromFuture(
           _authStore.loginAsync(_authStore.email, _authStore.password),
         );
 
-        cancelableLogin.then(
+        cancelableOperation.then(
           (_) {
             // Dismiss dialog
             Navigator.of(context, rootNavigator: true).pop();
@@ -216,7 +216,7 @@ class _LoginState extends State<Login> {
             var errMessage = "";
 
             return StatefulBuilder(builder: (context, setDialogState) {
-              cancelableLogin.then(
+              cancelableOperation.then(
                 (_) {},
                 onError: (err, trace) {
                   setDialogState(() {
@@ -241,10 +241,10 @@ class _LoginState extends State<Login> {
                   TextButton(
                     child: Text(S.current.cancel.toUpperCase()),
                     onPressed: () {
-                      if (cancelableLogin.isCompleted) {
+                      if (cancelableOperation.isCompleted) {
                         Navigator.of(context, rootNavigator: true).pop();
                       }
-                      cancelableLogin.cancel();
+                      cancelableOperation.cancel();
                     },
                   ),
                 ],

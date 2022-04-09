@@ -33,4 +33,10 @@ abstract class _AuthStore with Store {
   @action
   Future registerAsync(String email, String password) async => authResponse =
       ObservableFuture(_authService.registerAsync(email, password));
+
+  @action
+  Future forgotPasswordAsync(String email) async {
+    authResponse = null;
+    await _authService.forgotPasswordAsync(email);
+  }
 }
