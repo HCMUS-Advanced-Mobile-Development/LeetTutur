@@ -1,13 +1,18 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/requests/tutor_request.dart';
 import 'package:leet_tutur/models/responses/tutor_response.dart';
+import 'package:leet_tutur/models/row_of_tutor.dart';
 import 'package:leet_tutur/models/tutor.dart';
+import 'package:leet_tutur/utils/api_utils.dart';
 import 'package:logger/logger.dart';
 
 class TutorService {
   final _logger = GetIt.instance.get<Logger>();
+  final _dio = GetIt.instance.get<Dio>();
+
   final tutorJsonResponse = """
     {
     "tutors": {
@@ -3989,10 +3994,16 @@ class TutorService {
   """;
 
   Future<TutorResponse> getTutors({TutorRequest? request}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    var res = await _dio.post(
+      "/tutor/search",
+      data: request?.toJson(),
+      options: Options(
+          headers: {"Authorization": await ApiUtils.getBearerTokenAsync()}),
+    );
 
-    var tutorResponse = TutorResponse.fromJson(
-        jsonDecode(tutorJsonResponse.replaceAll("\n", "")));
+    var tutorResponse = TutorResponse(
+      tutors: RowOfTutor.fromJson(res.data),
+    );
 
     _logger.i("Total tutors found: ${tutorResponse.tutors?.rows?.length}");
 
@@ -4005,8 +4016,8 @@ class TutorService {
     var response =
         Tutor.fromJson(jsonDecode(tutorDetailResponse.replaceAll("\n", "")));
 
-    _logger
-        .i("Get tutor detail. Name: ${response.user?.name}. Number of feedback: ${response.user?.feedbacks?.length}");
+    _logger.i(
+        "Get tutor detail. Name: ${response.user?.name}. Number of feedback: ${response.user?.feedbacks?.length}");
 
     return response;
   }

@@ -23,19 +23,19 @@ class _TutorListState extends State<TutorList> {
 
   @override
   Widget build(BuildContext context) {
-    var tutorFuture = tutorStore.tutorResponseFuture;
 
     return Observer(builder: (context) {
-      var rowOfTutor = tutorStore.rowOfTutor;
+      var tutorFuture = tutorStore.tutorResponseFuture;
+
       return tutorFuture?.status == FutureStatus.fulfilled
           ? ListView.builder(
-              itemBuilder: (conext, index) => Observer(builder: (context) {
-                var tutor = rowOfTutor?.rows?[index];
+              itemBuilder: (context, index) => Observer(builder: (context) {
+                var tutor = tutorStore.rowOfTutor?.rows?[index];
                 return tutor != null
                     ? TutorCard(tutor: tutor)
                     : const SizedBox.shrink();
               }),
-              itemCount: rowOfTutor?.rows?.length,
+              itemCount: tutorStore.rowOfTutor?.rows?.length,
             )
           : const Center(child: CircularProgressIndicator());
     });
