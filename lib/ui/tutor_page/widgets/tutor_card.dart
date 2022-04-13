@@ -15,7 +15,7 @@ class TutorCard extends StatefulWidget {
 }
 
 class _TutorCardState extends State<TutorCard> {
-  final tutorStore = GetIt.instance.get<TutorStore>();
+  final _tutorStore = GetIt.instance.get<TutorStore>();
 
   late final Tutor tutor;
   late bool isFavorite;
@@ -26,7 +26,7 @@ class _TutorCardState extends State<TutorCard> {
 
     setState(() {
       tutor = widget.tutor;
-      isFavorite = tutorStore.isFavoriteTutor(tutor);
+      isFavorite = _tutorStore.isFavoriteTutor(tutor);
     });
   }
 
@@ -61,6 +61,8 @@ class _TutorCardState extends State<TutorCard> {
     setState(() {
       isFavorite = !isFavorite;
     });
+
+    _tutorStore.addToFavoriteTutorAsync(tutor.userId);
   }
 
   void navigateToDetail(TapDownDetails tapDownDetails) {
@@ -99,7 +101,7 @@ class _TutorCardState extends State<TutorCard> {
         ),
         Center(
           child: IconButton(
-            icon: tutor.isFavorite != null && tutor.isFavorite!
+            icon: isFavorite
                 ? const Icon(Icons.favorite, color: Colors.red, size: 30)
                 : const Icon(Icons.favorite_border, size: 30),
             onPressed: handleFavorite,

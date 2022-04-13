@@ -4,7 +4,6 @@ import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/widgets/text_input.dart';
 
 import '../../../generated/l10n.dart';
-import '../../../models/user_model.dart';
 
 class ProfileInfo extends StatefulWidget {
   final User user;

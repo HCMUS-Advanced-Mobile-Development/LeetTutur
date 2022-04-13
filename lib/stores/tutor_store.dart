@@ -30,7 +30,7 @@ abstract class _TutorStore with Store {
   bool isFavoriteTutor(Tutor tutor) {
     var index = favoriteTutorList
         ?.indexWhere((element) => element.secondId == tutor.userId);
-    return favoriteTutorList != null && index != null && index > 0;
+    return favoriteTutorList != null && index != null && index >= 0;
   }
 
   @action
@@ -38,11 +38,15 @@ abstract class _TutorStore with Store {
       ObservableFuture(_tutorService.getTutors(request: request));
 
   @action
-  Future getTutorDetail({String id = "0"}) async =>
-      selectedTutorFuture = ObservableFuture(_tutorService.getTutorDetail(id: id));
+  Future getTutorDetail({String id = "0"}) async => selectedTutorFuture =
+      ObservableFuture(_tutorService.getTutorDetail(id: id));
 
   @action
   void unSelectTutor() {
     selectedTutorFuture = null;
+  }
+
+  Future addToFavoriteTutorAsync(String? tutorId) async {
+    await _tutorService.addToFavoriteTutorAsync(tutorId);
   }
 }

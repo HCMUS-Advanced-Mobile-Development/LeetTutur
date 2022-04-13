@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
 import 'package:leet_tutur/models/responses/auth_response.dart';
 import 'package:leet_tutur/utils/map_extensions.dart';
@@ -81,9 +80,38 @@ class AuthService {
           Forget successfully.
           ${res.data}
           """);
-
     } on DioError catch (e) {
       _logger.e("Can't forget password. ${e.message}");
+      rethrow;
+    }
+  }
+
+  Future<AuthResponse> refreshTokenAsync() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      var jsonString =
+          prefs.getString(SharedPreferencesConstants.authResponse) ?? "{}";
+
+      var authRes = AuthResponse.fromJson(jsonDecode(jsonString));
+      var refreshToken = authRes.tokens?.refresh?.token ?? "";
+
+      var res = await _dio.post("/auth/refresh-token", data: {
+        "refreshToken": refreshToken,
+      });
+
+      authRes = AuthResponse.fromJson(res.data);
+
+      await prefs.setString(
+          SharedPreferencesConstants.authResponse, jsonEncode(authRes));
+
+      _logger.i("""
+          Refresh token successfully.
+          ${authRes.tokens?.toJson().beautifyJson()}
+          """);
+
+      return authRes;
+    } on DioError catch (e) {
+      _logger.e("Can't refresh token. ${e.message}");
       rethrow;
     }
   }

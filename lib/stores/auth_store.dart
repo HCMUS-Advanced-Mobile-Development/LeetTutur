@@ -23,8 +23,8 @@ abstract class _AuthStore with Store {
   ObservableFuture<AuthResponse>? authResponse;
 
   @action
-  Future loginAsync(String email, String password) async => authResponse =
-      ObservableFuture(_authService.loginAsync(email, password));
+  Future loginAsync(String email, String password) async =>
+      authResponse = ObservableFuture(_authService.loginAsync(email, password));
 
   @action
   Future retrieveLocalLoginResponseAsync() async => authResponse =
@@ -39,4 +39,8 @@ abstract class _AuthStore with Store {
     authResponse = null;
     await _authService.forgotPasswordAsync(email);
   }
+
+  @action
+  Future refreshTokenAsync() async =>
+      authResponse = ObservableFuture(_authService.refreshTokenAsync());
 }
