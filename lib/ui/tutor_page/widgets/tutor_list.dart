@@ -18,6 +18,8 @@ class _TutorListState extends State<TutorList> {
   @override
   void initState() {
     tutorStore.searchTutors();
+    tutorStore.getTutorSpecialtiesAsync();
+
     super.initState();
   }
 

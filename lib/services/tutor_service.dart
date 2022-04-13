@@ -867,6 +867,32 @@ class TutorService {
     }
   }
 
+  Future<Map<String, String>> getTutorSpecialtiesAsync() async {
+    var twoDResponse = await Future.wait(
+      [
+        _dio.get("/learn-topic"),
+        _dio.get("/test-preparation"),
+      ],
+    );
+    var map = twoDResponse
+        .map(
+          (e) => e.data as List,
+        )
+        .reduce(
+          (value, element) => value..addAll(element),
+        )
+        .fold(
+      <String, String>{},
+      (Map<String, String> previousValue, element) => previousValue
+        ..putIfAbsent(
+          element["key"],
+          () => element["name"],
+        ),
+    );
+
+    return map;
+  }
+
   Future<Tutor> getTutorDetail({String id = "0"}) async {
     await Future.delayed(const Duration(milliseconds: 500));
 

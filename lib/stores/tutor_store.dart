@@ -20,6 +20,9 @@ abstract class _TutorStore with Store {
   @observable
   ObservableFuture<Tutor>? selectedTutorFuture;
 
+  @observable
+  ObservableMap<String, String> tutorSpecialties = ObservableMap();
+
   @computed
   RowOfTutor? get rowOfTutor => tutorResponseFuture?.value?.tutors;
 
@@ -49,4 +52,10 @@ abstract class _TutorStore with Store {
   Future addToFavoriteTutorAsync(String? tutorId) async {
     await _tutorService.addToFavoriteTutorAsync(tutorId);
   }
+
+  @action
+  Future getTutorSpecialtiesAsync() async =>
+      tutorSpecialties = ObservableMap.of(
+        await _tutorService.getTutorSpecialtiesAsync(),
+      );
 }

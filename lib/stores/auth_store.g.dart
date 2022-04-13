@@ -93,6 +93,23 @@ mixin _$AuthStore on _AuthStore, Store {
         .run(() => super.registerAsync(email, password));
   }
 
+  final _$forgotPasswordAsyncAsyncAction =
+      AsyncAction('_AuthStore.forgotPasswordAsync');
+
+  @override
+  Future<dynamic> forgotPasswordAsync(String email) {
+    return _$forgotPasswordAsyncAsyncAction
+        .run(() => super.forgotPasswordAsync(email));
+  }
+
+  final _$refreshTokenAsyncAsyncAction =
+      AsyncAction('_AuthStore.refreshTokenAsync');
+
+  @override
+  Future<dynamic> refreshTokenAsync() {
+    return _$refreshTokenAsyncAsyncAction.run(() => super.refreshTokenAsync());
+  }
+
   @override
   String toString() {
     return '''

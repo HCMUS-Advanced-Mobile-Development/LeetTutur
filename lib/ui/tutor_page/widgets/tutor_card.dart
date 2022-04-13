@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
@@ -129,15 +130,22 @@ class _TutorCardState extends State<TutorCard> {
     return Wrap(
         children: tutor.specialties
                 ?.split(",")
-                .map((e) => Container(
-                    margin: const EdgeInsets.only(left: 5, right: 5),
-                    child: Chip(
-                      label: Text(e),
-                      backgroundColor: Theme.of(context).cardColor,
-                      shape: StadiumBorder(
-                          side: BorderSide(
-                              color: Theme.of(context).primaryColor)),
-                    )))
+                .map((e) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  child: Container(
+                      margin: const EdgeInsets.only(left: 5, right: 5),
+                      child: Chip(
+                        label: Observer(
+                          builder: (context) {
+                            return Text(_tutorStore.tutorSpecialties[e] ?? "");
+                          }
+                        ),
+                        backgroundColor: Theme.of(context).cardColor,
+                        shape: StadiumBorder(
+                            side: BorderSide(
+                                color: Theme.of(context).primaryColor)),
+                      )),
+                ))
                 .toList() ??
             []);
   }

@@ -56,6 +56,21 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
+  final _$tutorSpecialtiesAtom = Atom(name: '_TutorStore.tutorSpecialties');
+
+  @override
+  ObservableMap<String, String> get tutorSpecialties {
+    _$tutorSpecialtiesAtom.reportRead();
+    return super.tutorSpecialties;
+  }
+
+  @override
+  set tutorSpecialties(ObservableMap<String, String> value) {
+    _$tutorSpecialtiesAtom.reportWrite(value, super.tutorSpecialties, () {
+      super.tutorSpecialties = value;
+    });
+  }
+
   final _$searchTutorsAsyncAction = AsyncAction('_TutorStore.searchTutors');
 
   @override
@@ -69,6 +84,15 @@ mixin _$TutorStore on _TutorStore, Store {
   @override
   Future<dynamic> getTutorDetail({String id = "0"}) {
     return _$getTutorDetailAsyncAction.run(() => super.getTutorDetail(id: id));
+  }
+
+  final _$getTutorSpecialtiesAsyncAsyncAction =
+      AsyncAction('_TutorStore.getTutorSpecialtiesAsync');
+
+  @override
+  Future<dynamic> getTutorSpecialtiesAsync() {
+    return _$getTutorSpecialtiesAsyncAsyncAction
+        .run(() => super.getTutorSpecialtiesAsync());
   }
 
   final _$_TutorStoreActionController = ActionController(name: '_TutorStore');
@@ -89,6 +113,7 @@ mixin _$TutorStore on _TutorStore, Store {
     return '''
 tutorResponseFuture: ${tutorResponseFuture},
 selectedTutorFuture: ${selectedTutorFuture},
+tutorSpecialties: ${tutorSpecialties},
 rowOfTutor: ${rowOfTutor},
 favoriteTutorList: ${favoriteTutorList}
     ''';
