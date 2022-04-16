@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:leet_tutur/models/requests/tutor_request.dart';
@@ -21,7 +22,6 @@ class TutorList extends StatefulWidget {
 class _TutorListState extends State<TutorList> {
   final _tutorStore = GetIt.instance.get<TutorStore>();
 
-  late ReactionDisposer _querySpecialtyDisposer;
   final _pagingController = PagingController<int, Tutor>(
     firstPageKey: 1,
   );
@@ -37,44 +37,35 @@ class _TutorListState extends State<TutorList> {
   @override
   void dispose() {
     _pagingController.dispose();
-    _querySpecialtyDisposer();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // return Observer(builder: (context) {
-    //   var tutorFuture = _tutorStore.tutorResponseFuture;
-    //
-    //   return tutorFuture?.status == FutureStatus.fulfilled
-    //       ? ListView.builder(
-    //           shrinkWrap: true,
-    //           itemBuilder: (context, index) => Observer(builder: (context) {
-    //             var tutor = _tutorStore.rowOfTutor?.rows?[index];
-    //             return tutor != null
-    //                 ? TutorCard(tutor: tutor)
-    //                 : const SizedBox.shrink();
-    //           }),
-    //           itemCount: _tutorStore.rowOfTutor?.rows?.length,
-    //         )
-    //       : const Center(child: CircularProgressIndicator());
-    // });
-
-    return RefreshIndicator(
-      onRefresh: () async {
-        _pagingController.refresh();
+    return ReactionBuilder(
+      builder: (BuildContext context) {
+        // Tutor specialties can be modified else where (SpecialtyList)
+        // Need to refresh our list
+        return reaction((_) => _tutorStore.selectedSpecialty, (value) {
+          _pagingController.refresh();
+        });
       },
-      child: PagedListView.separated(
-        pagingController: _pagingController,
-        separatorBuilder: (context, index) => const SizedBox.shrink(),
-        builderDelegate: PagedChildBuilderDelegate<Tutor>(
-          itemBuilder: (context, tutor, index) {
-            return TutorCard(tutor: tutor);
-          },
-          firstPageProgressIndicatorBuilder: (context) =>
-              const Center(child: CircularProgressIndicator()),
-          firstPageErrorIndicatorBuilder: (context) => const ErrorPage(),
-          noItemsFoundIndicatorBuilder: (context) => const EmptyPage(),
+      child: RefreshIndicator(
+        onRefresh: () async {
+          _pagingController.refresh();
+        },
+        child: PagedListView.separated(
+          pagingController: _pagingController,
+          separatorBuilder: (context, index) => const SizedBox.shrink(),
+          builderDelegate: PagedChildBuilderDelegate<Tutor>(
+            itemBuilder: (context, tutor, index) {
+              return TutorCard(tutor: tutor);
+            },
+            firstPageProgressIndicatorBuilder: (context) =>
+                const Center(child: CircularProgressIndicator()),
+            firstPageErrorIndicatorBuilder: (context) => const ErrorPage(),
+            noItemsFoundIndicatorBuilder: (context) => const EmptyPage(),
+          ),
         ),
       ),
     );
@@ -110,12 +101,5 @@ class _TutorListState extends State<TutorList> {
         }
       },
     );
-
-    // Tutor specialties can be modified else where (SpecialtyList)
-    // Need to refresh our list
-    _querySpecialtyDisposer =
-        reaction((_) => _tutorStore.selectedSpecialty, (value) {
-      _pagingController.refresh();
-    });
   }
 }
