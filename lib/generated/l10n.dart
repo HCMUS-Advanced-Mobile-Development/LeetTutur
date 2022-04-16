@@ -740,10 +740,10 @@ class S {
     );
   }
 
-  /// `Error`
+  /// `Ups!! Some error occurred!!`
   String get error {
     return Intl.message(
-      'Error',
+      'Ups!! Some error occurred!!',
       name: 'error',
       desc: '',
       args: [],

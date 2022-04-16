@@ -30,9 +30,9 @@ class ApiUtils {
           requestInterceptorHandler.next(requestOptions);
         },
         onError: (dioError, errorInterceptorHandler) async {
-          var statusCode = dioError.response?.data["statusCode"] as int;
+          var statusCode = dioError.response?.data["statusCode"];
 
-          if (statusCode == 1) {
+          if (statusCode is int && statusCode == 1) {
             // statusCode: 1,
             // message: "Please authenticate"
 
@@ -55,7 +55,9 @@ class ApiUtils {
               queryParameters: dioError.requestOptions.queryParameters,
             );
 
-            return errorInterceptorHandler.resolve(cloneRequest);
+            errorInterceptorHandler.resolve(cloneRequest);
+          } else {
+            errorInterceptorHandler.next(dioError);
           }
         },
       ),

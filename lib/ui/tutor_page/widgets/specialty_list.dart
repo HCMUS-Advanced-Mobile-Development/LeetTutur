@@ -67,15 +67,5 @@ class _SpecialtyListState extends State<SpecialtyList> {
     } else {
       _tutorStore.selectedSpecialty = "";
     }
-
-    _tutorStore.searchTutors(
-      request: TutorRequest(
-        filters: TutorFilter(
-          specialties: [
-            _tutorStore.selectedSpecialty,
-          ],
-        ),
-      ),
-    );
   }
 }

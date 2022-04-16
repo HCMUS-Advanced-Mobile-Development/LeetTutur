@@ -43,7 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your email address"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
-        "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "error":
+            MessageLookupByLibrary.simpleMessage("Ups!! Some error occurred!!"),
         "explore": MessageLookupByLibrary.simpleMessage("Explore"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forgotPassword":

@@ -3,11 +3,13 @@ import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:leet_tutur/models/requests/tutor_request.dart';
 import 'package:leet_tutur/models/tutor.dart';
+import 'package:leet_tutur/models/tutor_filter.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/ui/tutor_page/widgets/tutor_card.dart';
 import 'package:leet_tutur/widgets/empty_page.dart';
 import 'package:leet_tutur/widgets/error_page.dart';
 import 'package:logger/logger.dart';
+import 'package:mobx/mobx.dart';
 
 class TutorList extends StatefulWidget {
   const TutorList({Key? key}) : super(key: key);
@@ -18,8 +20,8 @@ class TutorList extends StatefulWidget {
 
 class _TutorListState extends State<TutorList> {
   final _tutorStore = GetIt.instance.get<TutorStore>();
-  final _logger = GetIt.instance.get<Logger>();
 
+  late ReactionDisposer _querySpecialtyDisposer;
   final _pagingController = PagingController<int, Tutor>(
     firstPageKey: 1,
   );
@@ -27,32 +29,7 @@ class _TutorListState extends State<TutorList> {
   @override
   void initState() {
     _tutorStore.getTutorSpecialtiesAsync();
-
-    _pagingController.addPageRequestListener(
-      (pageKey) async {
-        try {
-          var tutorRes = await _tutorStore.searchTutors(
-            request: TutorRequest()..page = pageKey,
-          );
-
-          final previouslyFetchedItemsCount =
-              _pagingController.itemList?.length ?? 0;
-          final fetchedTutorsCount = tutorRes.tutors?.rows?.length ?? 0;
-          final totalTutor = tutorRes.tutors?.count ?? 0;
-
-          final isLastPage =
-              previouslyFetchedItemsCount + fetchedTutorsCount == totalTutor;
-          if (isLastPage) {
-            _pagingController.appendLastPage(tutorRes.tutors?.rows ?? []);
-          } else {
-            _pagingController.appendPage(
-                tutorRes.tutors?.rows ?? [], pageKey + 1);
-          }
-        } catch (e) {
-          _pagingController.error = e;
-        }
-      },
-    );
+    setUpListPaging();
 
     super.initState();
   }
@@ -60,6 +37,7 @@ class _TutorListState extends State<TutorList> {
   @override
   void dispose() {
     _pagingController.dispose();
+    _querySpecialtyDisposer();
     super.dispose();
   }
 
@@ -100,5 +78,44 @@ class _TutorListState extends State<TutorList> {
         ),
       ),
     );
+  }
+
+  void setUpListPaging() {
+    _pagingController.addPageRequestListener(
+      (pageKey) async {
+        try {
+          var tutorRes = await _tutorStore.searchTutors(
+            request: TutorRequest(
+              filters: TutorFilter(
+                specialties: [_tutorStore.selectedSpecialty],
+              ),
+            )..page = pageKey,
+          );
+
+          final previouslyFetchedItemsCount =
+              _pagingController.itemList?.length ?? 0;
+          final fetchedTutorsCount = tutorRes.tutors?.rows?.length ?? 0;
+          final totalTutor = tutorRes.tutors?.count ?? 0;
+
+          final isLastPage =
+              previouslyFetchedItemsCount + fetchedTutorsCount == totalTutor;
+          if (isLastPage) {
+            _pagingController.appendLastPage(tutorRes.tutors?.rows ?? []);
+          } else {
+            _pagingController.appendPage(
+                tutorRes.tutors?.rows ?? [], pageKey + 1);
+          }
+        } catch (e) {
+          _pagingController.error = e;
+        }
+      },
+    );
+
+    // Tutor specialties can be modified else where (SpecialtyList)
+    // Need to refresh our list
+    _querySpecialtyDisposer =
+        reaction((_) => _tutorStore.selectedSpecialty, (value) {
+      _pagingController.refresh();
+    });
   }
 }
