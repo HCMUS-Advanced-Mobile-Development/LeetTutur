@@ -17,24 +17,33 @@ class TutorDetail extends StatefulWidget {
   State<TutorDetail> createState() => _TutorDetailState();
 }
 
-class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStateMixin {
-  final tutorStore = GetIt.instance.get<TutorStore>();
-  Tutor tutor = Tutor();
+class _TutorDetailState extends State<TutorDetail>
+    with SingleTickerProviderStateMixin {
+  final _tutorStore = GetIt.instance.get<TutorStore>();
+  Tutor _tutor = Tutor();
 
-  late TabController tabController;
-  int selectedIndex = 0;
+  late TabController _tabController;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
-    tabController = TabController(
-      initialIndex: selectedIndex,
+    _tabController = TabController(
+      initialIndex: _selectedIndex,
       length: 2,
       vsync: this,
     );
 
-    tutorStore.getTutorDetail(id: "0").then((value) => setState(() {
-          tutor = value;
-        }));
+    _tutorStore
+        .getTutorDetail(
+          id: _tutorStore.selectedTutorId,
+        )
+        .then(
+          (value) => setState(
+            () {
+              _tutor = value;
+            },
+          ),
+        );
 
     super.initState();
   }
@@ -43,10 +52,10 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(tutor.user?.name?.pascalCase ?? ""),
+        title: Text(_tutor.user?.name?.pascalCase ?? ""),
       ),
       body: Observer(builder: (context) {
-        var selectedTutorFuture = tutorStore.selectedTutorFuture;
+        var selectedTutorFuture = _tutorStore.tutorDetailFuture;
         var shouldShow = selectedTutorFuture != null &&
             selectedTutorFuture.status == FutureStatus.fulfilled;
 
@@ -60,7 +69,7 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
                       renderTutorInfoHeader(),
                       const SizedBox(height: 10),
                       ExpandableText(
-                        tutor.bio ?? "",
+                        _tutor.bio ?? "",
                         expandText: S.current.showMore.toLowerCase(),
                         collapseText: S.current.showLess.toLowerCase(),
                         maxLines: 4,
@@ -90,12 +99,16 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
           style: Theme.of(context).textTheme.headline6,
         ),
         Wrap(
-            children: tutor.specialties
+            children: _tutor.specialties
                     ?.split(",")
                     .map((e) => Container(
-                        margin: const EdgeInsets.only(left: 5, right: 5),
+                        margin: const EdgeInsets.all(5),
                         child: Chip(
-                          label: Text(e),
+                          label: Observer(
+                            builder: (context) {
+                              return Text(_tutorStore.tutorSpecialties[e] ?? "");
+                            }
+                          ),
                           backgroundColor: Theme.of(context).cardColor,
                           shape: StadiumBorder(
                               side: BorderSide(
@@ -123,7 +136,7 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           IconButton(
-            icon: tutor.isFavorite ?? false
+            icon: _tutor.isFavorite ?? false
                 ? const Icon(Icons.favorite, color: Colors.red, size: 30)
                 : const Icon(Icons.favorite_border, size: 30),
             onPressed: handleFavorite,
@@ -152,7 +165,7 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
       children: [
         CircleAvatar(
           backgroundImage:
-              Image.network(tutor.avatar ?? tutor.user?.avatar ?? "").image,
+              Image.network(_tutor.avatar ?? _tutor.user?.avatar ?? "").image,
           radius: 50,
         ),
         Column(
@@ -160,11 +173,11 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              tutor.name ?? tutor.user?.name ?? "",
+              _tutor.name ?? _tutor.user?.name ?? "",
               style: Theme.of(context).textTheme.headline6,
             ),
             Text(
-              tutor.country ?? "",
+              _tutor.country ?? "",
               style: Theme.of(context).textTheme.bodyText1,
             ),
             renderStars()
@@ -178,22 +191,21 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
     return Row(
       children: [
         ...List.filled(
-            tutor.getStars(),
+            _tutor.getStars(),
             const Icon(
               Icons.star,
               color: Colors.amber,
             )),
-        ...List.filled(5 - tutor.getStars(), const Icon(Icons.star_border))
+        ...List.filled(5 - _tutor.getStars(), const Icon(Icons.star_border))
       ],
     );
   }
 
   Widget renderTabs() {
     return Column(
-
       children: [
         TabBar(
-          controller: tabController,
+          controller: _tabController,
           onTap: _handleTabClick,
           tabs: [
             Text(
@@ -204,20 +216,22 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
                 style: Theme.of(context).textTheme.headline6),
           ],
         ),
-        const SizedBox(height: 15,),
+        const SizedBox(
+          height: 15,
+        ),
         IndexedStack(
-          index: selectedIndex,
+          index: _selectedIndex,
           children: [
             Visibility(
               maintainState: true,
-              visible: selectedIndex == 0,
+              visible: _selectedIndex == 0,
               child: const ScheduleList(),
             ),
             Visibility(
               maintainState: true,
-              visible: selectedIndex == 1,
+              visible: _selectedIndex == 1,
               child: FeedbackList(
-                userFeedbacks: tutor.user?.feedbacks ?? [],
+                userFeedbacks: _tutor.user?.feedbacks ?? [],
               ),
             ),
           ],
@@ -228,14 +242,17 @@ class _TutorDetailState extends State<TutorDetail> with SingleTickerProviderStat
 
   void handleFavorite() {
     setState(() {
-      tutor.isFavorite = tutor.isFavorite != null ? !tutor.isFavorite! : false;
+      _tutor.isFavorite =
+          _tutor.isFavorite != null ? !_tutor.isFavorite! : false;
     });
+
+    _tutorStore.addToFavoriteTutorAsync(_tutor.userId);
   }
 
   void _handleTabClick(int value) {
     setState(() {
-      selectedIndex = value;
-      tabController.animateTo(value);
+      _selectedIndex = value;
+      _tabController.animateTo(value);
     });
   }
 }

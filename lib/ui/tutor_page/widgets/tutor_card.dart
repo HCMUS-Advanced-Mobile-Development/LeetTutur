@@ -5,6 +5,7 @@ import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
+import 'package:mobx/mobx.dart';
 
 class TutorCard extends StatefulWidget {
   final Tutor tutor;
@@ -18,16 +19,16 @@ class TutorCard extends StatefulWidget {
 class _TutorCardState extends State<TutorCard> {
   final _tutorStore = GetIt.instance.get<TutorStore>();
 
-  late final Tutor tutor;
-  late bool isFavorite;
+  late final Tutor _tutor;
+  late bool _isFavorite;
 
   @override
   void initState() {
     super.initState();
 
     setState(() {
-      tutor = widget.tutor;
-      isFavorite = _tutorStore.isFavoriteTutor(tutor);
+      _tutor = widget.tutor;
+      _isFavorite = _tutorStore.isFavoriteTutor(_tutor);
     });
   }
 
@@ -45,7 +46,7 @@ class _TutorCardState extends State<TutorCard> {
                 renderTutorInfoHeader(),
                 renderSpecialties(),
                 Text(
-                  tutor.bio!,
+                  _tutor.bio!,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -60,14 +61,19 @@ class _TutorCardState extends State<TutorCard> {
 
   void handleFavorite() {
     setState(() {
-      isFavorite = !isFavorite;
+      _isFavorite = !_isFavorite;
     });
 
-    _tutorStore.addToFavoriteTutorAsync(tutor.userId);
+    _tutorStore.addToFavoriteTutorAsync(_tutor.userId);
   }
 
-  void navigateToDetail(TapDownDetails tapDownDetails) {
-    Navigator.pushNamed(context, RouteConstants.tutorDetail);
+  Future navigateToDetail(TapDownDetails tapDownDetails) async {
+    _tutorStore.selectedTutorId = _tutor.userId ?? "";
+
+    await Navigator.pushNamed(context, RouteConstants.tutorDetail);
+    setState(() {
+      _isFavorite = _tutorStore.isFavoriteTutor(_tutor);
+    });
   }
 
   Widget renderTutorInfoHeader() {
@@ -77,7 +83,7 @@ class _TutorCardState extends State<TutorCard> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundImage: Image.network(tutor.avatar!).image,
+          backgroundImage: Image.network(_tutor.avatar!).image,
           radius: 50,
         ),
         Column(
@@ -86,7 +92,7 @@ class _TutorCardState extends State<TutorCard> {
           children: [
             GestureDetector(
               child: Text(
-                tutor.name!,
+                _tutor.name!,
                 style: Theme.of(context).textTheme.headline6?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -94,7 +100,7 @@ class _TutorCardState extends State<TutorCard> {
               onTapDown: navigateToDetail,
             ),
             Text(
-              tutor.country!,
+              _tutor.country!,
               style: Theme.of(context).textTheme.bodyText1,
             ),
             renderStars()
@@ -102,7 +108,7 @@ class _TutorCardState extends State<TutorCard> {
         ),
         Center(
           child: IconButton(
-            icon: isFavorite
+            icon: _isFavorite
                 ? const Icon(Icons.favorite, color: Colors.red, size: 30)
                 : const Icon(Icons.favorite_border, size: 30),
             onPressed: handleFavorite,
@@ -116,19 +122,19 @@ class _TutorCardState extends State<TutorCard> {
     return Row(
       children: [
         ...List.filled(
-            tutor.getStars(),
+            _tutor.getStars(),
             const Icon(
               Icons.star,
               color: Colors.amber,
             )),
-        ...List.filled(5 - tutor.getStars(), const Icon(Icons.star_border))
+        ...List.filled(5 - _tutor.getStars(), const Icon(Icons.star_border))
       ],
     );
   }
 
   Widget renderSpecialties() {
     return Wrap(
-        children: tutor.specialties
+        children: _tutor.specialties
                 ?.split(",")
                 .map((e) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 3),

@@ -18,7 +18,10 @@ abstract class _TutorStore with Store {
   ObservableFuture<TutorResponse>? tutorResponseFuture;
 
   @observable
-  ObservableFuture<Tutor>? selectedTutorFuture;
+  String selectedTutorId = "";
+
+  @observable
+  ObservableFuture<Tutor>? tutorDetailFuture;
 
   @observable
   ObservableMap<String, String> tutorSpecialties = ObservableMap();
@@ -40,20 +43,27 @@ abstract class _TutorStore with Store {
   }
 
   @action
-  Future<TutorResponse> searchTutors({TutorRequest? request}) async => tutorResponseFuture =
-      ObservableFuture(_tutorService.getTutors(request: request));
+  Future<TutorResponse> searchTutors({TutorRequest? request}) async =>
+      tutorResponseFuture =
+          ObservableFuture(_tutorService.getTutors(request: request));
 
   @action
-  Future getTutorDetail({String id = "0"}) async => selectedTutorFuture =
+  Future getTutorDetail({String id = "0"}) async => tutorDetailFuture =
       ObservableFuture(_tutorService.getTutorDetail(id: id));
 
   @action
   void unSelectTutor() {
-    selectedTutorFuture = null;
+    tutorDetailFuture = null;
   }
 
   Future addToFavoriteTutorAsync(String? tutorId) async {
     await _tutorService.addToFavoriteTutorAsync(tutorId);
+
+    if (isFavoriteTutor(Tutor(userId: tutorId))) {
+      favoriteTutorList?.removeWhere((element) => element.secondId == tutorId);
+    } else {
+      favoriteTutorList?.add(FavoriteTutor(secondId: tutorId));
+    }
   }
 
   @action

@@ -40,19 +40,33 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$selectedTutorFutureAtom =
-      Atom(name: '_TutorStore.selectedTutorFuture');
+  final _$selectedTutorIdAtom = Atom(name: '_TutorStore.selectedTutorId');
 
   @override
-  ObservableFuture<Tutor>? get selectedTutorFuture {
-    _$selectedTutorFutureAtom.reportRead();
-    return super.selectedTutorFuture;
+  String get selectedTutorId {
+    _$selectedTutorIdAtom.reportRead();
+    return super.selectedTutorId;
   }
 
   @override
-  set selectedTutorFuture(ObservableFuture<Tutor>? value) {
-    _$selectedTutorFutureAtom.reportWrite(value, super.selectedTutorFuture, () {
-      super.selectedTutorFuture = value;
+  set selectedTutorId(String value) {
+    _$selectedTutorIdAtom.reportWrite(value, super.selectedTutorId, () {
+      super.selectedTutorId = value;
+    });
+  }
+
+  final _$tutorDetailFutureAtom = Atom(name: '_TutorStore.tutorDetailFuture');
+
+  @override
+  ObservableFuture<Tutor>? get tutorDetailFuture {
+    _$tutorDetailFutureAtom.reportRead();
+    return super.tutorDetailFuture;
+  }
+
+  @override
+  set tutorDetailFuture(ObservableFuture<Tutor>? value) {
+    _$tutorDetailFutureAtom.reportWrite(value, super.tutorDetailFuture, () {
+      super.tutorDetailFuture = value;
     });
   }
 
@@ -127,7 +141,8 @@ mixin _$TutorStore on _TutorStore, Store {
   String toString() {
     return '''
 tutorResponseFuture: ${tutorResponseFuture},
-selectedTutorFuture: ${selectedTutorFuture},
+selectedTutorId: ${selectedTutorId},
+tutorDetailFuture: ${tutorDetailFuture},
 tutorSpecialties: ${tutorSpecialties},
 selectedSpecialty: ${selectedSpecialty},
 rowOfTutor: ${rowOfTutor},

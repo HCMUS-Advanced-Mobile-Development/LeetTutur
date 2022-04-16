@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -881,14 +880,19 @@ class TutorService {
   }
 
   Future<Tutor> getTutorDetail({String id = "0"}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    try {
+      var dioRes = await _dio.get("/tutor/$id");
+      var tutor = Tutor.fromJson(dioRes.data);
 
-    var response =
-        Tutor.fromJson(jsonDecode(tutorDetailResponse.replaceAll("\n", "")));
+      _logger.i("""
+          Get tutor detail. Name: ${tutor.user?.name}. 
+          Number of feedback: ${tutor.user?.feedbacks?.length}
+          """);
 
-    _logger.i(
-        "Get tutor detail. Name: ${response.user?.name}. Number of feedback: ${response.user?.feedbacks?.length}");
-
-    return response;
+      return tutor;
+    } on DioError catch (e) {
+      _logger.e("Can't get tutor detail. ${e.message}");
+      rethrow;
+    }
   }
 }
