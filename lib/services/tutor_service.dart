@@ -8,7 +8,6 @@ import 'package:leet_tutur/models/requests/tutor_request.dart';
 import 'package:leet_tutur/models/responses/tutor_response.dart';
 import 'package:leet_tutur/models/row_of_tutor.dart';
 import 'package:leet_tutur/models/tutor.dart';
-import 'package:leet_tutur/utils/api_utils.dart';
 import 'package:logger/logger.dart';
 
 class TutorService {
@@ -824,8 +823,8 @@ class TutorService {
     var favoriteTutorDioRes = await _dio.get(
       "/tutor/more",
       queryParameters: {
-        "page": 1,
-        "perPage": 9,
+        "page": request?.page ?? 1,
+        "perPage": request?.perPage ?? 9,
       },
     );
 

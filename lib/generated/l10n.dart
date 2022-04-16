@@ -729,6 +729,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Nothing Here`
+  String get nothingHere {
+    return Intl.message(
+      'Nothing Here',
+      name: 'nothingHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

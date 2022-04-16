@@ -35,7 +35,7 @@ class _SearchBarState extends State<SearchBar> {
     return FloatingSearchBar(
       hint: S.current.search,
       scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
-      transitionDuration: const Duration(milliseconds: 800),
+      transitionDuration: const Duration(milliseconds: 500),
       transitionCurve: Curves.easeInOut,
       physics: const BouncingScrollPhysics(),
       axisAlignment: isPortrait ? 0.0 : -1.0,
@@ -50,6 +50,7 @@ class _SearchBarState extends State<SearchBar> {
 
         controller.close();
       },
+      automaticallyImplyBackButton: false,
       // Specify a custom transition to be used for
       // animating between opened and closed stated.
       transition: CircularFloatingSearchBarTransition(),

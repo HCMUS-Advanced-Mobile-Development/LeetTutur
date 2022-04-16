@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your email address"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "explore": MessageLookupByLibrary.simpleMessage("Explore"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "forgotPassword":
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "level": MessageLookupByLibrary.simpleMessage("Level"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),
+        "nothingHere": MessageLookupByLibrary.simpleMessage("Nothing Here"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
         "overall": MessageLookupByLibrary.simpleMessage("Overall"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),

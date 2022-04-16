@@ -88,8 +88,8 @@ class _TutorCardState extends State<TutorCard> {
               child: Text(
                 tutor.name!,
                 style: Theme.of(context).textTheme.headline6?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               onTapDown: navigateToDetail,
             ),
@@ -131,21 +131,20 @@ class _TutorCardState extends State<TutorCard> {
         children: tutor.specialties
                 ?.split(",")
                 .map((e) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: Container(
-                      margin: const EdgeInsets.only(left: 5, right: 5),
-                      child: Chip(
-                        label: Observer(
-                          builder: (context) {
-                            return Text(_tutorStore.tutorSpecialties[e] ?? "");
-                          }
-                        ),
-                        backgroundColor: Theme.of(context).cardColor,
-                        shape: StadiumBorder(
-                            side: BorderSide(
-                                color: Theme.of(context).primaryColor)),
-                      )),
-                ))
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Container(
+                          margin: const EdgeInsets.only(left: 5, right: 5),
+                          child: Chip(
+                            label: Observer(builder: (context) {
+                              return Text(
+                                  _tutorStore.tutorSpecialties[e] ?? "");
+                            }),
+                            backgroundColor: Theme.of(context).cardColor,
+                            shape: StadiumBorder(
+                                side: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
+                          )),
+                    ))
                 .toList() ??
             []);
   }
@@ -155,11 +154,23 @@ class _TutorCardState extends State<TutorCard> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-            onPressed: handleBookTutor,
-            child: Text(S.current.book.toUpperCase())),
+          onPressed: handleBookTutor,
+          child: Text(
+            S.current.book.toUpperCase(),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
         TextButton(
-            onPressed: handleChatTutor,
-            child: Text(S.current.chat.toUpperCase())),
+          onPressed: handleChatTutor,
+          child: Text(
+            S.current.chat.toUpperCase(),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ],
     );
   }

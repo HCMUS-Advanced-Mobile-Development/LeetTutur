@@ -7,9 +7,9 @@ part of 'base_request.dart';
 // **************************************************************************
 
 BaseRequest _$BaseRequestFromJson(Map<String, dynamic> json) => BaseRequest(
-      page: json['page'] as int?,
-      perPage: json['perPage'] as int?,
-      size: json['size'] as int?,
+      page: json['page'] as int? ?? 1,
+      perPage: json['perPage'] as int? ?? 12,
+      size: json['size'] as int? ?? 12,
     );
 
 Map<String, dynamic> _$BaseRequestToJson(BaseRequest instance) =>

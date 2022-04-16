@@ -66,5 +66,7 @@
 	"cancel": "Cancel",
 	"processing": "Processing",
 	"registerSuccessfullyCheckYourMail": "Register Successfully. Check Your Mail",
-	"resetPasswordCheckYourMail": "Reset Password. Please check your email"
+	"resetPasswordCheckYourMail": "Reset Password. Please check your email",
+	"nothingHere": "Nothing Here",
+	"error": "Error"
 }

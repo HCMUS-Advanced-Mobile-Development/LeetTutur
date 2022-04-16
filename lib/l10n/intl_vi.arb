@@ -66,5 +66,7 @@
 	"cancel": "Hủy bỏ",
 	"processing": "Đang xử lý",
 	"registerSuccessfullyCheckYourMail": "Đăng ký thành công. Kiểm tra mail của bạn",
-	"resetPasswordCheckYourMail": "Đặt lại mật khẩu. Vui lòng kiểm tra mail của bạn"
+	"resetPasswordCheckYourMail": "Đặt lại mật khẩu. Vui lòng kiểm tra mail của bạn",
+	"nothingHere": "Không có gì ở đây",
+	"error": "Có lỗi xảy ra"
 }

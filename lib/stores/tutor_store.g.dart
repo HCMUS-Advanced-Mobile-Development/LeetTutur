@@ -89,7 +89,7 @@ mixin _$TutorStore on _TutorStore, Store {
   final _$searchTutorsAsyncAction = AsyncAction('_TutorStore.searchTutors');
 
   @override
-  Future<dynamic> searchTutors({TutorRequest? request}) {
+  Future<TutorResponse> searchTutors({TutorRequest? request}) {
     return _$searchTutorsAsyncAction
         .run(() => super.searchTutors(request: request));
   }

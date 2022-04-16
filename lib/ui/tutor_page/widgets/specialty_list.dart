@@ -29,38 +29,32 @@ class _SpecialtyListState extends State<SpecialtyList> {
       height: 40,
       child: Observer(
         builder: (context) {
-          return ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-            }),
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 3,
-                  ),
-                  child: Observer(builder: (context) {
-                    var map = _tutorStore.tutorSpecialties;
+          return ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 3,
+                ),
+                child: Observer(builder: (context) {
+                  var map = _tutorStore.tutorSpecialties;
 
-                    var key = map.keys.elementAt(index);
-                    var name = map.values.elementAt(index);
+                  var key = map.keys.elementAt(index);
+                  var name = map.values.elementAt(index);
 
-                    return ChoiceChip(
-                      label: Text(name),
-                      selected: key == _tutorStore.selectedSpecialty,
-                      onSelected: (selected) {
-                        handleSelectSpecialty(selected, key);
-                      },
-                      selectedColor: Theme.of(context).primaryColor,
-                    );
-                  }),
-                );
-              },
-              itemCount: _tutorStore.tutorSpecialties.length,
-            ),
+                  return ChoiceChip(
+                    label: Text(name),
+                    selected: key == _tutorStore.selectedSpecialty,
+                    onSelected: (selected) {
+                      handleSelectSpecialty(selected, key);
+                    },
+                    selectedColor: Theme.of(context).primaryColor,
+                  );
+                }),
+              );
+            },
+            itemCount: _tutorStore.tutorSpecialties.length,
           );
         },
       ),

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -33,6 +34,7 @@ Future main() async {
         ],
         supportedLocales: S.delegate.supportedLocales,
         locale: Locale(systemStore.systemSettingFuture?.value?.language ?? "en"),
+        scrollBehavior: _MyCustomScrollBehavior(),
         theme: systemStore.currentTheme,
         routes: RouteConstants.routesMap,
         home: const SafeArea(
@@ -41,4 +43,15 @@ Future main() async {
       );
     }),
   );
+}
+
+class _MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices =>
+      {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        // etc.
+      };
 }

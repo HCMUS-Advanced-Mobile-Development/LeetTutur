@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nhập địa chỉ email của bạn"),
         "enterPassword":
             MessageLookupByLibrary.simpleMessage("Nhập mật khẩu của bạn"),
+        "error": MessageLookupByLibrary.simpleMessage("Có lỗi xảy ra"),
         "explore": MessageLookupByLibrary.simpleMessage("Khám phá"),
         "favorite": MessageLookupByLibrary.simpleMessage("Thích"),
         "forgotPassword":
@@ -62,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "level": MessageLookupByLibrary.simpleMessage("Cấp độ"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
+        "nothingHere":
+            MessageLookupByLibrary.simpleMessage("Không có gì ở đây"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
         "overall": MessageLookupByLibrary.simpleMessage("Tổng quan"),
         "phone": MessageLookupByLibrary.simpleMessage("Điện thoại"),

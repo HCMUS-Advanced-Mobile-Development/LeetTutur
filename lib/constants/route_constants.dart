@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:leet_tutur/ui/auth/forgot_password.dart';
+import 'package:leet_tutur/ui/auth/login.dart';
+import 'package:leet_tutur/ui/auth/register.dart';
+import 'package:leet_tutur/ui/course_detail/course_detail.dart';
+import 'package:leet_tutur/ui/home_tabs/home_tabs.dart';
+import 'package:leet_tutur/ui/learn_history/learn_history.dart';
+import 'package:leet_tutur/ui/profile/profile.dart';
+import 'package:leet_tutur/ui/study_room/study_room.dart';
+import 'package:leet_tutur/ui/system_settings/system_settings.dart';
+import 'package:leet_tutur/ui/tutor_detail/tutor_detail.dart';
 
-import '../generated/l10n.dart';
-import '../ui/auth/forgot_password.dart';
-import '../ui/auth/login.dart';
-import '../ui/auth/register.dart';
-import '../ui/chat_page/chat_page.dart';
-import '../ui/course_detail/course_detail.dart';
-import '../ui/courses_page/courses_page.dart';
-import '../ui/home_tabs/home_tabs.dart';
-import '../ui/learn_history/learn_history.dart';
-import '../ui/profile/profile.dart';
-import '../ui/schedule_page/schedule_page.dart';
-import '../ui/settings_page/settings_page.dart';
-import '../ui/study_room/study_room.dart';
-import '../ui/system_settings/system_settings.dart';
-import '../ui/tutor_detail/tutor_detail.dart';
-import '../ui/tutor_page/tutor_page.dart';
 
 class RouteConstants {
   static const login = "login";

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/course.dart';
-import 'package:leet_tutur/models/course_model.dart';
 
 class CourseCard extends StatelessWidget {
   final Course course;

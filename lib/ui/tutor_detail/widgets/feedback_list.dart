@@ -24,6 +24,6 @@ class _FeedbackListState extends State<FeedbackList> {
         return TutorReview(userFeedback: userFeedback);
       },
       itemCount: feedbacks.length,
-    );;
+    );
   }
 }

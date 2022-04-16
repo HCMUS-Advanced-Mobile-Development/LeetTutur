@@ -195,7 +195,7 @@ class _RegisterState extends State<Register> {
             });
           },
         );
-      } on DioError catch (err) {
+      } on DioError {
         rethrow;
       }
     }

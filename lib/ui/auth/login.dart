@@ -252,7 +252,7 @@ class _LoginState extends State<Login> {
             });
           },
         );
-      } on DioError catch (e) {
+      } on DioError {
         rethrow;
       }
     }

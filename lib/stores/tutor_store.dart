@@ -40,7 +40,7 @@ abstract class _TutorStore with Store {
   }
 
   @action
-  Future searchTutors({TutorRequest? request}) async => tutorResponseFuture =
+  Future<TutorResponse> searchTutors({TutorRequest? request}) async => tutorResponseFuture =
       ObservableFuture(_tutorService.getTutors(request: request));
 
   @action

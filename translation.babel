@@ -289,6 +289,23 @@
                 </translations>
             </concept_node>
             <concept_node>
+                <name>error</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-US</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>explore</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -544,6 +561,23 @@
                 </translations>
             </concept_node>
             <concept_node>
+                <name>nothingHere</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-US</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>orWith</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -749,6 +783,23 @@
             </concept_node>
             <concept_node>
                 <name>resetPassword</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-US</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>resetPasswordCheckYourMail</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
                 <comment/>

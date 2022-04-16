@@ -16,7 +16,6 @@ class ApiUtils {
       ..interceptors.add(PrettyDioLogger(
         requestBody: true,
         responseBody: true,
-        responseHeader: true,
         error: true,
         maxWidth: 120,
         compact: true,
