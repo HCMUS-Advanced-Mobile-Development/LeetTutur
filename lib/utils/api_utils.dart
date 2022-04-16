@@ -22,6 +22,46 @@ class ApiUtils {
         compact: true,
       ));
 
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (requestOptions, requestInterceptorHandler) async {
+          requestOptions.headers["Authorization"] =
+              await ApiUtils.getBearerTokenAsync();
+
+          requestInterceptorHandler.next(requestOptions);
+        },
+        onError: (dioError, errorInterceptorHandler) async {
+          var statusCode = dioError.response?.data["statusCode"] as int;
+
+          if (statusCode == 1) {
+            // statusCode: 1,
+            // message: "Please authenticate"
+
+            var tokens = await getTokensAsync();
+            var res = await dio.post("/auth/refresh-token", data: {
+              "refreshToken": tokens.refresh?.token,
+            });
+
+            var authRes = AuthResponse.fromJson(res.data);
+            dioError.requestOptions.headers["Authorization"] =
+                authRes.tokens?.refresh?.token;
+
+            var cloneRequest = await dio.request(
+              dioError.requestOptions.path,
+              options: Options(
+                method: dioError.requestOptions.method,
+                headers: dioError.requestOptions.headers,
+              ),
+              data: dioError.requestOptions.data,
+              queryParameters: dioError.requestOptions.queryParameters,
+            );
+
+            return errorInterceptorHandler.resolve(cloneRequest);
+          }
+        },
+      ),
+    );
+
     return dio;
   }
 

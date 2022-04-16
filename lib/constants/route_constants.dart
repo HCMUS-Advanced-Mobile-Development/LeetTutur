@@ -15,7 +15,7 @@ import '../ui/settings_page/settings_page.dart';
 import '../ui/study_room/study_room.dart';
 import '../ui/system_settings/system_settings.dart';
 import '../ui/tutor_detail/tutor_detail.dart';
-import '../ui/tutor_page/tuitor_page.dart';
+import '../ui/tutor_page/tutor_page.dart';
 
 class RouteConstants {
   static const login = "login";

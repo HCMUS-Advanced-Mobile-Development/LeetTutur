@@ -23,6 +23,9 @@ abstract class _TutorStore with Store {
   @observable
   ObservableMap<String, String> tutorSpecialties = ObservableMap();
 
+  @observable
+  String selectedSpecialty = "";
+
   @computed
   RowOfTutor? get rowOfTutor => tutorResponseFuture?.value?.tutors;
 

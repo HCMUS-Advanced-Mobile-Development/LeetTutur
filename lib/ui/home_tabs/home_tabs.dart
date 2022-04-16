@@ -4,7 +4,7 @@ import 'package:leet_tutur/ui/chat_page/chat_page.dart';
 import 'package:leet_tutur/ui/courses_page/courses_page.dart';
 import 'package:leet_tutur/ui/schedule_page/schedule_page.dart';
 import 'package:leet_tutur/ui/settings_page/settings_page.dart';
-import 'package:leet_tutur/ui/tutor_page/tuitor_page.dart';
+import 'package:leet_tutur/ui/tutor_page/tutor_page.dart';
 
 class HomeTabs extends StatefulWidget {
   const HomeTabs({Key? key}) : super(key: key);

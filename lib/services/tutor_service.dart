@@ -819,17 +819,10 @@ class TutorService {
     var tutorDioRes = await _dio.post(
       "/tutor/search",
       data: request?.toJson(),
-      options: Options(
-          headers: {"Authorization": await ApiUtils.getBearerTokenAsync()}),
     );
 
     var favoriteTutorDioRes = await _dio.get(
       "/tutor/more",
-      options: Options(
-        headers: {
-          "Authorization": await ApiUtils.getBearerTokenAsync(),
-        },
-      ),
       queryParameters: {
         "page": 1,
         "perPage": 9,
@@ -852,11 +845,6 @@ class TutorService {
     try {
       await _dio.post(
         "/user/manageFavoriteTutor",
-        options: Options(
-          headers: {
-            "Authorization": await ApiUtils.getBearerTokenAsync(),
-          },
-        ),
         data: {
           "tutorId": tutorId,
         },

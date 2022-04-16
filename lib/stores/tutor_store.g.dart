@@ -71,6 +71,21 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
+  final _$selectedSpecialtyAtom = Atom(name: '_TutorStore.selectedSpecialty');
+
+  @override
+  String get selectedSpecialty {
+    _$selectedSpecialtyAtom.reportRead();
+    return super.selectedSpecialty;
+  }
+
+  @override
+  set selectedSpecialty(String value) {
+    _$selectedSpecialtyAtom.reportWrite(value, super.selectedSpecialty, () {
+      super.selectedSpecialty = value;
+    });
+  }
+
   final _$searchTutorsAsyncAction = AsyncAction('_TutorStore.searchTutors');
 
   @override
@@ -114,6 +129,7 @@ mixin _$TutorStore on _TutorStore, Store {
 tutorResponseFuture: ${tutorResponseFuture},
 selectedTutorFuture: ${selectedTutorFuture},
 tutorSpecialties: ${tutorSpecialties},
+selectedSpecialty: ${selectedSpecialty},
 rowOfTutor: ${rowOfTutor},
 favoriteTutorList: ${favoriteTutorList}
     ''';

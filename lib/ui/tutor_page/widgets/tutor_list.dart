@@ -25,12 +25,12 @@ class _TutorListState extends State<TutorList> {
 
   @override
   Widget build(BuildContext context) {
-
     return Observer(builder: (context) {
       var tutorFuture = tutorStore.tutorResponseFuture;
 
       return tutorFuture?.status == FutureStatus.fulfilled
           ? ListView.builder(
+              shrinkWrap: true,
               itemBuilder: (context, index) => Observer(builder: (context) {
                 var tutor = tutorStore.rowOfTutor?.rows?[index];
                 return tutor != null

@@ -8,7 +8,7 @@ class BaseRequest {
   int? perPage;
   int? size;
 
-  BaseRequest({this.page, this.perPage, this.size});
+  BaseRequest({this.page = 1, this.perPage = 12, this.size = 12});
 
   factory BaseRequest.fromJson(Map<String, dynamic> json) =>
       _$BaseRequestFromJson(json);
