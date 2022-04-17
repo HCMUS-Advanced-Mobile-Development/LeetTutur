@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
@@ -18,19 +19,23 @@ class ScheduleService {
       "tutorId": id,
     });
 
-    var scheduleResponse = ScheduleResponse.fromJson(res.data);
+    // This operation is very heavy
+    var scheduleResponse = await compute((Response dioResponse) {
+      var scheduleResponse = ScheduleResponse.fromJson(dioResponse.data);
 
-    var schedules = scheduleResponse.data;
+      var schedules = scheduleResponse.data
+          ?.where((element) =>
+              element.startTimestamp! >=
+              DateTimeUtils.startOfToday().millisecondsSinceEpoch)
+          .toList();
 
-    schedules = schedules
-        ?.where((element) =>
-            element.startTimestamp! >= DateTimeUtils.startOfToday().millisecondsSinceEpoch)
-        .toList();
+      schedules?.sort(
+          (a, b) => a.startTimestamp?.compareTo(b.startTimestamp ?? 0) ?? 0);
 
-    schedules?.sort(
-        (a, b) => a.startTimestamp?.compareTo(b.startTimestamp ?? 0) ?? 0);
+      scheduleResponse.data = schedules;
 
-    scheduleResponse.data = schedules;
+      return scheduleResponse;
+    }, res);
 
     _logger.i("Get schedule, found: ${scheduleResponse.data?.length} items");
 
