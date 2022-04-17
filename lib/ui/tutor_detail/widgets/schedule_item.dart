@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/schedule.dart';
 import 'package:leet_tutur/utils/date_time_utils.dart';
 
@@ -12,11 +13,11 @@ class ScheduleItem extends StatefulWidget {
 }
 
 class _ScheduleItemState extends State<ScheduleItem> {
-  late Schedule schedule;
+  late Schedule _schedule;
 
   @override
   void initState() {
-    schedule = widget.schedule;
+    _schedule = widget.schedule;
     super.initState();
   }
 
@@ -30,8 +31,11 @@ class _ScheduleItemState extends State<ScheduleItem> {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              DateTimeUtils.formatDate(DateTime.fromMillisecondsSinceEpoch(
-                  schedule.startTimestamp ?? 0)),
+              DateTimeUtils.formatDate(
+                DateTime.fromMillisecondsSinceEpoch(
+                  _schedule.startTimestamp ?? 0,
+                ),
+              ),
               style: Theme.of(context).textTheme.caption,
             ),
           ),
@@ -40,7 +44,7 @@ class _ScheduleItemState extends State<ScheduleItem> {
           flex: 2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: schedule.scheduleDetails?.map((detail) {
+            children: _schedule.scheduleDetails?.map((detail) {
                   var starStr = TimeOfDay.fromDateTime(
                           DateTime.fromMillisecondsSinceEpoch(
                               detail.startPeriodTimestamp ?? 0))
@@ -56,7 +60,17 @@ class _ScheduleItemState extends State<ScheduleItem> {
                       bottom: 5,
                     ),
                     child: ElevatedButton(
-                        onPressed: () {}, child: Text("$starStr - $endStr")),
+                      onPressed:
+                          (detail.isBooked ?? false) ? () {} : _handleBookClass,
+                      style: ElevatedButton.styleFrom(
+                        primary:
+                            (detail.isBooked ?? false) ? Colors.green : null,
+                      ),
+                      child: Text("$starStr - $endStr" +
+                          (detail.isBooked ?? false
+                              ? " (${S.current.isBooked})"
+                              : "")),
+                    ),
                   );
                 }).toList() ??
                 [],
@@ -65,4 +79,6 @@ class _ScheduleItemState extends State<ScheduleItem> {
       ],
     );
   }
+
+  void _handleBookClass() {}
 }

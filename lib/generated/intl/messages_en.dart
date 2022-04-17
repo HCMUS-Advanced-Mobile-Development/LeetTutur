@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "intermediate": MessageLookupByLibrary.simpleMessage("Intermediate"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
+        "isBooked": MessageLookupByLibrary.simpleMessage("Is Booked"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "learnHistory": MessageLookupByLibrary.simpleMessage("Learn History"),
         "learningHistory":

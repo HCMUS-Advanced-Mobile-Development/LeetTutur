@@ -749,6 +749,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Is Booked`
+  String get isBooked {
+    return Intl.message(
+      'Is Booked',
+      name: 'isBooked',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

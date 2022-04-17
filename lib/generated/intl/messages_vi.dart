@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "intermediate": MessageLookupByLibrary.simpleMessage("Trung"),
         "intro":
             MessageLookupByLibrary.simpleMessage("Nền tảng học 1 1 trực tuyến"),
+        "isBooked": MessageLookupByLibrary.simpleMessage("Đã đặt"),
         "language": MessageLookupByLibrary.simpleMessage("ngôn ngữ"),
         "learnHistory": MessageLookupByLibrary.simpleMessage("Lịch sử học"),
         "learningHistory":

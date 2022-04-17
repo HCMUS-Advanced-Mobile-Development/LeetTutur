@@ -68,5 +68,6 @@
 	"registerSuccessfullyCheckYourMail": "Đăng ký thành công. Kiểm tra mail của bạn",
 	"resetPasswordCheckYourMail": "Đặt lại mật khẩu. Vui lòng kiểm tra mail của bạn",
 	"nothingHere": "Không có gì ở đây",
-	"error": "Ối!! Có lỗi!!"
+	"error": "Ối!! Có lỗi!!",
+	"isBooked": "Đã đặt"
 }

@@ -23,4 +23,10 @@ class DateTimeUtils {
   static String formatTime(DateTime date) {
     return DateFormat(DateFormat.HOUR_MINUTE).format(date);
   }
+
+  static DateTime startOfToday() {
+    var now = DateTime.now();
+
+    return DateTime(now.year, now.month, now.day);
+  }
 }

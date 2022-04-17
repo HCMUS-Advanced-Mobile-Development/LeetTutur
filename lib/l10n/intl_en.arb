@@ -68,5 +68,6 @@
 	"registerSuccessfullyCheckYourMail": "Register Successfully. Check Your Mail",
 	"resetPasswordCheckYourMail": "Reset Password. Please check your email",
 	"nothingHere": "Nothing Here",
-	"error": "Ups!! Some error occurred!!"
+	"error": "Ups!! Some error occurred!!",
+	"isBooked": "Is Booked"
 }

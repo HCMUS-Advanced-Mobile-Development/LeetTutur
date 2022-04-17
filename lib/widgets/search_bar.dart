@@ -50,7 +50,7 @@ class _SearchBarState extends State<SearchBar> {
 
         controller.close();
       },
-      automaticallyImplyBackButton: false,
+      // automaticallyImplyBackButton: false,
       // Specify a custom transition to be used for
       // animating between opened and closed stated.
       transition: CircularFloatingSearchBarTransition(),

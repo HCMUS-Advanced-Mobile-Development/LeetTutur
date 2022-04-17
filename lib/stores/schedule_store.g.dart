@@ -87,13 +87,13 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$getScheduleAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getScheduleAsync');
+  final _$getScheduleByTutorIdAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getScheduleByTutorIdAsync');
 
   @override
-  Future<dynamic> getScheduleAsync({String id = ""}) {
-    return _$getScheduleAsyncAsyncAction
-        .run(() => super.getScheduleAsync(id: id));
+  Future<dynamic> getScheduleByTutorIdAsync({String id = ""}) {
+    return _$getScheduleByTutorIdAsyncAsyncAction
+        .run(() => super.getScheduleByTutorIdAsync(id: id));
   }
 
   final _$getBookingsListAsyncAsyncAction =

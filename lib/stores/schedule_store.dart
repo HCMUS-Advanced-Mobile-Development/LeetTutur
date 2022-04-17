@@ -42,7 +42,7 @@ abstract class _ScheduleStore with Store {
       {};
 
   @action
-  Future getScheduleAsync({String id = ""}) async => scheduleResponseFuture =
+  Future getScheduleByTutorIdAsync({String id = ""}) async => scheduleResponseFuture =
       ObservableFuture(_scheduleService.getScheduleByTutorIdAsync(id: id));
 
   @action
