@@ -1,3 +1,4 @@
+import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -5,7 +6,6 @@ import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
-import 'package:mobx/mobx.dart';
 
 class TutorCard extends StatefulWidget {
   final Tutor tutor;
@@ -99,11 +99,12 @@ class _TutorCardState extends State<TutorCard> {
               ),
               onTapDown: navigateToDetail,
             ),
-            Text(
-              _tutor.country!,
-              style: Theme.of(context).textTheme.bodyText1,
+            renderStars(),
+            Flag.fromString(
+              _tutor.country ?? "",
+              height: 16,
+              width: 28,
             ),
-            renderStars()
           ],
         ),
         Center(

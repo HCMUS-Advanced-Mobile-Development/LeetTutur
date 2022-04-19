@@ -9,7 +9,6 @@ import 'package:leet_tutur/stores/auth_store.dart';
 import 'package:leet_tutur/ui/auth/widgets/logo_intro.dart';
 import 'package:leet_tutur/widgets/text_input.dart';
 import 'package:leet_tutur/widgets/text_password_input.dart';
-import 'package:logger/logger.dart';
 import 'package:recase/recase.dart';
 import 'package:validators/validators.dart';
 
@@ -22,7 +21,6 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _authStore = GetIt.instance.get<AuthStore>();
-  final _logger = GetIt.instance.get<Logger>();
 
   final _formKey = GlobalKey<FormState>();
 

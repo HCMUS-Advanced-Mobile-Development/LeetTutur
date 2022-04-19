@@ -9,7 +9,6 @@ import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/ui/tutor_page/widgets/tutor_card.dart';
 import 'package:leet_tutur/widgets/empty_page.dart';
 import 'package:leet_tutur/widgets/error_page.dart';
-import 'package:logger/logger.dart';
 import 'package:mobx/mobx.dart';
 
 class TutorList extends StatefulWidget {
@@ -75,7 +74,7 @@ class _TutorListState extends State<TutorList> {
     _pagingController.addPageRequestListener(
       (pageKey) async {
         try {
-          var tutorRes = await _tutorStore.searchTutors(
+          var tutorRes = await _tutorStore.searchTutorsAsync(
             request: TutorRequest(
               filters: TutorFilter(
                 specialties: [_tutorStore.selectedSpecialty],

@@ -1,10 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/requests/tutor_request.dart';
-import 'package:leet_tutur/models/tutor_filter.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
 
 class SpecialtyList extends StatefulWidget {

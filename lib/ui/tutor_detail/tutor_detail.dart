@@ -1,4 +1,5 @@
 import 'package:expandable_text/expandable_text.dart';
+import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -104,11 +105,9 @@ class _TutorDetailState extends State<TutorDetail>
                     .map((e) => Container(
                         margin: const EdgeInsets.all(5),
                         child: Chip(
-                          label: Observer(
-                            builder: (context) {
-                              return Text(_tutorStore.tutorSpecialties[e] ?? "");
-                            }
-                          ),
+                          label: Observer(builder: (context) {
+                            return Text(_tutorStore.tutorSpecialties[e] ?? "");
+                          }),
                           backgroundColor: Theme.of(context).cardColor,
                           shape: StadiumBorder(
                               side: BorderSide(
@@ -176,11 +175,12 @@ class _TutorDetailState extends State<TutorDetail>
               _tutor.name ?? _tutor.user?.name ?? "",
               style: Theme.of(context).textTheme.headline6,
             ),
-            Text(
-              _tutor.country ?? "",
-              style: Theme.of(context).textTheme.bodyText1,
+            renderStars(),
+            Flag.fromString(
+              _tutor.user?.country ?? "",
+              height: 24,
+              width: 36,
             ),
-            renderStars()
           ],
         )
       ],

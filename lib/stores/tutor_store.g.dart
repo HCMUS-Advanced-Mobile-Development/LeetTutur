@@ -100,12 +100,13 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$searchTutorsAsyncAction = AsyncAction('_TutorStore.searchTutors');
+  final _$searchTutorsAsyncAsyncAction =
+      AsyncAction('_TutorStore.searchTutorsAsync');
 
   @override
-  Future<TutorResponse> searchTutors({TutorRequest? request}) {
-    return _$searchTutorsAsyncAction
-        .run(() => super.searchTutors(request: request));
+  Future<TutorResponse> searchTutorsAsync({TutorRequest? request}) {
+    return _$searchTutorsAsyncAsyncAction
+        .run(() => super.searchTutorsAsync(request: request));
   }
 
   final _$getTutorDetailAsyncAction = AsyncAction('_TutorStore.getTutorDetail');
