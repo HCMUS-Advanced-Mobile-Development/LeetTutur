@@ -106,7 +106,7 @@ class _TutorDetailState extends State<TutorDetail>
                         margin: const EdgeInsets.all(5),
                         child: Chip(
                           label: Observer(builder: (context) {
-                            return Text(_tutorStore.tutorSpecialties[e] ?? "");
+                            return Text(_tutorStore.tutorSpecialtyMap[e] ?? "");
                           }),
                           backgroundColor: Theme.of(context).cardColor,
                           shape: StadiumBorder(
@@ -175,11 +175,33 @@ class _TutorDetailState extends State<TutorDetail>
               _tutor.name ?? _tutor.user?.name ?? "",
               style: Theme.of(context).textTheme.headline6,
             ),
+            const SizedBox(
+              height: 5,
+            ),
             renderStars(),
-            Flag.fromString(
-              _tutor.user?.country ?? "",
-              height: 24,
-              width: 36,
+            const SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                Flag.fromString(
+                  _tutor.user?.country ?? "",
+                  height: 24,
+                  width: 36,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Observer(
+                  builder: (context) {
+                    return Text(
+                      _tutorStore.tutorCountryCodeMap[
+                              _tutor.user?.country?.toUpperCase()] ??
+                          "",
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         )

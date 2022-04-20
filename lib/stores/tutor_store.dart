@@ -24,7 +24,10 @@ abstract class _TutorStore with Store {
   ObservableFuture<Tutor>? tutorDetailFuture;
 
   @observable
-  ObservableMap<String, String> tutorSpecialties = ObservableMap();
+  ObservableMap<String, String> tutorSpecialtyMap = ObservableMap();
+
+  @observable
+  ObservableMap<String, String> tutorCountryCodeMap = ObservableMap();
 
   @observable
   String selectedSpecialty = "";
@@ -68,7 +71,12 @@ abstract class _TutorStore with Store {
 
   @action
   Future getTutorSpecialtiesAsync() async =>
-      tutorSpecialties = ObservableMap.of(
+      tutorSpecialtyMap = ObservableMap.of(
         await _tutorService.getTutorSpecialtiesAsync(),
       );
+
+  @action
+  Future<Map<String, String>> getTutorCountryAsync() async =>
+      tutorCountryCodeMap =
+          ObservableMap.of(await _tutorService.getTutorCountryAsync());
 }

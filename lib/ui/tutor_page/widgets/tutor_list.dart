@@ -28,6 +28,8 @@ class _TutorListState extends State<TutorList> {
   @override
   void initState() {
     _tutorStore.getTutorSpecialtiesAsync();
+    _tutorStore.getTutorCountryAsync();
+
     setUpListPaging();
 
     super.initState();

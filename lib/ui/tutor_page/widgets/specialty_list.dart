@@ -34,7 +34,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
                   horizontal: 3,
                 ),
                 child: Observer(builder: (context) {
-                  var map = _tutorStore.tutorSpecialties;
+                  var map = _tutorStore.tutorSpecialtyMap;
 
                   var key = map.keys.elementAt(index);
                   var name = map.values.elementAt(index);
@@ -50,7 +50,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
                 }),
               );
             },
-            itemCount: _tutorStore.tutorSpecialties.length,
+            itemCount: _tutorStore.tutorSpecialtyMap.length,
           );
         },
       ),

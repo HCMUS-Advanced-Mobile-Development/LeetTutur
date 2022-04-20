@@ -100,10 +100,23 @@ class _TutorCardState extends State<TutorCard> {
               onTapDown: navigateToDetail,
             ),
             renderStars(),
-            Flag.fromString(
-              _tutor.country ?? "",
-              height: 16,
-              width: 28,
+            Row(
+              children: [
+                Flag.fromString(
+                  _tutor.country ?? "",
+                  height: 16,
+                  width: 28,
+                ),
+                Observer(
+                  builder: (context) {
+                    return Text(
+                      _tutorStore.tutorCountryCodeMap[
+                              _tutor.country?.toUpperCase()] ??
+                          "",
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),
@@ -144,7 +157,7 @@ class _TutorCardState extends State<TutorCard> {
                           child: Chip(
                             label: Observer(builder: (context) {
                               return Text(
-                                  _tutorStore.tutorSpecialties[e] ?? "");
+                                  _tutorStore.tutorSpecialtyMap[e] ?? "");
                             }),
                             backgroundColor: Theme.of(context).cardColor,
                             shape: StadiumBorder(

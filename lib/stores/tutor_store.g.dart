@@ -70,18 +70,34 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$tutorSpecialtiesAtom = Atom(name: '_TutorStore.tutorSpecialties');
+  final _$tutorSpecialtyMapAtom = Atom(name: '_TutorStore.tutorSpecialtyMap');
 
   @override
-  ObservableMap<String, String> get tutorSpecialties {
-    _$tutorSpecialtiesAtom.reportRead();
-    return super.tutorSpecialties;
+  ObservableMap<String, String> get tutorSpecialtyMap {
+    _$tutorSpecialtyMapAtom.reportRead();
+    return super.tutorSpecialtyMap;
   }
 
   @override
-  set tutorSpecialties(ObservableMap<String, String> value) {
-    _$tutorSpecialtiesAtom.reportWrite(value, super.tutorSpecialties, () {
-      super.tutorSpecialties = value;
+  set tutorSpecialtyMap(ObservableMap<String, String> value) {
+    _$tutorSpecialtyMapAtom.reportWrite(value, super.tutorSpecialtyMap, () {
+      super.tutorSpecialtyMap = value;
+    });
+  }
+
+  final _$tutorCountryCodeMapAtom =
+      Atom(name: '_TutorStore.tutorCountryCodeMap');
+
+  @override
+  ObservableMap<String, String> get tutorCountryCodeMap {
+    _$tutorCountryCodeMapAtom.reportRead();
+    return super.tutorCountryCodeMap;
+  }
+
+  @override
+  set tutorCountryCodeMap(ObservableMap<String, String> value) {
+    _$tutorCountryCodeMapAtom.reportWrite(value, super.tutorCountryCodeMap, () {
+      super.tutorCountryCodeMap = value;
     });
   }
 
@@ -125,6 +141,15 @@ mixin _$TutorStore on _TutorStore, Store {
         .run(() => super.getTutorSpecialtiesAsync());
   }
 
+  final _$getTutorCountryAsyncAsyncAction =
+      AsyncAction('_TutorStore.getTutorCountryAsync');
+
+  @override
+  Future<Map<String, String>> getTutorCountryAsync() {
+    return _$getTutorCountryAsyncAsyncAction
+        .run(() => super.getTutorCountryAsync());
+  }
+
   final _$_TutorStoreActionController = ActionController(name: '_TutorStore');
 
   @override
@@ -144,7 +169,8 @@ mixin _$TutorStore on _TutorStore, Store {
 tutorResponseFuture: ${tutorResponseFuture},
 selectedTutorId: ${selectedTutorId},
 tutorDetailFuture: ${tutorDetailFuture},
-tutorSpecialties: ${tutorSpecialties},
+tutorSpecialtyMap: ${tutorSpecialtyMap},
+tutorCountryCodeMap: ${tutorCountryCodeMap},
 selectedSpecialty: ${selectedSpecialty},
 rowOfTutor: ${rowOfTutor},
 favoriteTutorList: ${favoriteTutorList}

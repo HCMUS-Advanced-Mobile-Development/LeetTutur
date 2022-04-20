@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -8,6 +9,7 @@ import 'package:leet_tutur/models/responses/tutor_response.dart';
 import 'package:leet_tutur/models/row_of_tutor.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class TutorService {
   final _logger = GetIt.instance.get<Logger>();
@@ -81,6 +83,21 @@ class TutorService {
     );
 
     return map;
+  }
+
+  Future<Map<String, String>> getTutorCountryAsync() async {
+    var jsonString =
+        await rootBundle.loadString("assets/data/countries.json");
+
+    var countryMap = (jsonDecode(jsonString) as List)
+        .fold(
+            <String, String>{},
+            (Map<String, String> previousValue, element) => previousValue
+              ..putIfAbsent(element["code"], () => element["name"]));
+
+    _logger.i("Get tutor country map. Found: ${countryMap.length} entries");
+
+    return countryMap;
   }
 
   Future<Tutor> getTutorDetail({String id = "0"}) async {
