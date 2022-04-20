@@ -8,6 +8,7 @@ import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/feedback_list.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/schedule_list.dart';
+import 'package:leet_tutur/ui/tutor_detail/widgets/tutor_video.dart';
 import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
 
@@ -78,6 +79,8 @@ class _TutorDetailState extends State<TutorDetail>
                       ),
                       const SizedBox(height: 10),
                       renderActions(),
+                      const SizedBox(height: 20),
+                      TutorVideo(tutor: _tutor),
                       const SizedBox(height: 20),
                       renderSpecialties(),
                       const SizedBox(height: 20),

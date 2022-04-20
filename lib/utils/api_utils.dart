@@ -15,7 +15,7 @@ class ApiUtils {
       ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
       ..interceptors.add(PrettyDioLogger(
         requestBody: true,
-        responseBody: true,
+        responseBody: false,
         error: true,
         maxWidth: 120,
         compact: true,

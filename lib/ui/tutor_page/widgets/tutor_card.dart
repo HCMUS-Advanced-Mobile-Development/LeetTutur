@@ -151,7 +151,7 @@ class _TutorCardState extends State<TutorCard> {
         children: _tutor.specialties
                 ?.split(",")
                 .map((e) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      padding: const EdgeInsets.symmetric(vertical: 2),
                       child: Container(
                           margin: const EdgeInsets.only(left: 5, right: 5),
                           child: Chip(
