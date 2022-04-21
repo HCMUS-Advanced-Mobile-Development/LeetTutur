@@ -30,7 +30,7 @@ class _TutorListState extends State<TutorList> {
     _tutorStore.getTutorSpecialtiesAsync();
     _tutorStore.getTutorCountryAsync();
 
-    setUpListPaging();
+    _setUpListPaging();
 
     super.initState();
   }
@@ -72,7 +72,7 @@ class _TutorListState extends State<TutorList> {
     );
   }
 
-  void setUpListPaging() {
+  void _setUpListPaging() {
     _pagingController.addPageRequestListener(
       (pageKey) async {
         try {

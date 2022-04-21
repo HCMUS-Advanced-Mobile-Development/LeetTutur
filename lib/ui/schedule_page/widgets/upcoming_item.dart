@@ -57,9 +57,12 @@ class _UpcomingItemState extends State<UpcomingItem> {
                     children: bookingInfos.map((e) {
                       var startPeriod = e.scheduleDetailInfo?.startPeriod ?? "";
                       var endPeriod = e.scheduleDetailInfo?.endPeriod ?? "";
-                      return ElevatedButton(
-                          onPressed: _handleJoinClass,
-                          child: Text("$startPeriod - $endPeriod"));
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        child: ElevatedButton(
+                            onPressed: _handleJoinClass,
+                            child: Text("$startPeriod - $endPeriod")),
+                      );
                     }).toList(),
                   ),
                 )

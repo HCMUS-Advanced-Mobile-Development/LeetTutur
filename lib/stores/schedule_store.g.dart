@@ -100,10 +100,10 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
       AsyncAction('_ScheduleStore.getBookingsListAsync');
 
   @override
-  Future<dynamic> getBookingsListAsync(String tutorId,
+  Future<BookingListResponse> getBookingsListAsync(
       {BookingListRequest? request}) {
     return _$getBookingsListAsyncAsyncAction
-        .run(() => super.getBookingsListAsync(tutorId, request: request));
+        .run(() => super.getBookingsListAsync(request: request));
   }
 
   final _$getTotalLearnedHoursAsyncAsyncAction =

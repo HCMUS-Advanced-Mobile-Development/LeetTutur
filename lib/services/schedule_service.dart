@@ -42,14 +42,17 @@ class ScheduleService {
     return scheduleResponse;
   }
 
-  Future<BookingListResponse> getBookingsListAsync(String tutorId,
-      {BookingListRequest? request}) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+  Future<BookingListResponse> getBookingsListAsync({BookingListRequest? request}) async {
+    var dioRes = await _dio.get("/booking/list/student", queryParameters: {
+      "page": request?.page ?? 1,
+      "perPage": request?.perPage ?? 12,
+      "dateTimeGte": request?.dateTimeGte ??
+          DateTime.now().millisecondsSinceEpoch,
+      "orderBy": request?.orderBy ?? "meeting",
+      "sortBy": request?.sortBy ?? "asc",
+    });
 
-    var bookingListResponseJson =
-        await rootBundle.loadString("assets/data/booking_class.json");
-    var bookingListResponse = BookingListResponse.fromJson(
-        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+    var bookingListResponse = BookingListResponse.fromJson(dioRes.data);
 
     _logger.i(
         "Get booking list. Found: ${bookingListResponse.data?.rows?.length} items");
@@ -59,7 +62,7 @@ class ScheduleService {
 
   Future<Duration> getTotalLearnedHoursAsync() async {
     var dioRes = await _dio.get("/call/total");
-    var totalMinute = dioRes.data["total"] as int ?? 0;
+    var totalMinute = dioRes.data["total"] as int;
 
     _logger.i("Get total hours: ${totalMinute / 60}");
 
