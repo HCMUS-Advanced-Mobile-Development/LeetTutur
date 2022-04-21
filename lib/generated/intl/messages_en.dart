@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lessons": MessageLookupByLibrary.simpleMessage("Lessons"),
         "level": MessageLookupByLibrary.simpleMessage("Level"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),
         "nothingHere": MessageLookupByLibrary.simpleMessage("Nothing Here"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),

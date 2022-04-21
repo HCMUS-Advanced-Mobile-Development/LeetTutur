@@ -58,18 +58,12 @@ class ScheduleService {
   }
 
   Future<Duration> getTotalLearnedHoursAsync() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    var dioRes = await _dio.get("/call/total");
+    var totalMinute = dioRes.data["total"] as int ?? 0;
 
-    var bookingListResponseJson =
-        await rootBundle.loadString("assets/data/learn_hours.json");
-    var bookingListResponse = BookingListResponse.fromJson(
-        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+    _logger.i("Get total hours: ${totalMinute / 60}");
 
-    var totalPeriod = bookingListResponse.data?.count ?? 0;
-
-    _logger.i("Get total period: $totalPeriod");
-
-    return Duration(minutes: totalPeriod * 30);
+    return Duration(minutes: totalMinute);
   }
 
   Future<BookingListResponse> getLearnHistoryAsync(

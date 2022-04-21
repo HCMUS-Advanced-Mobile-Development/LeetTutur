@@ -69,5 +69,6 @@
 	"resetPasswordCheckYourMail": "Reset Password. Please check your email",
 	"nothingHere": "Nothing Here",
 	"error": "Ups!! Some error occurred!!",
-	"isBooked": "Is Booked"
+	"isBooked": "Is Booked",
+	"minutes": "Minutes"
 }

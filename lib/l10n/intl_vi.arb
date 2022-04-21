@@ -69,5 +69,6 @@
 	"resetPasswordCheckYourMail": "Đặt lại mật khẩu. Vui lòng kiểm tra mail của bạn",
 	"nothingHere": "Không có gì ở đây",
 	"error": "Ối!! Có lỗi!!",
-	"isBooked": "Đã đặt"
+	"isBooked": "Đã đặt",
+	"minutes": "Phút"
 }

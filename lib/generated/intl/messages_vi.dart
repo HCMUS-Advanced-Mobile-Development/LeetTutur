@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lessons": MessageLookupByLibrary.simpleMessage("Buổi học"),
         "level": MessageLookupByLibrary.simpleMessage("Cấp độ"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+        "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
         "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
         "nothingHere":
             MessageLookupByLibrary.simpleMessage("Không có gì ở đây"),
