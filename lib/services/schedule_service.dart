@@ -70,13 +70,16 @@ class ScheduleService {
   }
 
   Future<BookingListResponse> getLearnHistoryAsync(
-      {BookingListRequest? bookingListRequest}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+      {BookingListRequest? request}) async {
+    var dioRes = await _dio.get("/booking/list/student", queryParameters: {
+      "page": request?.page ?? 1,
+      "perPage": request?.perPage ?? 12,
+      "dateTimeLte": request?.dateTimeLte ?? DateTime.now().millisecondsSinceEpoch,
+      "orderBy": request?.orderBy ?? "meeting",
+      "sortBy": request?.sortBy ?? "desc",
+    });
 
-    var bookingListResponseJson =
-        await rootBundle.loadString("assets/data/learn_history.json");
-    var bookingListResponse = BookingListResponse.fromJson(
-        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+    var bookingListResponse = BookingListResponse.fromJson(dioRes.data);
 
     _logger.i(
         "Get history list. Found: ${bookingListResponse.data?.rows?.length} items");

@@ -119,10 +119,10 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
       AsyncAction('_ScheduleStore.getLearnHistoryAsync');
 
   @override
-  Future<dynamic> getLearnHistoryAsync(
-      {BookingListRequest? bookingListRequest}) {
-    return _$getLearnHistoryAsyncAsyncAction.run(() =>
-        super.getLearnHistoryAsync(bookingListRequest: bookingListRequest));
+  Future<BookingListResponse> getLearnHistoryAsync(
+      {BookingListRequest? request}) {
+    return _$getLearnHistoryAsyncAsyncAction
+        .run(() => super.getLearnHistoryAsync(request: request));
   }
 
   @override

@@ -55,7 +55,7 @@ abstract class _ScheduleStore with Store {
       ObservableFuture(_scheduleService.getTotalLearnedHoursAsync());
 
   @action
-  Future getLearnHistoryAsync({BookingListRequest? bookingListRequest}) async =>
+  Future<BookingListResponse> getLearnHistoryAsync({BookingListRequest? request}) async =>
       learnHistoryFuture = ObservableFuture(_scheduleService
-          .getLearnHistoryAsync(bookingListRequest: bookingListRequest));
+          .getLearnHistoryAsync(request: request));
 }

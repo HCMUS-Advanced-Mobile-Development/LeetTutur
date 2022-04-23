@@ -22,12 +22,18 @@ class _UpcomingClassesState extends State<UpcomingClasses> {
   final _pagingController = PagingController<int, List<BookingInfo>>(
     firstPageKey: 1,
   );
+  var _previouslyFetchedItemsCount = 0;
 
   @override
   void initState() {
-    _setUpListPaging();
-
+    _pagingController.addPageRequestListener(_pageRequestListener);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,37 +75,34 @@ class _UpcomingClassesState extends State<UpcomingClasses> {
     );
   }
 
-  void _setUpListPaging() {
-    var _previouslyFetchedItemsCount = 0;
+  void _pageRequestListener(int pageKey) async {
+    try {
+      var bookingListResponse = await _scheduleStore.getBookingsListAsync(
+        request: BookingListRequest(
+          dateTimeGte: DateTime
+              .now()
+              .millisecondsSinceEpoch,
+        )
+          ..page = pageKey,
+      );
 
-    _pagingController.addPageRequestListener(
-      (pageKey) async {
-        try {
-          var bookingListResponse = await _scheduleStore.getBookingsListAsync(
-            request: BookingListRequest(
-              dateTimeGte: DateTime.now().millisecondsSinceEpoch,
-            )..page = pageKey,
-          );
+      final fetchedItemsCount = bookingListResponse.data?.rows?.length ?? 0;
+      final totalCount = bookingListResponse.data?.count ?? 0;
 
-          final fetchedItemsCount = bookingListResponse.data?.rows?.length ?? 0;
-          final totalCount = bookingListResponse.data?.count ?? 0;
+      final isLastPage =
+          _previouslyFetchedItemsCount + fetchedItemsCount == totalCount;
 
-          final isLastPage =
-              _previouslyFetchedItemsCount + fetchedItemsCount == totalCount;
+      var items =
+      _scheduleStore.bookInfosGroupByTutorAndDate.values.toList();
+      if (isLastPage) {
+        _pagingController.appendLastPage(items);
+      } else {
+        _pagingController.appendPage(items, pageKey + 1);
+      }
 
-          var items =
-              _scheduleStore.bookInfosGroupByTutorAndDate.values.toList();
-          if (isLastPage) {
-            _pagingController.appendLastPage(items);
-          } else {
-            _pagingController.appendPage(items, pageKey + 1);
-          }
-
-          _previouslyFetchedItemsCount += fetchedItemsCount;
-        } catch (e) {
-          _pagingController.error = e;
-        }
-      },
-    );
+      _previouslyFetchedItemsCount += fetchedItemsCount;
+    } catch (e) {
+      _pagingController.error = e;
+    }
   }
 }

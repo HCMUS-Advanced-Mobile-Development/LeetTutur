@@ -30,7 +30,7 @@ class _TutorListState extends State<TutorList> {
     _tutorStore.getTutorSpecialtiesAsync();
     _tutorStore.getTutorCountryAsync();
 
-    _setUpListPaging();
+    _pagingController.addPageRequestListener(_pageRequestListener);
 
     super.initState();
   }
@@ -72,35 +72,32 @@ class _TutorListState extends State<TutorList> {
     );
   }
 
-  void _setUpListPaging() {
-    _pagingController.addPageRequestListener(
-      (pageKey) async {
-        try {
-          var tutorRes = await _tutorStore.searchTutorsAsync(
-            request: TutorRequest(
-              filters: TutorFilter(
-                specialties: [_tutorStore.selectedSpecialty],
-              ),
-            )..page = pageKey,
-          );
+  void _pageRequestListener(int pageKey) async {
+    try {
+      var tutorRes = await _tutorStore.searchTutorsAsync(
+        request: TutorRequest(
+          filters: TutorFilter(
+            specialties: [_tutorStore.selectedSpecialty],
+          ),
+        )
+          ..page = pageKey,
+      );
 
-          final previouslyFetchedItemsCount =
-              _pagingController.itemList?.length ?? 0;
-          final fetchedTutorsCount = tutorRes.tutors?.rows?.length ?? 0;
-          final totalTutor = tutorRes.tutors?.count ?? 0;
+      final previouslyFetchedItemsCount =
+          _pagingController.itemList?.length ?? 0;
+      final fetchedTutorsCount = tutorRes.tutors?.rows?.length ?? 0;
+      final totalTutor = tutorRes.tutors?.count ?? 0;
 
-          final isLastPage =
-              previouslyFetchedItemsCount + fetchedTutorsCount == totalTutor;
-          if (isLastPage) {
-            _pagingController.appendLastPage(tutorRes.tutors?.rows ?? []);
-          } else {
-            _pagingController.appendPage(
-                tutorRes.tutors?.rows ?? [], pageKey + 1);
-          }
-        } catch (e) {
-          _pagingController.error = e;
-        }
-      },
-    );
+      final isLastPage =
+          previouslyFetchedItemsCount + fetchedTutorsCount == totalTutor;
+      if (isLastPage) {
+        _pagingController.appendLastPage(tutorRes.tutors?.rows ?? []);
+      } else {
+        _pagingController.appendPage(
+            tutorRes.tutors?.rows ?? [], pageKey + 1);
+      }
+    } catch (e) {
+      _pagingController.error = e;
+    }
   }
 }
