@@ -45,7 +45,7 @@ mixin _$CourseStore on _CourseStore, Store {
       AsyncAction('_CourseStore.getCoursesAsync');
 
   @override
-  Future<dynamic> getCoursesAsync({BaseRequest? request}) {
+  Future<CourseResponse> getCoursesAsync({BaseRequest? request}) {
     return _$getCoursesAsyncAsyncAction
         .run(() => super.getCoursesAsync(request: request));
   }

@@ -6,6 +6,7 @@ import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/courses_page/widgets/course_card.dart';
 import 'package:leet_tutur/utils/iterable_extensions.dart';
+import 'package:leet_tutur/widgets/error_page.dart';
 import 'package:mobx/mobx.dart';
 
 class CourseList extends StatefulWidget {
@@ -29,20 +30,37 @@ class _CourseListState extends State<CourseList> {
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
       var courses = _courseStore.courseResponseFuture?.value?.data?.rows ?? [];
+      courses.sort((a, b) => (a.level ?? "").compareTo(b.level ?? ""));
       var coursesGroupByCategory =
           courses.groupBy((c) => c.categories?[0].key ?? "");
 
-      return _courseStore.courseResponseFuture?.status == FutureStatus.fulfilled
-          ? ListView.separated(
+      switch(_courseStore.courseResponseFuture?.status) {
+        case FutureStatus.pending:
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        case FutureStatus.rejected:
+          return const Center(
+            child: ErrorPage(),
+          );
+        case FutureStatus.fulfilled:
+          return RefreshIndicator(
+            onRefresh: () async {
+              await _courseStore.getCoursesAsync();
+            },
+            child: ListView.separated(
               itemCount: coursesGroupByCategory.length,
               itemBuilder: (context, index) {
                 var coursesByLevel =
-                    coursesGroupByCategory.values.elementAt(index);
+                coursesGroupByCategory.values.elementAt(index);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(coursesByLevel.first.categories?[0].title ?? "",
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline6),
                     SizedBox(
                       height: 325,
                       child: ListView.builder(
@@ -67,10 +85,13 @@ class _CourseListState extends State<CourseList> {
               separatorBuilder: (context, index) {
                 return const Divider();
               },
-            )
-          : const Center(
-              child: CircularProgressIndicator(),
-            );
+            ),
+          );
+        default:
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+      }
     });
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
@@ -9,7 +8,6 @@ import 'package:leet_tutur/stores/schedule_store.dart';
 import 'package:leet_tutur/ui/learn_history/widgets/learn_history_item.dart';
 import 'package:leet_tutur/widgets/empty_page.dart';
 import 'package:leet_tutur/widgets/error_page.dart';
-import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
 
 class LearnHistory extends StatefulWidget {

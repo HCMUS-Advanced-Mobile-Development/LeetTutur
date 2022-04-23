@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
 import 'package:leet_tutur/models/responses/booking_list_response.dart';

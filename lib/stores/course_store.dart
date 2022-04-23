@@ -19,6 +19,6 @@ abstract class _CourseStore with Store {
   ObservableFuture<CourseResponse>? courseResponseFuture;
 
   @action
-  Future getCoursesAsync({BaseRequest? request}) async => courseResponseFuture =
+  Future<CourseResponse> getCoursesAsync({BaseRequest? request}) async => courseResponseFuture =
       ObservableFuture(_courseService.getCourseAsync(request: request));
 }
