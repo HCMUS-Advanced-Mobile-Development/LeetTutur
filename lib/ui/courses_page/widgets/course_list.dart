@@ -43,16 +43,23 @@ class _CourseListState extends State<CourseList> {
                   children: [
                     Text(coursesByLevel.first.categories?[0].title ?? "",
                         style: Theme.of(context).textTheme.headline6),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      primary: false,
-                      itemCount: coursesByLevel.length,
-                      itemBuilder: (context, index) {
-                        return CourseCard(
-                          course: coursesByLevel[index],
-                          onTap: _handleTap,
-                        );
-                      },
+                    SizedBox(
+                      height: 325,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        primary: false,
+                        itemCount: coursesByLevel.length,
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            width: 300,
+                            child: CourseCard(
+                              course: coursesByLevel[index],
+                              onTap: _handleTap,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 );
