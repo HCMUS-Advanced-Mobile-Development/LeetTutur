@@ -6,8 +6,15 @@ class SearchBar extends StatefulWidget {
   final void Function()? onFilterTapped;
   final Function(String)? onQueryChanged;
   final Function(String)? onSubmitted;
+  final Function(String)? onOrderChanged;
 
-  const SearchBar({Key? key, this.onFilterTapped, this.onQueryChanged, this.onSubmitted}) : super(key: key);
+  const SearchBar(
+      {Key? key,
+      this.onFilterTapped,
+      this.onQueryChanged,
+      this.onSubmitted,
+      this.onOrderChanged})
+      : super(key: key);
 
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -15,6 +22,8 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   late final FloatingSearchBarController controller;
+
+  var _order = "ASC";
 
   @override
   void initState() {
@@ -30,7 +39,8 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
 
     return FloatingSearchBar(
       hint: S.current.search,
@@ -42,6 +52,7 @@ class _SearchBarState extends State<SearchBar> {
       openAxisAlignment: 0.0,
       debounceDelay: const Duration(milliseconds: 500),
       controller: controller,
+      clearQueryOnClose: false,
       onQueryChanged: widget.onQueryChanged,
       onSubmitted: (query) {
         if (widget.onSubmitted != null) {
@@ -66,6 +77,25 @@ class _SearchBarState extends State<SearchBar> {
             },
           ),
         ),
+        widget.onOrderChanged != null
+            ? FloatingSearchBarAction.icon(
+                icon: _order == "ASC"
+                    ? const Icon(Icons.arrow_upward)
+                    : const Icon(Icons.arrow_downward),
+                onTap: () {
+                  if (_order == "ASC") {
+                    setState(() {
+                      _order = "DESC";
+                    });
+                  } else {
+                    setState(() {
+                      _order = "ASC";
+                    });
+                  }
+
+                  widget.onOrderChanged?.call(_order);
+                })
+            : const SizedBox.shrink(),
         FloatingSearchBarAction.searchToClear(
           showIfClosed: false,
         ),

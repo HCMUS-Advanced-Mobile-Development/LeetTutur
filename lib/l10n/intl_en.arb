@@ -70,5 +70,7 @@
 	"nothingHere": "Nothing Here",
 	"error": "Ups!! Some error occurred!!",
 	"isBooked": "Is Booked",
-	"minutes": "Minutes"
+	"minutes": "Minutes",
+	"ok": "OK",
+	"category": "Category"
 }

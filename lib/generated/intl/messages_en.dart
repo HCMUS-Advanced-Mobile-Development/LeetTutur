@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "beginners": MessageLookupByLibrary.simpleMessage("Beginners"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
             MessageLookupByLibrary.simpleMessage("Class Requirement"),
@@ -66,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),
         "nothingHere": MessageLookupByLibrary.simpleMessage("Nothing Here"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
         "overall": MessageLookupByLibrary.simpleMessage("Overall"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),

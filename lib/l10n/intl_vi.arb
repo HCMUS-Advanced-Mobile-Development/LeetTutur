@@ -70,5 +70,7 @@
 	"nothingHere": "Không có gì ở đây",
 	"error": "Ối!! Có lỗi!!",
 	"isBooked": "Đã đặt",
-	"minutes": "Phút"
+	"minutes": "Phút",
+	"ok": "OK",
+	"category": "Danh mục"
 }

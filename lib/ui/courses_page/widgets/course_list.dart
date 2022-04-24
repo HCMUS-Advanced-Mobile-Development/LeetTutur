@@ -5,7 +5,6 @@ import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/courses_page/widgets/course_card.dart';
-import 'package:leet_tutur/utils/iterable_extensions.dart';
 import 'package:leet_tutur/widgets/error_page.dart';
 import 'package:mobx/mobx.dart';
 
@@ -29,10 +28,7 @@ class _CourseListState extends State<CourseList> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      var courses = _courseStore.courseResponseFuture?.value?.data?.rows ?? [];
-      courses.sort((a, b) => (a.level ?? "").compareTo(b.level ?? ""));
-      var coursesGroupByCategory =
-          courses.groupBy((c) => c.categories?[0].key ?? "");
+      var coursesGroupByCategory = _courseStore.coursesByLevel;
 
       switch(_courseStore.courseResponseFuture?.status) {
         case FutureStatus.pending:

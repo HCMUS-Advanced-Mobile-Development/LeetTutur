@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "beginners": MessageLookupByLibrary.simpleMessage("Hạ tân thủ"),
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy bỏ"),
+        "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
             MessageLookupByLibrary.simpleMessage("Yêu cầu lớp học"),
@@ -67,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
         "nothingHere":
             MessageLookupByLibrary.simpleMessage("Không có gì ở đây"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
         "overall": MessageLookupByLibrary.simpleMessage("Tổng quan"),
         "phone": MessageLookupByLibrary.simpleMessage("Điện thoại"),
