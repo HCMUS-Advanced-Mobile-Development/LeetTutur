@@ -38,6 +38,28 @@ mixin _$UserStore on _UserStore, Store {
   }
 
   @override
+  Future<User> updateUserAsync(User user) {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.updateUserAsync');
+    try {
+      return super.updateUserAsync(user);
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<User> updateAvatarAsync(String localPath) {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.updateAvatarAsync');
+    try {
+      return super.updateAvatarAsync(localPath);
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 userFuture: ${userFuture}

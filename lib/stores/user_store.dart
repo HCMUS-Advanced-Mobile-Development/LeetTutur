@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/user.dart';
-import 'package:leet_tutur/services/tutor_service.dart';
 import 'package:leet_tutur/services/user_service.dart';
 import 'package:mobx/mobx.dart';
 
@@ -19,7 +18,12 @@ abstract class _UserStore with Store {
       userFuture = ObservableFuture(_userService.getUserInfoAsync());
 
   @action
-  Future<User> updateUserAsync(User user) => userFuture = ObservableFuture(_userService.updateUserAsync(user));
+  Future<User> updateUserAsync(User user) =>
+      userFuture = ObservableFuture(_userService.updateUserAsync(user));
+
+  @action
+  Future<User> updateAvatarAsync(String localPath) =>
+      userFuture = ObservableFuture(_userService.updateAvatarAsync(localPath));
 
   Map<String, String> levelMap = <String, String>{
     "BEGINNER": "BEGINNER",

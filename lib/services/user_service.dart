@@ -35,4 +35,21 @@ class UserService {
 
     return newUser;
   }
+
+  Future<User> updateAvatarAsync(String localPath) async {
+    var dioRes = await _dio.post(
+      "/user/uploadAvatar",
+      data: FormData.fromMap(
+        {
+          "avatar": await MultipartFile.fromFile(localPath),
+        },
+      ),
+    );
+
+    var user = User.fromJson(dioRes.data);
+
+    _logger.i("Upload avatar: ${user.avatar}");
+
+    return user;
+  }
 }
