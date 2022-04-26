@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/stores/auth_store.dart';
+import 'package:leet_tutur/stores/user_store.dart';
 import 'package:leet_tutur/ui/profile/widgets/profile_avatar.dart';
 import 'package:leet_tutur/ui/profile/widgets/profile_info.dart';
 import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
-
-import '../../generated/l10n.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -18,7 +18,14 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final _userStore = GetIt.instance.get<UserStore>();
   final _authStore = GetIt.instance.get<AuthStore>();
+
+  @override
+  void initState() {
+    _userStore.getUserInfoAsync();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +42,13 @@ class _ProfileState extends State<Profile> {
             bottom: 50,
           ),
           child: Observer(builder: (context) {
-            return _authStore.authResponse?.status == FutureStatus.fulfilled
+            return _userStore.userFuture?.status == FutureStatus.fulfilled
                 ? SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
                         ProfileAvatar(
-                          user: _authStore.authResponse?.value?.user ?? User(),
+                          user: _userStore.userFuture?.value ?? User(),
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(
@@ -53,7 +60,7 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         ProfileInfo(
-                          user: _authStore.authResponse?.value?.user ?? User(),
+                          user: _userStore.userFuture?.value ?? User(),
                         )
                       ],
                     ),

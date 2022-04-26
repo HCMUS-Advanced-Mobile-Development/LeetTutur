@@ -11,7 +11,7 @@ UserFeedback _$UserFeedbackFromJson(Map<String, dynamic> json) => UserFeedback(
       bookingId: json['bookingId'] as String?,
       firstId: json['firstId'] as String?,
       secondId: json['secondId'] as String?,
-      rating: json['rating'] as int?,
+      rating: (json['rating'] as num?)?.toDouble(),
       content: json['content'] as String?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,

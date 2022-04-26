@@ -52,6 +52,7 @@ class _SystemSettingsState extends State<SystemSettings> {
                 Observer(
                   builder: (context) {
                     return DropdownButton(
+                      hint: Text(S.current.level),
                       value: _systemStore.systemSettingFuture?.value?.language,
                       items: ["en", "vi"].map((e) {
                         var languages = I18Constants.getDisplayLanguage(e);

@@ -15,8 +15,8 @@ class DateTimeUtils {
         .format(date);
   }
 
-  static String formatDate(DateTime date) {
-    return DateFormat(DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
+  static String formatDate(DateTime date, {String? format = DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY}) {
+    return DateFormat(format)
         .format(date);
   }
 

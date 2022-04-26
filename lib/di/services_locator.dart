@@ -4,6 +4,7 @@ import 'package:leet_tutur/services/course_service.dart';
 import 'package:leet_tutur/services/schedule_service.dart';
 import 'package:leet_tutur/services/system_service.dart';
 import 'package:leet_tutur/services/tutor_service.dart';
+import 'package:leet_tutur/services/user_service.dart';
 
 
 class ServiceLocator {
@@ -14,6 +15,7 @@ class ServiceLocator {
       getIt.registerSingleton(TutorService());
       getIt.registerSingleton(ScheduleService());
       getIt.registerSingleton(CourseService());
+      getIt.registerSingleton(UserService());
       getIt.registerSingleton(SystemService());
     }
 }

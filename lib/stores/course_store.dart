@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/category.dart';
 import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/models/requests/base_request.dart';
 import 'package:leet_tutur/models/responses/course_category_response.dart';

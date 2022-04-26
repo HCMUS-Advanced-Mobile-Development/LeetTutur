@@ -7,6 +7,7 @@ class TextInput extends StatefulWidget {
   final String? Function(String?)? validator;
   final String? labelText;
   final bool? enabled;
+  final TextEditingController? controller;
 
   const TextInput(
       {Key? key,
@@ -14,7 +15,7 @@ class TextInput extends StatefulWidget {
       this.initialValue,
       this.onChanged,
       this.validator,
-      this.labelText, this.enabled})
+      this.labelText, this.enabled, this.controller})
       : super(key: key);
 
   @override
@@ -25,6 +26,7 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       onChanged: widget.onChanged,
       validator: widget.validator,
       initialValue: widget.initialValue,
