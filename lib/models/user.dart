@@ -28,7 +28,7 @@ class User {
   String? requireNote;
   String? level;
   List<LearnTopic>? learnTopics;
-  List<dynamic>? testPreparations;
+  List<LearnTopic>? testPreparations;
   bool? isPhoneActivated;
   int? timezone;
   ReferralInfo? referralInfo;
@@ -58,6 +58,14 @@ class User {
     this.referralInfo,
     this.avgRating,
     this.priceOfEachSession});
+
+  String getWantToLearn() {
+    var topics = learnTopics?.map((e) => e.name).join(", ") ?? "";
+    topics = topics.isEmpty ? "" : topics + ", ";
+    var preparations = testPreparations?.map((e) => e.name).join(", ");
+
+    return "$topics$preparations";
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

@@ -35,7 +35,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       learnTopics: (json['learnTopics'] as List<dynamic>?)
           ?.map((e) => LearnTopic.fromJson(e as Map<String, dynamic>))
           .toList(),
-      testPreparations: json['testPreparations'] as List<dynamic>?,
+      testPreparations: (json['testPreparations'] as List<dynamic>?)
+          ?.map((e) => LearnTopic.fromJson(e as Map<String, dynamic>))
+          .toList(),
       isPhoneActivated: json['isPhoneActivated'] as bool?,
       timezone: json['timezone'] as int?,
       referralInfo: json['referralInfo'] == null
@@ -66,7 +68,8 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'requireNote': instance.requireNote,
       'level': instance.level,
       'learnTopics': instance.learnTopics?.map((e) => e.toJson()).toList(),
-      'testPreparations': instance.testPreparations,
+      'testPreparations':
+          instance.testPreparations?.map((e) => e.toJson()).toList(),
       'isPhoneActivated': instance.isPhoneActivated,
       'timezone': instance.timezone,
       'referralInfo': instance.referralInfo?.toJson(),

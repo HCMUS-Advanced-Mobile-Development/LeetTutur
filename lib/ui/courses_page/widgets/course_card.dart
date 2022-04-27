@@ -7,7 +7,8 @@ class CourseCard extends StatelessWidget {
 
   final void Function(Course? course)? onTap;
 
-  const CourseCard({Key? key, this.onTap, required this.course}) : super(key: key);
+  const CourseCard({Key? key, this.onTap, required this.course})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +24,13 @@ class CourseCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.network(
-                course.imageUrl ?? "",
-                width: MediaQuery.of(context).size.width,
-                height: 200,
-                fit: BoxFit.cover,
+              AspectRatio(
+                aspectRatio: 16/9,
+                child: Image.network(
+                  course.imageUrl ?? "",
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -49,8 +52,7 @@ class CourseCard extends StatelessWidget {
                     ),
                     child: Text("·", style: TextStyle(fontSize: 30)),
                   ),
-                  Text(
-                      "${course.topics?.length ?? 0} ${S.current.lessons}")
+                  Text("${course.topics?.length ?? 0} ${S.current.lessons}")
                 ],
               ),
             ],

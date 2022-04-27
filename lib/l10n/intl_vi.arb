@@ -72,5 +72,8 @@
 	"isBooked": "Đã đặt",
 	"minutes": "Phút",
 	"ok": "OK",
-	"category": "Danh mục"
+	"category": "Danh mục",
+	"wantToLearn": "Muốn học",
+	"learnTopics": "Chủ đề",
+	"testPreparations": "Ôn thi"
 }

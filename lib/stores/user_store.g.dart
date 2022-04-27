@@ -24,6 +24,36 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
+  final _$learnTopicsFutureAtom = Atom(name: '_UserStore.learnTopicsFuture');
+
+  @override
+  ObservableFuture<List<LearnTopic>>? get learnTopicsFuture {
+    _$learnTopicsFutureAtom.reportRead();
+    return super.learnTopicsFuture;
+  }
+
+  @override
+  set learnTopicsFuture(ObservableFuture<List<LearnTopic>>? value) {
+    _$learnTopicsFutureAtom.reportWrite(value, super.learnTopicsFuture, () {
+      super.learnTopicsFuture = value;
+    });
+  }
+
+  final _$testPreparationsAtom = Atom(name: '_UserStore.testPreparations');
+
+  @override
+  ObservableFuture<List<LearnTopic>>? get testPreparations {
+    _$testPreparationsAtom.reportRead();
+    return super.testPreparations;
+  }
+
+  @override
+  set testPreparations(ObservableFuture<List<LearnTopic>>? value) {
+    _$testPreparationsAtom.reportWrite(value, super.testPreparations, () {
+      super.testPreparations = value;
+    });
+  }
+
   final _$_UserStoreActionController = ActionController(name: '_UserStore');
 
   @override
@@ -60,9 +90,33 @@ mixin _$UserStore on _UserStore, Store {
   }
 
   @override
+  Future<List<LearnTopic>> getLearnTopicsAsync() {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.getLearnTopicsAsync');
+    try {
+      return super.getLearnTopicsAsync();
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<List<LearnTopic>> getTestPreparationsAsync() {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.getTestPreparationsAsync');
+    try {
+      return super.getTestPreparationsAsync();
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-userFuture: ${userFuture}
+userFuture: ${userFuture},
+learnTopicsFuture: ${learnTopicsFuture},
+testPreparations: ${testPreparations}
     ''';
   }
 }

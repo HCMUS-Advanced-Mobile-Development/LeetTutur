@@ -72,5 +72,8 @@
 	"isBooked": "Is Booked",
 	"minutes": "Minutes",
 	"ok": "OK",
-	"category": "Category"
+	"category": "Category",
+	"wantToLearn": "Want to learn",
+	"learnTopics": "Learn topics",
+	"testPreparations": "Test Preparations"
 }

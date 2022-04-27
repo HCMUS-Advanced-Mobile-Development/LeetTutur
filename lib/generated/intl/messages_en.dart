@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "isBooked": MessageLookupByLibrary.simpleMessage("Is Booked"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "learnHistory": MessageLookupByLibrary.simpleMessage("Learn History"),
+        "learnTopics": MessageLookupByLibrary.simpleMessage("Learn topics"),
         "learningHistory":
             MessageLookupByLibrary.simpleMessage("Learning History"),
         "lessons": MessageLookupByLibrary.simpleMessage("Lessons"),
@@ -99,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
         "studyRoom": MessageLookupByLibrary.simpleMessage("Study Room"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
+        "testPreparations":
+            MessageLookupByLibrary.simpleMessage("Test Preparations"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Time of the Class"),
@@ -112,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "upperIntermediate":
             MessageLookupByLibrary.simpleMessage("Upper Intermediate"),
         "waitTime": MessageLookupByLibrary.simpleMessage("Wait Time"),
+        "wantToLearn": MessageLookupByLibrary.simpleMessage("Want to learn"),
         "whatYouAchieve":
             MessageLookupByLibrary.simpleMessage("What you achieved"),
         "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(

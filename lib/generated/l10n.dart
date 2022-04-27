@@ -789,6 +789,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Want to learn`
+  String get wantToLearn {
+    return Intl.message(
+      'Want to learn',
+      name: 'wantToLearn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn topics`
+  String get learnTopics {
+    return Intl.message(
+      'Learn topics',
+      name: 'learnTopics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test Preparations`
+  String get testPreparations {
+    return Intl.message(
+      'Test Preparations',
+      name: 'testPreparations',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

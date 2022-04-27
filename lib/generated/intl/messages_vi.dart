@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "isBooked": MessageLookupByLibrary.simpleMessage("Đã đặt"),
         "language": MessageLookupByLibrary.simpleMessage("ngôn ngữ"),
         "learnHistory": MessageLookupByLibrary.simpleMessage("Lịch sử học"),
+        "learnTopics": MessageLookupByLibrary.simpleMessage("Chủ đề"),
         "learningHistory":
             MessageLookupByLibrary.simpleMessage("Lịch sử học tập"),
         "lessons": MessageLookupByLibrary.simpleMessage("Buổi học"),
@@ -99,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
         "studyRoom": MessageLookupByLibrary.simpleMessage("Phòng học"),
         "system": MessageLookupByLibrary.simpleMessage("Hệ thống"),
+        "testPreparations": MessageLookupByLibrary.simpleMessage("Ôn thi"),
         "theme": MessageLookupByLibrary.simpleMessage("Màu sắc"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Thời gian của lớp học"),
@@ -111,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Thượng tân thủ"),
         "upperIntermediate": MessageLookupByLibrary.simpleMessage("Thượng"),
         "waitTime": MessageLookupByLibrary.simpleMessage("Thời gian chờ đợi"),
+        "wantToLearn": MessageLookupByLibrary.simpleMessage("Muốn học"),
         "whatYouAchieve":
             MessageLookupByLibrary.simpleMessage("Những gì bạn đạt được"),
         "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(

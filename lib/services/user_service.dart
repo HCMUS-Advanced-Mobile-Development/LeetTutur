@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/models/learn_topic.dart';
 import 'package:leet_tutur/models/user.dart';
 import 'package:logger/logger.dart';
 
@@ -26,6 +27,8 @@ class UserService {
         "level": user.level,
         "name": user.name,
         "phone": user.phone,
+        "learnTopics": user.learnTopics?.map((e) => e.id.toString()).toList() ?? [],
+        "testPreparations": user.testPreparations?.map((e) => e.id.toString()).toList() ?? [],
       },
     );
 
@@ -51,5 +54,25 @@ class UserService {
     _logger.i("Upload avatar: ${user.avatar}");
 
     return user;
+  }
+
+  Future<List<LearnTopic>> getLearnTopicsAsync() async {
+    var dioRes = await _dio.get("/learn-topic");
+    var topics = (dioRes.data as List).map((e) => LearnTopic.fromJson(e)).toList();
+
+    _logger.i("Get learn topics: ${topics.length} items");
+
+    return topics;
+  }
+
+  Future<List<LearnTopic>> getTestPreparationsAsync() async {
+    var dioRes = await _dio.get("/test-preparation");
+    var preparations = (dioRes.data as List)
+        .map((e) => LearnTopic.fromJson(e))
+        .toList();
+
+    _logger.i("Get learn topics: ${preparations.length} items");
+
+    return preparations;
   }
 }

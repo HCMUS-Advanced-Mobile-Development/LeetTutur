@@ -5,7 +5,7 @@ import 'package:leet_tutur/constants/search_bar_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/courses_page/widgets/course_list.dart';
-import 'package:leet_tutur/ui/courses_page/widgets/filter_chips.dart';
+import 'package:leet_tutur/widgets/filter_chips.dart';
 import 'package:leet_tutur/widgets/search_bar.dart';
 
 class CoursesPage extends StatefulWidget {
@@ -92,7 +92,6 @@ class _CoursesPageState extends State<CoursesPage> {
             TextButton(
               child: Text(S.current.ok.toUpperCase()),
               onPressed: () {
-                _courseStore.levelQuery;
                 Navigator.of(context, rootNavigator: true).pop();
               },
             ),
