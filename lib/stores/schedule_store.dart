@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/booking_info.dart';
+import 'package:leet_tutur/models/requests/book_request.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
+import 'package:leet_tutur/models/responses/book_response.dart';
 import 'package:leet_tutur/models/responses/booking_list_response.dart';
 import 'package:leet_tutur/models/responses/schedule_response.dart';
 import 'package:leet_tutur/services/schedule_service.dart';
@@ -58,4 +60,11 @@ abstract class _ScheduleStore with Store {
   Future<BookingListResponse> getLearnHistoryAsync({BookingListRequest? request}) async =>
       learnHistoryFuture = ObservableFuture(_scheduleService
           .getLearnHistoryAsync(request: request));
+
+  @action
+  Future<BookResponse> bookAsync({BookRequest? request}) async {
+    var response = await _scheduleService.bookAsync(request: request);
+
+    return response;
+  }
 }

@@ -125,6 +125,13 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getLearnHistoryAsync(request: request));
   }
 
+  final _$bookAsyncAsyncAction = AsyncAction('_ScheduleStore.bookAsync');
+
+  @override
+  Future<BookResponse> bookAsync({BookRequest? request}) {
+    return _$bookAsyncAsyncAction.run(() => super.bookAsync(request: request));
+  }
+
   @override
   String toString() {
     return '''

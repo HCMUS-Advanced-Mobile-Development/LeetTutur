@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chi tiết khóa học"),
         "courses": MessageLookupByLibrary.simpleMessage("Khóa học"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
+        "done": MessageLookupByLibrary.simpleMessage("Xong"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Không có tài khoản?"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),

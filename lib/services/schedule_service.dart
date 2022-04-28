@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/models/requests/book_request.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
+import 'package:leet_tutur/models/responses/book_response.dart';
 import 'package:leet_tutur/models/responses/booking_list_response.dart';
 import 'package:leet_tutur/models/responses/schedule_response.dart';
 import 'package:leet_tutur/utils/date_time_utils.dart';
@@ -23,7 +25,7 @@ class ScheduleService {
       var schedules = scheduleResponse.data
           ?.where((element) =>
               element.startTimestamp! >=
-              DateTimeUtils.startOfToday().millisecondsSinceEpoch)
+              DateTime.now().millisecondsSinceEpoch)
           .toList();
 
       schedules?.sort(
@@ -82,5 +84,14 @@ class ScheduleService {
         "Get history list. Found: ${bookingListResponse.data?.rows?.length} items");
 
     return bookingListResponse;
+  }
+
+  Future<BookResponse> bookAsync({BookRequest? request}) async {
+    var dioRes = await _dio.post("/booking", data: request);
+    var response = BookResponse.fromJson(dioRes.data);
+
+    _logger.i(response.message);
+
+    return response;
   }
 }
