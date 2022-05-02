@@ -3,6 +3,7 @@ import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/models/requests/base_request.dart';
 import 'package:leet_tutur/models/responses/course_category_response.dart';
 import 'package:leet_tutur/models/responses/course_response.dart';
+import 'package:leet_tutur/models/topic.dart';
 import 'package:leet_tutur/services/course_service.dart';
 import 'package:leet_tutur/utils/iterable_extensions.dart';
 import 'package:mobx/mobx.dart';
@@ -31,6 +32,9 @@ abstract class _CourseStore with Store {
 
   @observable
   Course? selectedCourse;
+
+  @observable
+  Topic? selectedTopic;
 
   @observable
   ObservableFuture<CourseResponse>? courseResponseFuture;

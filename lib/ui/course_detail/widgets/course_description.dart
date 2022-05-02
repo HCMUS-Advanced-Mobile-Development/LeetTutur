@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/course.dart';
-
+import 'package:leet_tutur/stores/course_store.dart';
 
 class CourseDescription extends StatelessWidget {
   final Course course;
+  final _courseStore = GetIt.instance.get<CourseStore>();
 
-  const CourseDescription({Key? key, required this.course}) : super(key: key);
+  CourseDescription({Key? key, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +86,28 @@ class CourseDescription extends StatelessWidget {
           S.current.topics,
           style: Theme.of(context).textTheme.headline6,
         ),
-        ...List.generate(topics.length, (index) {
-          return Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Text("${index + 1} ${topics[index].name}"),
-          );
-        })
+        const SizedBox(height: 10),
+        ListView.separated(
+          shrinkWrap: true,
+          primary: false,
+          itemBuilder: (context, index) {
+            return ListTile(
+              enableFeedback: true,
+              title: Text(
+                "${index + 1}. ${topics[index].name}",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              onTap: () {
+                _courseStore.selectedTopic = topics[index];
+                Navigator.pushNamed(context, RouteConstants.pdfViewer);
+              },
+            );
+          },
+          itemCount: topics.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return const Divider();
+          },
+        )
       ],
     );
   }

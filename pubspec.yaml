@@ -58,6 +58,7 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   image_picker: ^0.8.5
   jitsi_meet: ^4.0.0
+  syncfusion_flutter_pdfviewer: ^20.1.51-beta
 
 dev_dependencies:
 #  flutter_test:

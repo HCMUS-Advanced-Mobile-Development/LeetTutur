@@ -22,7 +22,11 @@ class _CourseDetailState extends State<CourseDetail> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(RouteConstants.courseDetail.titleCase),
+        title: Observer(
+          builder: (context) {
+            return Text(_courseStore.selectedCourse?.name ?? "");
+          }
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -131,6 +131,21 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
+  final _$selectedTopicAtom = Atom(name: '_CourseStore.selectedTopic');
+
+  @override
+  Topic? get selectedTopic {
+    _$selectedTopicAtom.reportRead();
+    return super.selectedTopic;
+  }
+
+  @override
+  set selectedTopic(Topic? value) {
+    _$selectedTopicAtom.reportWrite(value, super.selectedTopic, () {
+      super.selectedTopic = value;
+    });
+  }
+
   final _$courseResponseFutureAtom =
       Atom(name: '_CourseStore.courseResponseFuture');
 
@@ -175,6 +190,7 @@ categoryQuery: ${categoryQuery},
 orderByLevel: ${orderByLevel},
 courseResponseCategoryFuture: ${courseResponseCategoryFuture},
 selectedCourse: ${selectedCourse},
+selectedTopic: ${selectedTopic},
 courseResponseFuture: ${courseResponseFuture},
 filteredCourses: ${filteredCourses},
 coursesByLevel: ${coursesByLevel},

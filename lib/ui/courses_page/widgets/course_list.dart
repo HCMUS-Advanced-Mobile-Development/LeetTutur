@@ -58,7 +58,7 @@ class _CourseListState extends State<CourseList> {
                             .textTheme
                             .headline6),
                     SizedBox(
-                      height: 325,
+                      height: 300,
                       child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,

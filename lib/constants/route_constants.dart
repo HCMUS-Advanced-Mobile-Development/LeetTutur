@@ -5,6 +5,7 @@ import 'package:leet_tutur/ui/auth/register.dart';
 import 'package:leet_tutur/ui/course_detail/course_detail.dart';
 import 'package:leet_tutur/ui/home_tabs/home_tabs.dart';
 import 'package:leet_tutur/ui/learn_history/learn_history.dart';
+import 'package:leet_tutur/ui/pdf_viewer/pdf_viewer.dart';
 import 'package:leet_tutur/ui/profile/profile.dart';
 import 'package:leet_tutur/ui/study_room/study_room.dart';
 import 'package:leet_tutur/ui/system_settings/system_settings.dart';
@@ -22,6 +23,7 @@ class RouteConstants {
   static const profile = "Profile";
   static const systemSettings = "System Settings";
   static const studyRoom = "Study Room";
+  static const pdfViewer = "PDF Viewer";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
@@ -34,5 +36,6 @@ class RouteConstants {
     profile: (BuildContext context) => const Profile(),
     systemSettings: (BuildContext context) => const SystemSettings(),
     studyRoom: (BuildContext context) => const StudyRoom(),
+    pdfViewer: (BuildContext context) => const PdfViewer()
   };
 }
