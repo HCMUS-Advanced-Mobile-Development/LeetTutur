@@ -87,6 +87,21 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
+  final _$selectedClassAtom = Atom(name: '_ScheduleStore.selectedClass');
+
+  @override
+  BookingInfo? get selectedClass {
+    _$selectedClassAtom.reportRead();
+    return super.selectedClass;
+  }
+
+  @override
+  set selectedClass(BookingInfo? value) {
+    _$selectedClassAtom.reportWrite(value, super.selectedClass, () {
+      super.selectedClass = value;
+    });
+  }
+
   final _$getScheduleByTutorIdAsyncAsyncAction =
       AsyncAction('_ScheduleStore.getScheduleByTutorIdAsync');
 
@@ -139,6 +154,7 @@ scheduleResponseFuture: ${scheduleResponseFuture},
 bookingListResponseFuture: ${bookingListResponseFuture},
 totalLearnedHoursFuture: ${totalLearnedHoursFuture},
 learnHistoryFuture: ${learnHistoryFuture},
+selectedClass: ${selectedClass},
 bookInfosGroupByTutorAndDate: ${bookInfosGroupByTutorAndDate}
     ''';
   }

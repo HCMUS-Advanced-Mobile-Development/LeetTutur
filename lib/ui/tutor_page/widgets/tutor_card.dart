@@ -67,7 +67,7 @@ class _TutorCardState extends State<TutorCard> {
     _tutorStore.addToFavoriteTutorAsync(_tutor.userId);
   }
 
-  Future navigateToDetail(TapDownDetails tapDownDetails) async {
+  Future navigateToDetail(TapDownDetails _) async {
     _tutorStore.selectedTutorId = _tutor.userId ?? "";
 
     await Navigator.pushNamed(context, RouteConstants.tutorDetail);
@@ -195,7 +195,9 @@ class _TutorCardState extends State<TutorCard> {
     );
   }
 
-  void handleBookTutor() {}
+  void handleBookTutor() {
+    navigateToDetail(TapDownDetails());
+  }
 
   void handleChatTutor() {}
 }

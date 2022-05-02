@@ -29,6 +29,9 @@ abstract class _ScheduleStore with Store {
   @observable
   ObservableFuture<BookingListResponse>? learnHistoryFuture;
 
+  @observable
+  BookingInfo? selectedClass;
+
   @computed
   Map<String, List<BookingInfo>> get bookInfosGroupByTutorAndDate =>
       bookingListResponseFuture?.value?.data?.rows?.groupBy((e) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/models/booking_info.dart';
+import 'package:leet_tutur/stores/schedule_store.dart';
 import 'package:leet_tutur/utils/date_time_utils.dart';
 
 class UpcomingItem extends StatefulWidget {
@@ -13,6 +15,8 @@ class UpcomingItem extends StatefulWidget {
 }
 
 class _UpcomingItemState extends State<UpcomingItem> {
+  final _scheduleStore = GetIt.instance.get<ScheduleStore>();
+
   @override
   Widget build(BuildContext context) {
     final bookingInfos = widget.bookingInfos;
@@ -60,7 +64,7 @@ class _UpcomingItemState extends State<UpcomingItem> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: ElevatedButton(
-                            onPressed: _handleJoinClass,
+                            onPressed: () => _handleJoinClass(e),
                             child: Text("$startPeriod - $endPeriod")),
                       );
                     }).toList(),
@@ -74,7 +78,8 @@ class _UpcomingItemState extends State<UpcomingItem> {
     );
   }
 
-  void _handleJoinClass() {
+  void _handleJoinClass(BookingInfo bookingInfo) {
+    _scheduleStore.selectedClass = bookingInfo;
     Navigator.pushNamed(context, RouteConstants.studyRoom);
   }
 }
