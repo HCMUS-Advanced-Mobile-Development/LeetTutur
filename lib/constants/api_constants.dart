@@ -1,3 +1,6 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class ApiConstants {
-    static const String baseURL = "https://sandbox.api.lettutor.com";
+    static final String baseURL = dotenv.env['BASE_URL']!;
+    static final String meetingURL = dotenv.env['MEETING_URL']!;
 }

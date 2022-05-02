@@ -8,6 +8,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
+import 'package:leet_tutur/constants/api_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/booking_info.dart';
 import 'package:leet_tutur/models/meet_info.dart';
@@ -77,7 +78,7 @@ class _StudyRoomState extends State<StudyRoom> {
     }
     // Define meetings options here
     var options = JitsiMeetingOptions(room: meetInfo.room ?? "")
-      ..serverURL = "https://meet.lettutor.com"
+      ..serverURL = ApiConstants.meetingURL
       ..subject = "${meetInfo.room}"
       ..userDisplayName = "${meetInfo.userCall?.name}"
       ..userEmail = "${meetInfo.userCall?.email}"
