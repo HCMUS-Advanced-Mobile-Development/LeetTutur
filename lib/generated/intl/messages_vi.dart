@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "advance": MessageLookupByLibrary.simpleMessage("Cao Thủ"),
         "anyLevel": MessageLookupByLibrary.simpleMessage("Tay mơ"),
+        "areYouSureWantToCancelClass": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc chắn muốn hủy lớp học không?"),
         "beginners": MessageLookupByLibrary.simpleMessage("Hạ tân thủ"),
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy bỏ"),
@@ -68,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
         "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
+        "no": MessageLookupByLibrary.simpleMessage("Không"),
         "nothingHere":
             MessageLookupByLibrary.simpleMessage("Không có gì ở đây"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
@@ -119,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Những gì bạn đạt được"),
         "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(
             "Tại sao bạn nên học khóa học này"),
+        "yes": MessageLookupByLibrary.simpleMessage("Có"),
         "yourPasswordIsInCorrect": MessageLookupByLibrary.simpleMessage(
             "Mật khẩu của bạn không chính xác"),
         "yourTotalLearnedHoursAre": MessageLookupByLibrary.simpleMessage(

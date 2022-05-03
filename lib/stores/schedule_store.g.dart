@@ -147,6 +147,15 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     return _$bookAsyncAsyncAction.run(() => super.bookAsync(request: request));
   }
 
+  final _$cancelClassAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.cancelClassAsync');
+
+  @override
+  Future<dynamic> cancelClassAsync({List<String>? scheduleDetailIds}) {
+    return _$cancelClassAsyncAsyncAction.run(
+        () => super.cancelClassAsync(scheduleDetailIds: scheduleDetailIds));
+  }
+
   @override
   String toString() {
     return '''

@@ -61,7 +61,10 @@ class _UpcomingClassesState extends State<UpcomingClasses> {
               },
               builderDelegate: PagedChildBuilderDelegate<List<BookingInfo>>(
                 itemBuilder: (context, bookingInfos, index) {
-                  return UpcomingItem(bookingInfos: bookingInfos);
+                  return UpcomingItem(
+                    bookingInfos: bookingInfos,
+                    refresh: _pagingController.refresh,
+                  );
                 },
                 firstPageProgressIndicatorBuilder: (context) =>
                     const Center(child: CircularProgressIndicator()),
@@ -79,21 +82,21 @@ class _UpcomingClassesState extends State<UpcomingClasses> {
     try {
       var bookingListResponse = await _scheduleStore.getBookingsListAsync(
         request: BookingListRequest(
-          dateTimeGte: DateTime
-              .now()
+          dateTimeGte: DateTime.now()
+              .subtract(
+                const Duration(hours: 1),
+              )
               .millisecondsSinceEpoch,
-        )
-          ..page = pageKey,
+        )..page = pageKey,
       );
 
       final fetchedItemsCount = bookingListResponse.data?.rows?.length ?? 0;
       final totalCount = bookingListResponse.data?.count ?? 0;
 
       final isLastPage =
-          _previouslyFetchedItemsCount + fetchedItemsCount == totalCount;
+          _previouslyFetchedItemsCount + fetchedItemsCount >= totalCount;
 
-      var items =
-      _scheduleStore.bookInfosGroupByTutorAndDate.values.toList();
+      var items = _scheduleStore.bookInfosGroupByTutorAndDate.values.toList();
       if (isLastPage) {
         _pagingController.appendLastPage(items);
       } else {

@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/models/booking_info.dart';
 import 'package:leet_tutur/models/requests/book_request.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
 import 'package:leet_tutur/models/responses/book_response.dart';
 import 'package:leet_tutur/models/responses/booking_list_response.dart';
 import 'package:leet_tutur/models/responses/schedule_response.dart';
-import 'package:leet_tutur/utils/date_time_utils.dart';
 import 'package:logger/logger.dart';
 
 class ScheduleService {
@@ -24,8 +24,7 @@ class ScheduleService {
 
       var schedules = scheduleResponse.data
           ?.where((element) =>
-              element.startTimestamp! >=
-              DateTime.now().millisecondsSinceEpoch)
+              element.startTimestamp! >= DateTime.now().millisecondsSinceEpoch)
           .toList();
 
       schedules?.sort(
@@ -41,12 +40,13 @@ class ScheduleService {
     return scheduleResponse;
   }
 
-  Future<BookingListResponse> getBookingsListAsync({BookingListRequest? request}) async {
+  Future<BookingListResponse> getBookingsListAsync(
+      {BookingListRequest? request}) async {
     var dioRes = await _dio.get("/booking/list/student", queryParameters: {
       "page": request?.page ?? 1,
       "perPage": request?.perPage ?? 12,
-      "dateTimeGte": request?.dateTimeGte ??
-          DateTime.now().millisecondsSinceEpoch,
+      "dateTimeGte":
+          request?.dateTimeGte ?? DateTime.now().millisecondsSinceEpoch,
       "orderBy": request?.orderBy ?? "meeting",
       "sortBy": request?.sortBy ?? "asc",
     });
@@ -73,7 +73,8 @@ class ScheduleService {
     var dioRes = await _dio.get("/booking/list/student", queryParameters: {
       "page": request?.page ?? 1,
       "perPage": request?.perPage ?? 12,
-      "dateTimeLte": request?.dateTimeLte ?? DateTime.now().millisecondsSinceEpoch,
+      "dateTimeLte":
+          request?.dateTimeLte ?? DateTime.now().millisecondsSinceEpoch,
       "orderBy": request?.orderBy ?? "meeting",
       "sortBy": request?.sortBy ?? "desc",
     });
@@ -93,5 +94,16 @@ class ScheduleService {
     _logger.i(response.message);
 
     return response;
+  }
+
+  Future cancelClassAsync({List<String>? scheduleDetailIds}) async {
+    var dioRes = await _dio.delete(
+      "/booking",
+      data: {
+        "scheduleDetailIds": scheduleDetailIds,
+      },
+    );
+
+    _logger.i(dioRes.data["message"]);
   }
 }

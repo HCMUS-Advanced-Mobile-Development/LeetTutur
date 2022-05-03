@@ -47,11 +47,13 @@ abstract class _ScheduleStore with Store {
       {};
 
   @action
-  Future getScheduleByTutorIdAsync({String id = ""}) async => scheduleResponseFuture =
-      ObservableFuture(_scheduleService.getScheduleByTutorIdAsync(id: id));
+  Future getScheduleByTutorIdAsync({String id = ""}) async =>
+      scheduleResponseFuture =
+          ObservableFuture(_scheduleService.getScheduleByTutorIdAsync(id: id));
 
   @action
-  Future<BookingListResponse> getBookingsListAsync({BookingListRequest? request}) async =>
+  Future<BookingListResponse> getBookingsListAsync(
+          {BookingListRequest? request}) async =>
       bookingListResponseFuture = ObservableFuture(
           _scheduleService.getBookingsListAsync(request: request));
 
@@ -60,14 +62,21 @@ abstract class _ScheduleStore with Store {
       ObservableFuture(_scheduleService.getTotalLearnedHoursAsync());
 
   @action
-  Future<BookingListResponse> getLearnHistoryAsync({BookingListRequest? request}) async =>
-      learnHistoryFuture = ObservableFuture(_scheduleService
-          .getLearnHistoryAsync(request: request));
+  Future<BookingListResponse> getLearnHistoryAsync(
+          {BookingListRequest? request}) async =>
+      learnHistoryFuture = ObservableFuture(
+          _scheduleService.getLearnHistoryAsync(request: request));
 
   @action
   Future<BookResponse> bookAsync({BookRequest? request}) async {
     var response = await _scheduleService.bookAsync(request: request);
 
     return response;
+  }
+
+  @action
+  Future cancelClassAsync({List<String>? scheduleDetailIds}) async {
+    await _scheduleService.cancelClassAsync(
+        scheduleDetailIds: scheduleDetailIds);
   }
 }

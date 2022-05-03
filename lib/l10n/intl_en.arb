@@ -76,5 +76,8 @@
 	"wantToLearn": "Want to learn",
 	"learnTopics": "Learn topics",
 	"testPreparations": "Test Preparations",
-	"done": "Done"
+	"done": "Done",
+	"areYouSureWantToCancelClass": "Are you sure you want to cancel class?",
+	"yes": "Yes",
+	"no": "No"
 }

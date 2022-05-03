@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "advance": MessageLookupByLibrary.simpleMessage("Advance"),
         "anyLevel": MessageLookupByLibrary.simpleMessage("Any Level"),
+        "areYouSureWantToCancelClass": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to cancel class?"),
         "beginners": MessageLookupByLibrary.simpleMessage("Beginners"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -68,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "nothingHere": MessageLookupByLibrary.simpleMessage("Nothing Here"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
@@ -121,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("What you achieved"),
         "whyYouShouldLearnThisCourse": MessageLookupByLibrary.simpleMessage(
             "Why you should learn this course"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "yourPasswordIsInCorrect":
             MessageLookupByLibrary.simpleMessage("Your password is incorrect"),
         "yourTotalLearnedHoursAre":

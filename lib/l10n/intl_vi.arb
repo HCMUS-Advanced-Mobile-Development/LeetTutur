@@ -76,5 +76,8 @@
 	"wantToLearn": "Muốn học",
 	"learnTopics": "Chủ đề",
 	"testPreparations": "Ôn thi",
-	"done": "Xong"
+	"done": "Xong",
+	"areYouSureWantToCancelClass": "Bạn có chắc chắn muốn hủy lớp học không?",
+	"no": "Không",
+	"yes": "Có"
 }
