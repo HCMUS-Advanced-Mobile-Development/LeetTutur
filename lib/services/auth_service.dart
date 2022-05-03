@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
+import 'package:leet_tutur/models/requests/change_password_request.dart';
 import 'package:leet_tutur/models/responses/auth_response.dart';
 import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
@@ -114,5 +115,15 @@ class AuthService {
       _logger.e("Can't refresh token. ${e.message}");
       rethrow;
     }
+  }
+
+  Future changePasswordAsync({ChangePasswordRequest? request}) async {
+    var dioRes = await _dio.post(
+      "/auth/change-password",
+      data: {
+        "newPassword": request?.newPassword,
+        "password": request?.password,
+      },
+    );
   }
 }

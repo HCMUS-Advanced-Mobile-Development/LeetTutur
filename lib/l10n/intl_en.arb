@@ -79,5 +79,11 @@
 	"done": "Done",
 	"areYouSureWantToCancelClass": "Are you sure you want to cancel class?",
 	"yes": "Yes",
-	"no": "No"
+	"no": "No",
+	"changePassword": "Change password",
+	"password": "Password",
+	"thisFieldMustBeMoreThanSixChar": "This field must be at least six characters long",
+	"newPassword": "New Password",
+	"submit": "Submit",
+	"changePasswordSuccessfully": "Change password successfully"
 }

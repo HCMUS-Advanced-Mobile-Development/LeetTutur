@@ -30,6 +30,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change password"),
+        "changePasswordSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Change password successfully"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
             MessageLookupByLibrary.simpleMessage("Class Requirement"),
@@ -70,11 +74,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "nothingHere": MessageLookupByLibrary.simpleMessage("Nothing Here"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "orWith": MessageLookupByLibrary.simpleMessage("or with"),
         "overall": MessageLookupByLibrary.simpleMessage("Overall"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
             "Please enter correct email format"),
@@ -103,10 +109,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "showMore": MessageLookupByLibrary.simpleMessage("Show more"),
         "specialties": MessageLookupByLibrary.simpleMessage("Specialties"),
         "studyRoom": MessageLookupByLibrary.simpleMessage("Study Room"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "testPreparations":
             MessageLookupByLibrary.simpleMessage("Test Preparations"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "thisFieldMustBeMoreThanSixChar": MessageLookupByLibrary.simpleMessage(
+            "This field must be at least six characters long"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Time of the Class"),
         "topics": MessageLookupByLibrary.simpleMessage("Topics"),

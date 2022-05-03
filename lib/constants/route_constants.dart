@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leet_tutur/ui/auth/forgot_password.dart';
 import 'package:leet_tutur/ui/auth/login.dart';
 import 'package:leet_tutur/ui/auth/register.dart';
+import 'package:leet_tutur/ui/change_password/change_password.dart';
 import 'package:leet_tutur/ui/course_detail/course_detail.dart';
 import 'package:leet_tutur/ui/home_tabs/home_tabs.dart';
 import 'package:leet_tutur/ui/learn_history/learn_history.dart';
@@ -24,6 +25,7 @@ class RouteConstants {
   static const systemSettings = "System Settings";
   static const studyRoom = "Study Room";
   static const pdfViewer = "PDF Viewer";
+  static const changePassword = "changePassword";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
@@ -36,6 +38,7 @@ class RouteConstants {
     profile: (BuildContext context) => const Profile(),
     systemSettings: (BuildContext context) => const SystemSettings(),
     studyRoom: (BuildContext context) => const StudyRoom(),
-    pdfViewer: (BuildContext context) => const PdfViewer()
+    pdfViewer: (BuildContext context) => const PdfViewer(),
+    changePassword: (BuildContext context) => const ChangePassword(),
   };
 }

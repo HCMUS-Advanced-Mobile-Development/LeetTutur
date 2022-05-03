@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/models/requests/change_password_request.dart';
 import 'package:leet_tutur/models/responses/auth_response.dart';
 import 'package:leet_tutur/services/auth_service.dart';
 import 'package:mobx/mobx.dart';
@@ -12,6 +13,9 @@ abstract class _AuthStore with Store {
 
   @observable
   String email = '';
+
+  @observable
+  String oldPassword = '';
 
   @observable
   String password = '';
@@ -43,4 +47,7 @@ abstract class _AuthStore with Store {
   @action
   Future refreshTokenAsync() async =>
       authResponse = ObservableFuture(_authService.refreshTokenAsync());
+
+  Future changePasswordAsync({ChangePasswordRequest? request}) async =>
+      await _authService.changePasswordAsync(request: request);
 }

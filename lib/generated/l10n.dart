@@ -859,6 +859,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Change password`
+  String get changePassword {
+    return Intl.message(
+      'Change password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field must be at least six characters long`
+  String get thisFieldMustBeMoreThanSixChar {
+    return Intl.message(
+      'This field must be at least six characters long',
+      name: 'thisFieldMustBeMoreThanSixChar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPassword {
+    return Intl.message(
+      'New Password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password successfully`
+  String get changePasswordSuccessfully {
+    return Intl.message(
+      'Change password successfully',
+      name: 'changePasswordSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

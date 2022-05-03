@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/widgets/square_button.dart';
 import 'package:recase/recase.dart';
-
-import '../../constants/route_constants.dart';
-import '../../generated/l10n.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -21,34 +20,55 @@ class _SettingsPageState extends State<SettingsPage> {
       padding: const EdgeInsets.symmetric(
         vertical: 15,
       ),
-      child: Wrap(
-        alignment: WrapAlignment.spaceEvenly,
-        children: [
-          SquareButton(
-            size: MediaQuery.of(context).size.width * 0.4,
-            icon: const Icon(
-              Icons.account_circle,
-              size: iconSize,
+      child: Align(
+        alignment: AlignmentDirectional.topCenter,
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          children: [
+            SquareButton(
+              size: MediaQuery.of(context).size.width * 0.4,
+              icon: const Icon(
+                Icons.account_circle,
+                size: iconSize,
+              ),
+              text: Text(
+                S.current.profile.titleCase,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTap: _handlePressProfile,
             ),
-            text: Text(
-              S.current.profile.titleCase,
-              style: Theme.of(context).textTheme.headline6,
+            SquareButton(
+              size: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.4,
+              icon: const Icon(
+                Icons.pattern,
+                size: iconSize,
+              ),
+              text: Text(
+                S.current.changePassword.titleCase,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .headline6,
+              ),
+              onTap: _handleChangePassword,
             ),
-            onTap: _handlePressProfile,
-          ),
-          SquareButton(
-            size: MediaQuery.of(context).size.width * 0.4,
-            icon: const Icon(
-              Icons.phone_iphone,
-              size: iconSize,
+            SquareButton(
+              size: MediaQuery.of(context).size.width * 0.4,
+              icon: const Icon(
+                Icons.phone_iphone,
+                size: iconSize,
+              ),
+              text: Text(
+                S.current.system.titleCase,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTap: _handlePressSystemSettings,
             ),
-            text: Text(
-              S.current.system.titleCase,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            onTap: _handlePressSystemSettings,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -59,5 +79,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _handlePressSystemSettings() {
     Navigator.pushNamed(context, RouteConstants.systemSettings);
+  }
+
+  void _handleChangePassword() {
+    Navigator.pushNamed(context, RouteConstants.changePassword);
   }
 }

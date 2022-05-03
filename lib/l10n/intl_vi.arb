@@ -79,5 +79,11 @@
 	"done": "Xong",
 	"areYouSureWantToCancelClass": "Bạn có chắc chắn muốn hủy lớp học không?",
 	"no": "Không",
-	"yes": "Có"
+	"yes": "Có",
+	"changePassword": "Đổi mật khẩu",
+	"password": "Mật khẩu",
+	"thisFieldMustBeMoreThanSixChar": "Trường này phải dài ít nhất 6 ký tự",
+	"newPassword": "Mật khẩu mới",
+	"submit": "Gửi",
+	"changePasswordSuccessfully": "Thay đổi mật khẩu thành công"
 }

@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy bỏ"),
         "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
+        "changePassword": MessageLookupByLibrary.simpleMessage("Đổi mật khẩu"),
+        "changePasswordSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Thay đổi mật khẩu thành công"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "classRequirement":
             MessageLookupByLibrary.simpleMessage("Yêu cầu lớp học"),
@@ -70,12 +73,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
         "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("Mật khẩu mới"),
         "no": MessageLookupByLibrary.simpleMessage("Không"),
         "nothingHere":
             MessageLookupByLibrary.simpleMessage("Không có gì ở đây"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "orWith": MessageLookupByLibrary.simpleMessage("Hoặc với"),
         "overall": MessageLookupByLibrary.simpleMessage("Tổng quan"),
+        "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
         "phone": MessageLookupByLibrary.simpleMessage("Điện thoại"),
         "pleaseEnterCorrectEmailFormat": MessageLookupByLibrary.simpleMessage(
             "Vui lòng nhập đúng định dạng email"),
@@ -103,9 +108,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "showMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
         "specialties": MessageLookupByLibrary.simpleMessage("Chuyên ngành"),
         "studyRoom": MessageLookupByLibrary.simpleMessage("Phòng học"),
+        "submit": MessageLookupByLibrary.simpleMessage("Gửi"),
         "system": MessageLookupByLibrary.simpleMessage("Hệ thống"),
         "testPreparations": MessageLookupByLibrary.simpleMessage("Ôn thi"),
         "theme": MessageLookupByLibrary.simpleMessage("Màu sắc"),
+        "thisFieldMustBeMoreThanSixChar": MessageLookupByLibrary.simpleMessage(
+            "Trường này phải dài ít nhất 6 ký tự"),
         "timeOfTheClass":
             MessageLookupByLibrary.simpleMessage("Thời gian của lớp học"),
         "topics": MessageLookupByLibrary.simpleMessage("Chủ đề"),

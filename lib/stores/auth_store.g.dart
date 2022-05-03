@@ -24,6 +24,21 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
+  final _$oldPasswordAtom = Atom(name: '_AuthStore.oldPassword');
+
+  @override
+  String get oldPassword {
+    _$oldPasswordAtom.reportRead();
+    return super.oldPassword;
+  }
+
+  @override
+  set oldPassword(String value) {
+    _$oldPasswordAtom.reportWrite(value, super.oldPassword, () {
+      super.oldPassword = value;
+    });
+  }
+
   final _$passwordAtom = Atom(name: '_AuthStore.password');
 
   @override
@@ -114,6 +129,7 @@ mixin _$AuthStore on _AuthStore, Store {
   String toString() {
     return '''
 email: ${email},
+oldPassword: ${oldPassword},
 password: ${password},
 confirmPassword: ${confirmPassword},
 authResponse: ${authResponse}
