@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/generated/l10n.dart';
@@ -10,7 +9,6 @@ import 'package:leet_tutur/stores/user_store.dart';
 import 'package:leet_tutur/utils/date_time_utils.dart';
 import 'package:leet_tutur/widgets/filter_chips.dart';
 import 'package:leet_tutur/widgets/text_input.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class ProfileInfo extends StatefulWidget {
   final User user;
@@ -126,7 +124,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                     controller: birthController,
                   ),
                 ),
-                CircularButton(
+                IconButton(
                   icon: const Icon(Icons.event),
                   onPressed: _handleSelectBirthDay,
                 )
@@ -187,16 +185,18 @@ class _ProfileInfoState extends State<ProfileInfo> {
     user.level = value;
   }
 
-  void _handleSelectBirthDay() {
-    DatePicker.showDatePicker(
-      context,
-      showTitleActions: true,
-      currentTime: DateTime.tryParse(user.birthday ?? "1975-04-30"),
-      onConfirm: (date) {
-        user.birthday = DateTimeUtils.formatDate(date, format: "yyyy-MM-dd");
-        birthController.text = user.birthday!;
-      },
+  _handleSelectBirthDay() async {
+    var selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.tryParse(user.birthday ?? "1975-04-30")!,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
     );
+
+    if (selectedDate != null) {
+      user.birthday = DateTimeUtils.formatDate(selectedDate, format: "yyyy-MM-dd");
+      birthController.text = user.birthday!;
+    }
   }
 
   void _handleChangeCountry(String? value) {
