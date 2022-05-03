@@ -3,7 +3,7 @@
           package="com.hcmus.leet_tutur">
     <application
             tools:replace="android:label"
-            android:label="leet_tutur"
+            android:label="Leet Tutur"
             android:name="${applicationName}"
             android:icon="@mipmap/ic_launcher">
         <activity
