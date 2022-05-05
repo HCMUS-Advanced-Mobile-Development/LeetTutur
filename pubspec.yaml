@@ -60,6 +60,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^20.1.51-beta
   flutter_dotenv: ^5.0.2
   flutter_launcher_icons: ^0.9.2
+  google_sign_in: ^5.3.0
 
 dev_dependencies:
 #  flutter_test:

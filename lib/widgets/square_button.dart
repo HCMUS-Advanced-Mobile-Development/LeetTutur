@@ -20,6 +20,7 @@ class SquareButton extends StatelessWidget {
             child: InkWell(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   icon ?? const SizedBox.shrink(),
                   const SizedBox(

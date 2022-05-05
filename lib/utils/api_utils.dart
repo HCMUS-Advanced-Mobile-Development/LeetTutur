@@ -14,10 +14,11 @@ class ApiUtils {
       ..options.baseUrl = ApiConstants.baseURL
       ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
       ..interceptors.add(PrettyDioLogger(
+        requestHeader: true,
         requestBody: true,
         responseBody: false,
         error: true,
-        maxWidth: 120,
+        maxWidth: 999,
         compact: true,
       ));
 
@@ -79,6 +80,10 @@ class ApiUtils {
   static Future<String> getBearerTokenAsync() async {
     var tokens = await getTokensAsync();
 
-    return "Bearer ${tokens.access?.token}";
+    if (tokens.access != null) {
+      return "Bearer ${tokens.access?.token}";
+    }
+
+    return "";
   }
 }

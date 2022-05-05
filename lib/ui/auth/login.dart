@@ -14,6 +14,7 @@ import 'package:logger/logger.dart';
 import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
 import 'package:validators/validators.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _authStore = GetIt.instance.get<AuthStore>();
   final _logger = GetIt.instance.get<Logger>();
+  final _googleSignIn = GetIt.instance.get<GoogleSignIn>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -32,6 +34,8 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
+    _googleSignIn.signOut();
+
     _authStore.retrieveLocalLoginResponseAsync().then((value) {
       if (_authStore.authResponse?.value?.tokens != null) {
         _logger.i("Detect tokens in local shared preferences. Auto login.");
@@ -148,17 +152,13 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconButton(
-                              onPressed: () {
-                                // GG OAuth2
-                              },
+                              onPressed: _handleLoginWithGoogle,
                               icon: Image.asset(
                                 "assets/images/google.png",
                               ),
                               iconSize: 50),
                           IconButton(
-                              onPressed: () {
-                                // GG OAuth2
-                              },
+                              onPressed: _handleLoginWithFacebook,
                               icon: Image.asset(
                                 "assets/images/facebook.png",
                               ),
@@ -257,4 +257,19 @@ class _LoginState extends State<Login> {
       }
     }
   }
+
+  _handleLoginWithGoogle() async {
+    try {
+      var signedAccount = await _googleSignIn.signIn();
+      signedAccount?.authentication.then((value) async {
+        await _authStore.loginWithGoogleAsync(value.accessToken ?? "");
+
+        Navigator.pushNamed(context, RouteConstants.homeTabs);
+      });
+    } catch (error) {
+      _logger.e(error);
+    }
+  }
+
+  _handleLoginWithFacebook() {}
 }

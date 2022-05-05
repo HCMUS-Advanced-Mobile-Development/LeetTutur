@@ -48,6 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               text: Text(
                 S.current.changePassword.titleCase,
+                textAlign: TextAlign.center,
                 style: Theme
                     .of(context)
                     .textTheme
