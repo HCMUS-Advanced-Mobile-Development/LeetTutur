@@ -85,5 +85,6 @@
 	"thisFieldMustBeMoreThanSixChar": "This field must be at least six characters long",
 	"newPassword": "New Password",
 	"submit": "Submit",
-	"changePasswordSuccessfully": "Change password successfully"
+	"changePasswordSuccessfully": "Change password successfully",
+	"logOut": "Log Out"
 }

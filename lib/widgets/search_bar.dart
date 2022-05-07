@@ -44,6 +44,7 @@ class _SearchBarState extends State<SearchBar> {
 
     return FloatingSearchBar(
       hint: S.current.search,
+      automaticallyImplyBackButton: false,
       scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
       transitionDuration: const Duration(milliseconds: 500),
       transitionCurve: Curves.easeInOut,

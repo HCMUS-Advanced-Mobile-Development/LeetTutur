@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Learning History"),
         "lessons": MessageLookupByLibrary.simpleMessage("Lessons"),
         "level": MessageLookupByLibrary.simpleMessage("Level"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),

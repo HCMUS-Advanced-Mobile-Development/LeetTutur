@@ -85,5 +85,6 @@
 	"thisFieldMustBeMoreThanSixChar": "Trường này phải dài ít nhất 6 ký tự",
 	"newPassword": "Mật khẩu mới",
 	"submit": "Gửi",
-	"changePasswordSuccessfully": "Thay đổi mật khẩu thành công"
+	"changePasswordSuccessfully": "Thay đổi mật khẩu thành công",
+	"logOut": "Đăng xuất"
 }
