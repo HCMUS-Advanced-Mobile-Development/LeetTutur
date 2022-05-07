@@ -9,7 +9,8 @@ part of 'user_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UserStore on _UserStore, Store {
-  final _$userFutureAtom = Atom(name: '_UserStore.userFuture');
+  late final _$userFutureAtom =
+      Atom(name: '_UserStore.userFuture', context: context);
 
   @override
   ObservableFuture<User>? get userFuture {
@@ -24,7 +25,8 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$learnTopicsFutureAtom = Atom(name: '_UserStore.learnTopicsFuture');
+  late final _$learnTopicsFutureAtom =
+      Atom(name: '_UserStore.learnTopicsFuture', context: context);
 
   @override
   ObservableFuture<List<LearnTopic>>? get learnTopicsFuture {
@@ -39,7 +41,8 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$testPreparationsAtom = Atom(name: '_UserStore.testPreparations');
+  late final _$testPreparationsAtom =
+      Atom(name: '_UserStore.testPreparations', context: context);
 
   @override
   ObservableFuture<List<LearnTopic>>? get testPreparations {
@@ -54,7 +57,8 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$_UserStoreActionController = ActionController(name: '_UserStore');
+  late final _$_UserStoreActionController =
+      ActionController(name: '_UserStore', context: context);
 
   @override
   Future<User> getUserInfoAsync() {

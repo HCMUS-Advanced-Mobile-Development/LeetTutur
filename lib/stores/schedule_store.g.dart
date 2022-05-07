@@ -20,8 +20,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
                   name: '_ScheduleStore.bookInfosGroupByTutorAndDate'))
           .value;
 
-  final _$scheduleResponseFutureAtom =
-      Atom(name: '_ScheduleStore.scheduleResponseFuture');
+  late final _$scheduleResponseFutureAtom =
+      Atom(name: '_ScheduleStore.scheduleResponseFuture', context: context);
 
   @override
   ObservableFuture<ScheduleResponse>? get scheduleResponseFuture {
@@ -37,8 +37,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$bookingListResponseFutureAtom =
-      Atom(name: '_ScheduleStore.bookingListResponseFuture');
+  late final _$bookingListResponseFutureAtom =
+      Atom(name: '_ScheduleStore.bookingListResponseFuture', context: context);
 
   @override
   ObservableFuture<BookingListResponse>? get bookingListResponseFuture {
@@ -54,8 +54,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$totalLearnedHoursFutureAtom =
-      Atom(name: '_ScheduleStore.totalLearnedHoursFuture');
+  late final _$totalLearnedHoursFutureAtom =
+      Atom(name: '_ScheduleStore.totalLearnedHoursFuture', context: context);
 
   @override
   ObservableFuture<Duration>? get totalLearnedHoursFuture {
@@ -71,8 +71,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$learnHistoryFutureAtom =
-      Atom(name: '_ScheduleStore.learnHistoryFuture');
+  late final _$learnHistoryFutureAtom =
+      Atom(name: '_ScheduleStore.learnHistoryFuture', context: context);
 
   @override
   ObservableFuture<BookingListResponse>? get learnHistoryFuture {
@@ -87,7 +87,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$selectedClassAtom = Atom(name: '_ScheduleStore.selectedClass');
+  late final _$selectedClassAtom =
+      Atom(name: '_ScheduleStore.selectedClass', context: context);
 
   @override
   BookingInfo? get selectedClass {
@@ -102,8 +103,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$getScheduleByTutorIdAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getScheduleByTutorIdAsync');
+  late final _$getScheduleByTutorIdAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getScheduleByTutorIdAsync', context: context);
 
   @override
   Future<dynamic> getScheduleByTutorIdAsync({String id = ""}) {
@@ -111,8 +112,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getScheduleByTutorIdAsync(id: id));
   }
 
-  final _$getBookingsListAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getBookingsListAsync');
+  late final _$getBookingsListAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getBookingsListAsync', context: context);
 
   @override
   Future<BookingListResponse> getBookingsListAsync(
@@ -121,8 +122,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getBookingsListAsync(request: request));
   }
 
-  final _$getTotalLearnedHoursAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getTotalLearnedHoursAsync');
+  late final _$getTotalLearnedHoursAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getTotalLearnedHoursAsync', context: context);
 
   @override
   Future<dynamic> getTotalLearnedHoursAsync() {
@@ -130,8 +131,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getTotalLearnedHoursAsync());
   }
 
-  final _$getLearnHistoryAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getLearnHistoryAsync');
+  late final _$getLearnHistoryAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getLearnHistoryAsync', context: context);
 
   @override
   Future<BookingListResponse> getLearnHistoryAsync(
@@ -140,15 +141,16 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getLearnHistoryAsync(request: request));
   }
 
-  final _$bookAsyncAsyncAction = AsyncAction('_ScheduleStore.bookAsync');
+  late final _$bookAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.bookAsync', context: context);
 
   @override
   Future<BookResponse> bookAsync({BookRequest? request}) {
     return _$bookAsyncAsyncAction.run(() => super.bookAsync(request: request));
   }
 
-  final _$cancelClassAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.cancelClassAsync');
+  late final _$cancelClassAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.cancelClassAsync', context: context);
 
   @override
   Future<dynamic> cancelClassAsync({List<String>? scheduleDetailIds}) {

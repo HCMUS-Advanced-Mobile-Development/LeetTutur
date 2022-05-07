@@ -160,4 +160,38 @@ class AuthService {
       rethrow;
     }
   }
+
+  Future<AuthResponse> loginWithFacebookAsync(String token) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Delete to avoid Dio Interceptor put this data to request
+      // which cause Bad Request err
+      await prefs.remove(SharedPreferencesConstants.authResponse);
+
+      var dioRes = await _dio.post(
+        "/auth/facebook",
+        data: {
+          "access_token": token,
+        },
+      );
+
+      var loginResponse = AuthResponse.fromJson(dioRes.data);
+
+      prefs.setString(
+          SharedPreferencesConstants.authResponse, jsonEncode(loginResponse));
+
+      _logger.i("""
+          Login successfully. Save login response to shared preferences. 
+          Key: ${SharedPreferencesConstants.authResponse}. 
+          Value: 
+          ${loginResponse.toJson().beautifyJson()}
+          """);
+
+      return loginResponse;
+    } on DioError catch (e) {
+      _logger.e("Login failed. ${e.message}");
+
+      rethrow;
+    }
+  }
 }

@@ -17,8 +17,8 @@ mixin _$SystemStore on _SystemStore, Store {
               name: '_SystemStore.currentTheme'))
           .value;
 
-  final _$systemSettingFutureAtom =
-      Atom(name: '_SystemStore.systemSettingFuture');
+  late final _$systemSettingFutureAtom =
+      Atom(name: '_SystemStore.systemSettingFuture', context: context);
 
   @override
   ObservableFuture<SystemSetting>? get systemSettingFuture {
@@ -33,8 +33,8 @@ mixin _$SystemStore on _SystemStore, Store {
     });
   }
 
-  final _$getSystemSettingAsyncAsyncAction =
-      AsyncAction('_SystemStore.getSystemSettingAsync');
+  late final _$getSystemSettingAsyncAsyncAction =
+      AsyncAction('_SystemStore.getSystemSettingAsync', context: context);
 
   @override
   Future<dynamic> getSystemSettingAsync() {
@@ -42,8 +42,8 @@ mixin _$SystemStore on _SystemStore, Store {
         .run(() => super.getSystemSettingAsync());
   }
 
-  final _$setLanguageAsyncAsyncAction =
-      AsyncAction('_SystemStore.setLanguageAsync');
+  late final _$setLanguageAsyncAsyncAction =
+      AsyncAction('_SystemStore.setLanguageAsync', context: context);
 
   @override
   Future<dynamic> setLanguageAsync(String language) {
@@ -51,7 +51,8 @@ mixin _$SystemStore on _SystemStore, Store {
         .run(() => super.setLanguageAsync(language));
   }
 
-  final _$setThemeAsyncAsyncAction = AsyncAction('_SystemStore.setThemeAsync');
+  late final _$setThemeAsyncAsyncAction =
+      AsyncAction('_SystemStore.setThemeAsync', context: context);
 
   @override
   Future<dynamic> setThemeAsync(String theme) {

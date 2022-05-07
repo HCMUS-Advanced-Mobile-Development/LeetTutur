@@ -35,6 +35,10 @@ abstract class _AuthStore with Store {
       authResponse = ObservableFuture(_authService.loginWithGoogleAsync(token));
 
   @action
+  Future<AuthResponse> loginWithFacebookAsync(String token) async =>
+      authResponse = ObservableFuture(_authService.loginWithFacebookAsync(token));
+
+  @action
   Future retrieveLocalLoginResponseAsync() async => authResponse =
       ObservableFuture(_authService.retrieveLocalLoginResponseAsync());
 

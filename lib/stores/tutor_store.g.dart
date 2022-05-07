@@ -24,8 +24,8 @@ mixin _$TutorStore on _TutorStore, Store {
               name: '_TutorStore.favoriteTutorList'))
       .value;
 
-  final _$tutorResponseFutureAtom =
-      Atom(name: '_TutorStore.tutorResponseFuture');
+  late final _$tutorResponseFutureAtom =
+      Atom(name: '_TutorStore.tutorResponseFuture', context: context);
 
   @override
   ObservableFuture<TutorResponse>? get tutorResponseFuture {
@@ -40,7 +40,8 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$selectedTutorIdAtom = Atom(name: '_TutorStore.selectedTutorId');
+  late final _$selectedTutorIdAtom =
+      Atom(name: '_TutorStore.selectedTutorId', context: context);
 
   @override
   String get selectedTutorId {
@@ -55,7 +56,8 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$tutorDetailFutureAtom = Atom(name: '_TutorStore.tutorDetailFuture');
+  late final _$tutorDetailFutureAtom =
+      Atom(name: '_TutorStore.tutorDetailFuture', context: context);
 
   @override
   ObservableFuture<Tutor>? get tutorDetailFuture {
@@ -70,7 +72,8 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$tutorSpecialtyMapAtom = Atom(name: '_TutorStore.tutorSpecialtyMap');
+  late final _$tutorSpecialtyMapAtom =
+      Atom(name: '_TutorStore.tutorSpecialtyMap', context: context);
 
   @override
   ObservableMap<String, String> get tutorSpecialtyMap {
@@ -85,8 +88,8 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$tutorCountryCodeMapAtom =
-      Atom(name: '_TutorStore.tutorCountryCodeMap');
+  late final _$tutorCountryCodeMapAtom =
+      Atom(name: '_TutorStore.tutorCountryCodeMap', context: context);
 
   @override
   ObservableMap<String, String> get tutorCountryCodeMap {
@@ -101,7 +104,8 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$selectedSpecialtyAtom = Atom(name: '_TutorStore.selectedSpecialty');
+  late final _$selectedSpecialtyAtom =
+      Atom(name: '_TutorStore.selectedSpecialty', context: context);
 
   @override
   String get selectedSpecialty {
@@ -116,8 +120,8 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$searchTutorsAsyncAsyncAction =
-      AsyncAction('_TutorStore.searchTutorsAsync');
+  late final _$searchTutorsAsyncAsyncAction =
+      AsyncAction('_TutorStore.searchTutorsAsync', context: context);
 
   @override
   Future<TutorResponse> searchTutorsAsync({TutorRequest? request}) {
@@ -125,15 +129,16 @@ mixin _$TutorStore on _TutorStore, Store {
         .run(() => super.searchTutorsAsync(request: request));
   }
 
-  final _$getTutorDetailAsyncAction = AsyncAction('_TutorStore.getTutorDetail');
+  late final _$getTutorDetailAsyncAction =
+      AsyncAction('_TutorStore.getTutorDetail', context: context);
 
   @override
   Future<dynamic> getTutorDetail({String id = "0"}) {
     return _$getTutorDetailAsyncAction.run(() => super.getTutorDetail(id: id));
   }
 
-  final _$getTutorSpecialtiesAsyncAsyncAction =
-      AsyncAction('_TutorStore.getTutorSpecialtiesAsync');
+  late final _$getTutorSpecialtiesAsyncAsyncAction =
+      AsyncAction('_TutorStore.getTutorSpecialtiesAsync', context: context);
 
   @override
   Future<dynamic> getTutorSpecialtiesAsync() {
@@ -141,8 +146,8 @@ mixin _$TutorStore on _TutorStore, Store {
         .run(() => super.getTutorSpecialtiesAsync());
   }
 
-  final _$getTutorCountryAsyncAsyncAction =
-      AsyncAction('_TutorStore.getTutorCountryAsync');
+  late final _$getTutorCountryAsyncAsyncAction =
+      AsyncAction('_TutorStore.getTutorCountryAsync', context: context);
 
   @override
   Future<Map<String, String>> getTutorCountryAsync() {
@@ -150,7 +155,8 @@ mixin _$TutorStore on _TutorStore, Store {
         .run(() => super.getTutorCountryAsync());
   }
 
-  final _$_TutorStoreActionController = ActionController(name: '_TutorStore');
+  late final _$_TutorStoreActionController =
+      ActionController(name: '_TutorStore', context: context);
 
   @override
   void unSelectTutor() {

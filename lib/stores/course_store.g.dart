@@ -38,7 +38,8 @@ mixin _$CourseStore on _CourseStore, Store {
               name: '_CourseStore.categoryMap'))
       .value;
 
-  final _$nameQueryAtom = Atom(name: '_CourseStore.nameQuery');
+  late final _$nameQueryAtom =
+      Atom(name: '_CourseStore.nameQuery', context: context);
 
   @override
   String get nameQuery {
@@ -53,7 +54,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$levelQueryAtom = Atom(name: '_CourseStore.levelQuery');
+  late final _$levelQueryAtom =
+      Atom(name: '_CourseStore.levelQuery', context: context);
 
   @override
   ObservableSet<String> get levelQuery {
@@ -68,7 +70,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$categoryQueryAtom = Atom(name: '_CourseStore.categoryQuery');
+  late final _$categoryQueryAtom =
+      Atom(name: '_CourseStore.categoryQuery', context: context);
 
   @override
   ObservableSet<String> get categoryQuery {
@@ -83,7 +86,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$orderByLevelAtom = Atom(name: '_CourseStore.orderByLevel');
+  late final _$orderByLevelAtom =
+      Atom(name: '_CourseStore.orderByLevel', context: context);
 
   @override
   String get orderByLevel {
@@ -98,8 +102,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$courseResponseCategoryFutureAtom =
-      Atom(name: '_CourseStore.courseResponseCategoryFuture');
+  late final _$courseResponseCategoryFutureAtom =
+      Atom(name: '_CourseStore.courseResponseCategoryFuture', context: context);
 
   @override
   ObservableFuture<CourseCategoryResponse>? get courseResponseCategoryFuture {
@@ -116,7 +120,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$selectedCourseAtom = Atom(name: '_CourseStore.selectedCourse');
+  late final _$selectedCourseAtom =
+      Atom(name: '_CourseStore.selectedCourse', context: context);
 
   @override
   Course? get selectedCourse {
@@ -131,7 +136,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$selectedTopicAtom = Atom(name: '_CourseStore.selectedTopic');
+  late final _$selectedTopicAtom =
+      Atom(name: '_CourseStore.selectedTopic', context: context);
 
   @override
   Topic? get selectedTopic {
@@ -146,8 +152,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$courseResponseFutureAtom =
-      Atom(name: '_CourseStore.courseResponseFuture');
+  late final _$courseResponseFutureAtom =
+      Atom(name: '_CourseStore.courseResponseFuture', context: context);
 
   @override
   ObservableFuture<CourseResponse>? get courseResponseFuture {
@@ -163,8 +169,8 @@ mixin _$CourseStore on _CourseStore, Store {
     });
   }
 
-  final _$getCoursesAsyncAsyncAction =
-      AsyncAction('_CourseStore.getCoursesAsync');
+  late final _$getCoursesAsyncAsyncAction =
+      AsyncAction('_CourseStore.getCoursesAsync', context: context);
 
   @override
   Future<CourseResponse> getCoursesAsync({BaseRequest? request}) {
@@ -172,8 +178,8 @@ mixin _$CourseStore on _CourseStore, Store {
         .run(() => super.getCoursesAsync(request: request));
   }
 
-  final _$getCourseCategoriesAsyncAsyncAction =
-      AsyncAction('_CourseStore.getCourseCategoriesAsync');
+  late final _$getCourseCategoriesAsyncAsyncAction =
+      AsyncAction('_CourseStore.getCourseCategoriesAsync', context: context);
 
   @override
   Future<CourseCategoryResponse> getCourseCategoriesAsync() {

@@ -2,6 +2,7 @@ import 'package:async/async.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
@@ -27,6 +28,7 @@ class _LoginState extends State<Login> {
   final _authStore = GetIt.instance.get<AuthStore>();
   final _logger = GetIt.instance.get<Logger>();
   final _googleSignIn = GetIt.instance.get<GoogleSignIn>();
+  final _facebookAuth = GetIt.instance.get<FacebookAuth>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -35,6 +37,7 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     _googleSignIn.signOut();
+    _facebookAuth.logOut();
 
     _authStore.retrieveLocalLoginResponseAsync().then((value) {
       if (_authStore.authResponse?.value?.tokens != null) {
@@ -271,5 +274,20 @@ class _LoginState extends State<Login> {
     }
   }
 
-  _handleLoginWithFacebook() {}
+  _handleLoginWithFacebook() async {
+    try {
+      final result = await _facebookAuth.login();
+      if (result.status == LoginStatus.success) {
+        final accessToken = result.accessToken!;
+        await _authStore.loginWithFacebookAsync(accessToken.token);
+
+        Navigator.pushNamed(context, RouteConstants.homeTabs);
+      } else {
+        _logger.e(result.status);
+        _logger.e(result.message);
+      }
+    } catch (e) {
+      _logger.e(e);
+    }
+  }
 }

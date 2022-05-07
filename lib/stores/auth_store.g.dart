@@ -9,7 +9,7 @@ part of 'auth_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AuthStore on _AuthStore, Store {
-  final _$emailAtom = Atom(name: '_AuthStore.email');
+  late final _$emailAtom = Atom(name: '_AuthStore.email', context: context);
 
   @override
   String get email {
@@ -24,7 +24,8 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$oldPasswordAtom = Atom(name: '_AuthStore.oldPassword');
+  late final _$oldPasswordAtom =
+      Atom(name: '_AuthStore.oldPassword', context: context);
 
   @override
   String get oldPassword {
@@ -39,7 +40,8 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$passwordAtom = Atom(name: '_AuthStore.password');
+  late final _$passwordAtom =
+      Atom(name: '_AuthStore.password', context: context);
 
   @override
   String get password {
@@ -54,7 +56,8 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$confirmPasswordAtom = Atom(name: '_AuthStore.confirmPassword');
+  late final _$confirmPasswordAtom =
+      Atom(name: '_AuthStore.confirmPassword', context: context);
 
   @override
   String get confirmPassword {
@@ -69,7 +72,8 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$authResponseAtom = Atom(name: '_AuthStore.authResponse');
+  late final _$authResponseAtom =
+      Atom(name: '_AuthStore.authResponse', context: context);
 
   @override
   ObservableFuture<AuthResponse>? get authResponse {
@@ -84,15 +88,35 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  final _$loginAsyncAsyncAction = AsyncAction('_AuthStore.loginAsync');
+  late final _$loginAsyncAsyncAction =
+      AsyncAction('_AuthStore.loginAsync', context: context);
 
   @override
   Future<dynamic> loginAsync(String email, String password) {
     return _$loginAsyncAsyncAction.run(() => super.loginAsync(email, password));
   }
 
-  final _$retrieveLocalLoginResponseAsyncAsyncAction =
-      AsyncAction('_AuthStore.retrieveLocalLoginResponseAsync');
+  late final _$loginWithGoogleAsyncAsyncAction =
+      AsyncAction('_AuthStore.loginWithGoogleAsync', context: context);
+
+  @override
+  Future<AuthResponse> loginWithGoogleAsync(String token) {
+    return _$loginWithGoogleAsyncAsyncAction
+        .run(() => super.loginWithGoogleAsync(token));
+  }
+
+  late final _$loginWithFacebookAsyncAsyncAction =
+      AsyncAction('_AuthStore.loginWithFacebookAsync', context: context);
+
+  @override
+  Future<AuthResponse> loginWithFacebookAsync(String token) {
+    return _$loginWithFacebookAsyncAsyncAction
+        .run(() => super.loginWithFacebookAsync(token));
+  }
+
+  late final _$retrieveLocalLoginResponseAsyncAsyncAction = AsyncAction(
+      '_AuthStore.retrieveLocalLoginResponseAsync',
+      context: context);
 
   @override
   Future<dynamic> retrieveLocalLoginResponseAsync() {
@@ -100,7 +124,8 @@ mixin _$AuthStore on _AuthStore, Store {
         .run(() => super.retrieveLocalLoginResponseAsync());
   }
 
-  final _$registerAsyncAsyncAction = AsyncAction('_AuthStore.registerAsync');
+  late final _$registerAsyncAsyncAction =
+      AsyncAction('_AuthStore.registerAsync', context: context);
 
   @override
   Future<dynamic> registerAsync(String email, String password) {
@@ -108,8 +133,8 @@ mixin _$AuthStore on _AuthStore, Store {
         .run(() => super.registerAsync(email, password));
   }
 
-  final _$forgotPasswordAsyncAsyncAction =
-      AsyncAction('_AuthStore.forgotPasswordAsync');
+  late final _$forgotPasswordAsyncAsyncAction =
+      AsyncAction('_AuthStore.forgotPasswordAsync', context: context);
 
   @override
   Future<dynamic> forgotPasswordAsync(String email) {
@@ -117,8 +142,8 @@ mixin _$AuthStore on _AuthStore, Store {
         .run(() => super.forgotPasswordAsync(email));
   }
 
-  final _$refreshTokenAsyncAsyncAction =
-      AsyncAction('_AuthStore.refreshTokenAsync');
+  late final _$refreshTokenAsyncAsyncAction =
+      AsyncAction('_AuthStore.refreshTokenAsync', context: context);
 
   @override
   Future<dynamic> refreshTokenAsync() {

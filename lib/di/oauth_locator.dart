@@ -1,3 +1,4 @@
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -12,5 +13,7 @@ class OauthLocator {
         ],
       ),
     );
+
+    getIt.registerSingleton(FacebookAuth.instance);
   }
 }
