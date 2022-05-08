@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/booking_info.dart';
@@ -12,6 +13,7 @@ import 'package:logger/logger.dart';
 class ScheduleService {
   final _dio = GetIt.instance.get<Dio>();
   final _logger = GetIt.instance.get<Logger>();
+  final _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
 
   Future<ScheduleResponse> getScheduleByTutorIdAsync({String id = ""}) async {
     var res = await _dio.post("/schedule", data: {
@@ -92,6 +94,19 @@ class ScheduleService {
     var response = BookResponse.fromJson(dioRes.data);
 
     _logger.i(response.message);
+    _firebaseAnalytics.logPurchase(
+      transactionId: response.data?.first.id,
+      items: response.data
+          ?.map(
+            (e) => AnalyticsEventItem(
+              itemId: e.scheduleDetailId,
+              itemName: "Booked Class",
+              currency: "USD",
+              price: 1,
+            ),
+          )
+          .toList(),
+    );
 
     return response;
   }
@@ -105,5 +120,10 @@ class ScheduleService {
     );
 
     _logger.i(dioRes.data["message"]);
+    scheduleDetailIds?.forEach((element) {
+      _firebaseAnalytics.logRefund(
+        transactionId: element,
+      );
+    });
   }
 }
