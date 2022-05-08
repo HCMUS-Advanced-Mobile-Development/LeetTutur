@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyLevel": MessageLookupByLibrary.simpleMessage("Any Level"),
         "areYouSureWantToCancelClass": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to cancel class?"),
+        "becomeTutor": MessageLookupByLibrary.simpleMessage("Become Tutor"),
         "beginners": MessageLookupByLibrary.simpleMessage("Beginners"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),

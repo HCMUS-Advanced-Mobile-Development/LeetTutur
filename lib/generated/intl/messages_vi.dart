@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyLevel": MessageLookupByLibrary.simpleMessage("Tay mơ"),
         "areYouSureWantToCancelClass": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn hủy lớp học không?"),
+        "becomeTutor": MessageLookupByLibrary.simpleMessage("Trở thành gia sư"),
         "beginners": MessageLookupByLibrary.simpleMessage("Hạ tân thủ"),
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy bỏ"),

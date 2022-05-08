@@ -25,68 +25,86 @@ class _SettingsPageState extends State<SettingsPage> {
     const iconSize = 45.0;
     final buttonSize = MediaQuery.of(context).size.width * 0.4;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 15,
-      ),
-      child: Align(
-        alignment: AlignmentDirectional.topCenter,
-        child: Wrap(
-          alignment: WrapAlignment.start,
-          children: [
-            SquareButton(
-              size: buttonSize,
-              icon: const Icon(
-                Icons.account_circle,
-                size: iconSize,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 15,
+        ),
+        child: Align(
+          alignment: AlignmentDirectional.topCenter,
+          child: Wrap(
+            alignment: WrapAlignment.start,
+            children: [
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.account_circle,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.profile.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handlePressProfile,
               ),
-              text: Text(
-                S.current.profile.titleCase,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline6,
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.pattern,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.changePassword.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handleChangePassword,
               ),
-              onTap: _handlePressProfile,
-            ),
-            SquareButton(
-              size: buttonSize,
-              icon: const Icon(
-                Icons.pattern,
-                size: iconSize,
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.app_registration,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.becomeTutor.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline6,
+                ),
+                onTap: _handleBecomeTutor,
               ),
-              text: Text(
-                S.current.changePassword.titleCase,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline6,
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.phone_iphone,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.system.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handlePressSystemSettings,
               ),
-              onTap: _handleChangePassword,
-            ),
-            SquareButton(
-              size: buttonSize,
-              icon: const Icon(
-                Icons.phone_iphone,
-                size: iconSize,
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.logout,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.logOut.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handleLogOut,
               ),
-              text: Text(
-                S.current.system.titleCase,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              onTap: _handlePressSystemSettings,
-            ),
-            SquareButton(
-              size: buttonSize,
-              icon: const Icon(
-                Icons.logout,
-                size: iconSize,
-              ),
-              text: Text(
-                S.current.logOut.titleCase,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              onTap: _handleLogOut,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -116,5 +134,9 @@ class _SettingsPageState extends State<SettingsPage> {
     } finally {
       Navigator.pop(context);
     }
+  }
+
+  void _handleBecomeTutor() {
+    throw UnimplementedError("We don't do that here!");
   }
 }

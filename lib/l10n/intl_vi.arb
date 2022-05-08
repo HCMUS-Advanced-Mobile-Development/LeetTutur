@@ -86,5 +86,6 @@
 	"newPassword": "Mật khẩu mới",
 	"submit": "Gửi",
 	"changePasswordSuccessfully": "Thay đổi mật khẩu thành công",
-	"logOut": "Đăng xuất"
+	"logOut": "Đăng xuất",
+	"becomeTutor": "Trở thành gia sư"
 }

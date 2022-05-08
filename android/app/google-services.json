@@ -37,6 +37,13 @@
             {
               "client_id": "426115119499-1ttbntin0v4qajk4ig1gimvvnu7sacu1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "426115119499-medo8vkjd90eaqjevcl1cmgp9a77hdvi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hcmus.leetTutur"
+              }
             }
           ]
         }

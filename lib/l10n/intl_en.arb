@@ -86,5 +86,6 @@
 	"newPassword": "New Password",
 	"submit": "Submit",
 	"changePasswordSuccessfully": "Change password successfully",
-	"logOut": "Log Out"
+	"logOut": "Log Out",
+	"becomeTutor": "Become Tutor"
 }
