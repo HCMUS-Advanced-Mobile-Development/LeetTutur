@@ -1,12 +1,6 @@
 # ci.yml
 name: CI-CD
-
-on:
-  push:
-    branches:
-      - “api-intergration”
-      - "main"
-
+on: push
 jobs:
   # CI
   build_android:
