@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/favorite_tutor.dart';
+import 'package:leet_tutur/models/requests/report_request.dart';
 import 'package:leet_tutur/models/requests/tutor_request.dart';
+import 'package:leet_tutur/models/responses/report_response.dart';
 import 'package:leet_tutur/models/responses/tutor_response.dart';
 import 'package:leet_tutur/models/row_of_tutor.dart';
 import 'package:leet_tutur/models/tutor.dart';
@@ -113,6 +115,20 @@ class TutorService {
       return tutor;
     } on DioError catch (e) {
       _logger.e("Can't get tutor detail. ${e.message}");
+      rethrow;
+    }
+  }
+
+  Future<ReportResponse> reportTutorAsync(ReportRequest request) async {
+    try {
+      var dioRes = await _dio.post("/report", data: request.toJson());
+      var response = ReportResponse.fromJson(dioRes.data);
+
+      _logger.i("${response.message}");
+
+      return response;
+    } on DioError catch (e) {
+      _logger.e(e);
       rethrow;
     }
   }

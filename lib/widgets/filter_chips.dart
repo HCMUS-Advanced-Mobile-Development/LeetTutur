@@ -37,7 +37,10 @@ class _FilterChipsState extends State<FilterChips> {
         return Padding(
           padding: const EdgeInsets.all(2.0),
           child: FilterChip(
-            label: Text(entry.value),
+            label: Text(
+              entry.value,
+              softWrap: true,
+            ),
             selectedColor: Theme.of(context).primaryColor,
             selected: _selectedItems.contains(entry.key),
             onSelected: (isSelected) {

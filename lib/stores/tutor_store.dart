@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/favorite_tutor.dart';
+import 'package:leet_tutur/models/requests/report_request.dart';
+import 'package:leet_tutur/models/responses/report_response.dart';
 import 'package:leet_tutur/models/row_of_tutor.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/models/requests/tutor_request.dart';
@@ -79,4 +81,7 @@ abstract class _TutorStore with Store {
   Future<Map<String, String>> getTutorCountryAsync() async =>
       tutorCountryCodeMap =
           ObservableMap.of(await _tutorService.getTutorCountryAsync());
+
+  Future<ReportResponse> reportTutorAsync(ReportRequest request) async =>
+      await _tutorService.reportTutorAsync(request);
 }

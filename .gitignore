@@ -73,8 +73,6 @@ build/
 .flutter-plugins-dependencies
 ios/Flutter/flutter_export_environment.sh
 
-*.env
-
 key.jks
 key.properties
 service-account-key.json

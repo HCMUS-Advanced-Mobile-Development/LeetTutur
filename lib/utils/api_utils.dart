@@ -14,7 +14,6 @@ class ApiUtils {
       ..options.baseUrl = ApiConstants.baseURL
       ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
       ..interceptors.add(PrettyDioLogger(
-        requestHeader: true,
         requestBody: true,
         responseBody: false,
         error: true,

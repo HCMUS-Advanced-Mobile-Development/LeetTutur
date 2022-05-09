@@ -7,8 +7,10 @@ import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/feedback_list.dart';
+import 'package:leet_tutur/ui/tutor_detail/widgets/report_dialog.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/schedule_list.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/tutor_video.dart';
+import 'package:leet_tutur/widgets/filter_chips.dart';
 import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
 
@@ -129,7 +131,7 @@ class _TutorDetailState extends State<TutorDetail>
         children: <Widget>[
           IconButton(
             icon: const Icon(Icons.chat),
-            onPressed: () {},
+            onPressed: _handleChat,
           ),
           Text(S.current.chat)
         ],
@@ -141,7 +143,7 @@ class _TutorDetailState extends State<TutorDetail>
             icon: _tutor.isFavorite ?? false
                 ? const Icon(Icons.favorite, color: Colors.red, size: 30)
                 : const Icon(Icons.favorite_border, size: 30),
-            onPressed: handleFavorite,
+            onPressed: _handleFavorite,
           ),
           Text(S.current.favorite)
         ],
@@ -151,7 +153,7 @@ class _TutorDetailState extends State<TutorDetail>
         children: <Widget>[
           IconButton(
             icon: const Icon(Icons.report),
-            onPressed: () {},
+            onPressed: _handleReport,
           ),
           Text(S.current.report)
         ],
@@ -265,7 +267,7 @@ class _TutorDetailState extends State<TutorDetail>
     );
   }
 
-  void handleFavorite() {
+  void _handleFavorite() {
     setState(() {
       _tutor.isFavorite =
           _tutor.isFavorite != null ? !_tutor.isFavorite! : false;
@@ -279,5 +281,18 @@ class _TutorDetailState extends State<TutorDetail>
       _selectedIndex = value;
       _tabController.animateTo(value);
     });
+  }
+
+  void _handleChat() {}
+
+  _handleReport() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return ReportDialog(
+            context: context,
+            tutor: _tutor,
+          );
+        });
   }
 }
