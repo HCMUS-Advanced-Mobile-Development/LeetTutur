@@ -3,6 +3,7 @@ import 'package:leet_tutur/ui/auth/forgot_password.dart';
 import 'package:leet_tutur/ui/auth/login.dart';
 import 'package:leet_tutur/ui/auth/register.dart';
 import 'package:leet_tutur/ui/change_password/change_password.dart';
+import 'package:leet_tutur/ui/chat_room/chat_room.dart';
 import 'package:leet_tutur/ui/course_detail/course_detail.dart';
 import 'package:leet_tutur/ui/home_tabs/home_tabs.dart';
 import 'package:leet_tutur/ui/learn_history/learn_history.dart';
@@ -14,18 +15,19 @@ import 'package:leet_tutur/ui/tutor_detail/tutor_detail.dart';
 
 
 class RouteConstants {
-  static const login = "login";
-  static const register = "register";
-  static const forgotPassword = "forgot password";
-  static const homeTabs = "home tabs";
-  static const tutorDetail = "tutor detail";
-  static const learnHistory = "learn history";
-  static const courseDetail = "Course detail";
-  static const profile = "Profile";
-  static const systemSettings = "System Settings";
-  static const studyRoom = "Study Room";
-  static const pdfViewer = "PDF Viewer";
-  static const changePassword = "changePassword";
+  static const login = "LOGIN";
+  static const register = "REGISTER";
+  static const forgotPassword = "FORGOT PASSWORD";
+  static const homeTabs = "HOME TABS";
+  static const tutorDetail = "TUTOR DETAIL";
+  static const learnHistory = "LEARN HISTORY";
+  static const courseDetail = "COURSE DETAIL";
+  static const profile = "PROFILE";
+  static const systemSettings = "SYSTEM SETTINGS";
+  static const studyRoom = "STUDY ROOM";
+  static const pdfViewer = "PDF VIEWER";
+  static const changePassword = "CHANGE PASSWORD";
+  static const chatRoom = "CHAT ROOM";
 
   static final routesMap = <String, WidgetBuilder>{
     login: (BuildContext context) => const Login(),
@@ -40,5 +42,6 @@ class RouteConstants {
     studyRoom: (BuildContext context) => const StudyRoom(),
     pdfViewer: (BuildContext context) => const PdfViewer(),
     changePassword: (BuildContext context) => const ChangePassword(),
+    chatRoom: (BuildContext context) => const ChatRoom(),
   };
 }

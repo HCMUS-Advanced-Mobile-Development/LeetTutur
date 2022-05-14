@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/models/chat_message.dart';
 import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/stores/ws_store.dart';
@@ -33,9 +34,9 @@ class _ChatHallState extends State<ChatHall> {
               return const SizedBox(height: 2);
             },
             itemBuilder: (context, index) {
-              return InkWell(
-                onTap: _handleGoToChatRoom,
-                child: ChatUser(chatMessage: _wsStore.chatList[index]),
+              return ChatUser(
+                chatMessage: _wsStore.chatList[index],
+                onTap: () => _handleGoToChatRoom(_wsStore.chatList[index].partner!),
               );
             },
             itemCount: _wsStore.chatList.length,
@@ -45,6 +46,8 @@ class _ChatHallState extends State<ChatHall> {
     );
   }
 
-  void _handleGoToChatRoom() {
+  void _handleGoToChatRoom(User partner) {
+    _wsStore.chatPartner = partner;
+    Navigator.pushNamed(context, RouteConstants.chatRoom);
   }
 }

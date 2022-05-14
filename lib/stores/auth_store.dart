@@ -27,6 +27,9 @@ abstract class _AuthStore with Store {
   @observable
   ObservableFuture<AuthResponse>? authResponseFuture;
 
+  @computed
+  User? get currentUser => authResponseFuture?.value?.user;
+
   @action
   Future<AuthResponse> loginAsync(String email, String password) async =>
       authResponseFuture =

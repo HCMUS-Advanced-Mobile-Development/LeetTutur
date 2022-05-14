@@ -24,6 +24,38 @@ mixin _$WsStore on _WsStore, Store {
     });
   }
 
+  late final _$chatPartnerAtom =
+      Atom(name: '_WsStore.chatPartner', context: context);
+
+  @override
+  User? get chatPartner {
+    _$chatPartnerAtom.reportRead();
+    return super.chatPartner;
+  }
+
+  @override
+  set chatPartner(User? value) {
+    _$chatPartnerAtom.reportWrite(value, super.chatPartner, () {
+      super.chatPartner = value;
+    });
+  }
+
+  late final _$chatMessagesAtom =
+      Atom(name: '_WsStore.chatMessages', context: context);
+
+  @override
+  ObservableList<ChatMessage> get chatMessages {
+    _$chatMessagesAtom.reportRead();
+    return super.chatMessages;
+  }
+
+  @override
+  set chatMessages(ObservableList<ChatMessage> value) {
+    _$chatMessagesAtom.reportWrite(value, super.chatMessages, () {
+      super.chatMessages = value;
+    });
+  }
+
   late final _$_WsStoreActionController =
       ActionController(name: '_WsStore', context: context);
 
@@ -39,9 +71,22 @@ mixin _$WsStore on _WsStore, Store {
   }
 
   @override
+  void retrieveChatMessages(User fromUser, User toUser) {
+    final _$actionInfo = _$_WsStoreActionController.startAction(
+        name: '_WsStore.retrieveChatMessages');
+    try {
+      return super.retrieveChatMessages(fromUser, toUser);
+    } finally {
+      _$_WsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-chatList: ${chatList}
+chatList: ${chatList},
+chatPartner: ${chatPartner},
+chatMessages: ${chatMessages}
     ''';
   }
 }

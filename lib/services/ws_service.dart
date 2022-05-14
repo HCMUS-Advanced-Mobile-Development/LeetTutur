@@ -29,17 +29,17 @@ class WsService implements Disposable {
     _socket.emit("connection:login", {
       "user": user.toJson(),
     });
-
-    // _socket.emit("chat:getRecentList");9
-    //
-    // _socket.emit("chat:getMessages", {
-    //   "fromId": "f569c202-7bbf-4620-af77-ecc1419a6b28",
-    //   "toId": "4d54d3d7-d2a9-42e5-97a2-5ed38af5789a",
-    // });
   }
 
   void retrieveChatList() {
     _socket.emit("chat:getRecentList");
+  }
+
+  void retrieveChatMessages(User fromUser, User toUser) {
+    _socket.emit("chat:getMessages", {
+      "fromId": fromUser.id,
+      "toId": toUser.id,
+    });
   }
 
   @override
