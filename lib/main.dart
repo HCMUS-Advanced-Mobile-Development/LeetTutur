@@ -14,10 +14,11 @@ import 'package:leet_tutur/di/misc_locator.dart';
 import 'package:leet_tutur/di/oauth_locator.dart';
 import 'package:leet_tutur/di/services_locator.dart';
 import 'package:leet_tutur/di/stores_locator.dart';
-import 'package:leet_tutur/firebase_options.dart';
 import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/my_app.dart';
+import 'package:leet_tutur/services/ws_service.dart';
 import 'package:leet_tutur/stores/system_store.dart';
-import 'package:leet_tutur/ui/auth/login.dart';
+import 'package:leet_tutur/utils/firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,9 +58,7 @@ Future main() async {
         scrollBehavior: _MyCustomScrollBehavior(),
         theme: systemStore.currentTheme,
         routes: RouteConstants.routesMap,
-        home: const SafeArea(
-          child: Login(),
-        ),
+        home: const MyApp(),
       );
     }),
   );

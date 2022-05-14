@@ -17,7 +17,10 @@ class _TutorPageState extends State<TutorPage> {
       children: const [
         SpecialtyList(),
         Expanded(
-          child: TutorList(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: TutorList(),
+          ),
         ),
       ],
     );

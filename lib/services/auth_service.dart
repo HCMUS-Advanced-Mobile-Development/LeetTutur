@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
 import 'package:leet_tutur/models/requests/change_password_request.dart';
 import 'package:leet_tutur/models/responses/auth_response.dart';
+import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +15,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthService {
   final _logger = GetIt.instance.get<Logger>();
   final _dio = GetIt.instance.get<Dio>();
-  final _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
+  FirebaseAnalytics? _firebaseAnalytics;
+
+  AuthService() {
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.android) {
+      _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
+    }
+  }
 
   Future<AuthResponse> loginAsync(String email, String password) async {
     try {
@@ -32,13 +41,25 @@ class AuthService {
           Value: 
           ${loginResponse.toJson().beautifyJson()}
           """);
-      _firebaseAnalytics.logLogin(
+      _firebaseAnalytics?.logLogin(
         loginMethod: "Normal",
       );
 
       return loginResponse;
     } on DioError catch (e) {
       _logger.e("Login failed. ${e.message}");
+
+      rethrow;
+    }
+  }
+
+  Future<User> getUserInfoAsync() async {
+    try {
+      var dioRes = await _dio.get("/user/info");
+
+      return User.fromJson(dioRes.data["user"]);
+    } on DioError catch (e) {
+      _logger.e("getUserInfoAsync failed. ${e.message}");
 
       rethrow;
     }
@@ -68,7 +89,7 @@ class AuthService {
           Register successfully.
           ${authRes.toJson().beautifyJson()}
           """);
-      _firebaseAnalytics.logSignUp(signUpMethod: "Normal");
+      _firebaseAnalytics?.logSignUp(signUpMethod: "Normal");
 
       return authRes;
     } on DioError catch (e) {
@@ -158,7 +179,7 @@ class AuthService {
           Value: 
           ${loginResponse.toJson().beautifyJson()}
           """);
-      _firebaseAnalytics.logLogin(
+      _firebaseAnalytics?.logLogin(
         loginMethod: "Google",
       );
 
@@ -195,7 +216,7 @@ class AuthService {
           Value: 
           ${loginResponse.toJson().beautifyJson()}
           """);
-      _firebaseAnalytics.logLogin(
+      _firebaseAnalytics?.logLogin(
         loginMethod: "Facebook",
       );
 

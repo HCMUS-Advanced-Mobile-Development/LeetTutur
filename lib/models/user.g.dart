@@ -48,6 +48,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
           ? null
           : PriceOfEachSession.fromJson(
               json['priceOfEachSession'] as Map<String, dynamic>),
+      isOnline: json['isOnline'] as bool?,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -75,4 +76,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'referralInfo': instance.referralInfo?.toJson(),
       'avgRating': instance.avgRating,
       'priceOfEachSession': instance.priceOfEachSession?.toJson(),
+      'isOnline': instance.isOnline,
     };

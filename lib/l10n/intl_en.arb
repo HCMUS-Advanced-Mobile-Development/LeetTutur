@@ -87,5 +87,8 @@
 	"submit": "Submit",
 	"changePasswordSuccessfully": "Change password successfully",
 	"logOut": "Log Out",
-	"becomeTutor": "Become Tutor"
+	"becomeTutor": "Become Tutor",
+	"minutesAgo": "minutes ago",
+	"hoursAgo": "hours ago",
+	"daysAgo": "days ago"
 }

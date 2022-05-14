@@ -13,7 +13,14 @@ import 'package:logger/logger.dart';
 class ScheduleService {
   final _dio = GetIt.instance.get<Dio>();
   final _logger = GetIt.instance.get<Logger>();
-  final _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
+  FirebaseAnalytics? _firebaseAnalytics;
+
+  ScheduleService() {
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.android) {
+      _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
+    }
+  }
 
   Future<ScheduleResponse> getScheduleByTutorIdAsync({String id = ""}) async {
     var res = await _dio.post("/schedule", data: {
@@ -94,7 +101,7 @@ class ScheduleService {
     var response = BookResponse.fromJson(dioRes.data);
 
     _logger.i(response.message);
-    _firebaseAnalytics.logPurchase(
+    _firebaseAnalytics?.logPurchase(
       transactionId: response.data?.first.id,
       items: response.data
           ?.map(
@@ -121,7 +128,7 @@ class ScheduleService {
 
     _logger.i(dioRes.data["message"]);
     scheduleDetailIds?.forEach((element) {
-      _firebaseAnalytics.logRefund(
+      _firebaseAnalytics?.logRefund(
         transactionId: element,
       );
     });

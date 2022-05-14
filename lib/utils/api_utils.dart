@@ -17,7 +17,6 @@ class ApiUtils {
         requestBody: true,
         responseBody: false,
         error: true,
-        maxWidth: 999,
         compact: true,
       ));
 

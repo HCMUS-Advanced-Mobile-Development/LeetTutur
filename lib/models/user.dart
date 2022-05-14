@@ -34,30 +34,33 @@ class User {
   ReferralInfo? referralInfo;
   double? avgRating;
   PriceOfEachSession? priceOfEachSession;
+  bool? isOnline;
 
-  User({this.id,
-    this.email,
-    this.name,
-    this.avatar,
-    this.country,
-    this.phone,
-    this.roles,
-    this.language,
-    this.birthday,
-    this.isActivated,
-    this.tutorInfo,
-    this.walletInfo,
-    this.feedbacks,
-    this.courses,
-    this.requireNote,
-    this.level,
-    this.learnTopics,
-    this.testPreparations,
-    this.isPhoneActivated,
-    this.timezone,
-    this.referralInfo,
-    this.avgRating,
-    this.priceOfEachSession});
+  User(
+      {this.id,
+      this.email,
+      this.name,
+      this.avatar,
+      this.country,
+      this.phone,
+      this.roles,
+      this.language,
+      this.birthday,
+      this.isActivated,
+      this.tutorInfo,
+      this.walletInfo,
+      this.feedbacks,
+      this.courses,
+      this.requireNote,
+      this.level,
+      this.learnTopics,
+      this.testPreparations,
+      this.isPhoneActivated,
+      this.timezone,
+      this.referralInfo,
+      this.avgRating,
+      this.priceOfEachSession,
+      this.isOnline});
 
   String getWantToLearn() {
     var topics = learnTopics?.map((e) => e.name).join(", ") ?? "";

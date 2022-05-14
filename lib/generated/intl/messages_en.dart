@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "courseDetail": MessageLookupByLibrary.simpleMessage("Course Details"),
         "courses": MessageLookupByLibrary.simpleMessage("Courses"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of birth"),
+        "daysAgo": MessageLookupByLibrary.simpleMessage("days ago"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
@@ -61,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "hours": MessageLookupByLibrary.simpleMessage("hours"),
+        "hoursAgo": MessageLookupByLibrary.simpleMessage("hours ago"),
         "intermediate": MessageLookupByLibrary.simpleMessage("Intermediate"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "1 on 1 online education platform"),
@@ -75,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
+        "minutesAgo": MessageLookupByLibrary.simpleMessage("minutes ago"),
         "nation": MessageLookupByLibrary.simpleMessage("Nation"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "no": MessageLookupByLibrary.simpleMessage("No"),

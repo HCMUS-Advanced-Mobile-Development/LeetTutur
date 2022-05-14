@@ -72,19 +72,19 @@ mixin _$AuthStore on _AuthStore, Store {
     });
   }
 
-  late final _$authResponseAtom =
-      Atom(name: '_AuthStore.authResponse', context: context);
+  late final _$authResponseFutureAtom =
+      Atom(name: '_AuthStore.authResponseFuture', context: context);
 
   @override
-  ObservableFuture<AuthResponse>? get authResponse {
-    _$authResponseAtom.reportRead();
-    return super.authResponse;
+  ObservableFuture<AuthResponse>? get authResponseFuture {
+    _$authResponseFutureAtom.reportRead();
+    return super.authResponseFuture;
   }
 
   @override
-  set authResponse(ObservableFuture<AuthResponse>? value) {
-    _$authResponseAtom.reportWrite(value, super.authResponse, () {
-      super.authResponse = value;
+  set authResponseFuture(ObservableFuture<AuthResponse>? value) {
+    _$authResponseFutureAtom.reportWrite(value, super.authResponseFuture, () {
+      super.authResponseFuture = value;
     });
   }
 
@@ -92,8 +92,16 @@ mixin _$AuthStore on _AuthStore, Store {
       AsyncAction('_AuthStore.loginAsync', context: context);
 
   @override
-  Future<dynamic> loginAsync(String email, String password) {
+  Future<AuthResponse> loginAsync(String email, String password) {
     return _$loginAsyncAsyncAction.run(() => super.loginAsync(email, password));
+  }
+
+  late final _$getUserInfoAsyncAsyncAction =
+      AsyncAction('_AuthStore.getUserInfoAsync', context: context);
+
+  @override
+  Future<User> getUserInfoAsync() {
+    return _$getUserInfoAsyncAsyncAction.run(() => super.getUserInfoAsync());
   }
 
   late final _$loginWithGoogleAsyncAsyncAction =
@@ -157,7 +165,7 @@ email: ${email},
 oldPassword: ${oldPassword},
 password: ${password},
 confirmPassword: ${confirmPassword},
-authResponse: ${authResponse}
+authResponseFuture: ${authResponseFuture}
     ''';
   }
 }

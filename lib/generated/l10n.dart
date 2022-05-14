@@ -939,6 +939,36 @@ class S {
       args: [],
     );
   }
+
+  /// `minutes ago`
+  String get minutesAgo {
+    return Intl.message(
+      'minutes ago',
+      name: 'minutesAgo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hours ago`
+  String get hoursAgo {
+    return Intl.message(
+      'hours ago',
+      name: 'hoursAgo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days ago`
+  String get daysAgo {
+    return Intl.message(
+      'days ago',
+      name: 'daysAgo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

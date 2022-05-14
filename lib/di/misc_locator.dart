@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/utils/api_utils.dart';
 import 'package:logger/logger.dart';
@@ -9,6 +10,10 @@ class MiscLocator {
 
     getIt.registerSingleton(Logger());
     getIt.registerSingleton(ApiUtils.constructDio());
-    getIt.registerSingleton(FirebaseAnalytics.instance);
+
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.android) {
+      getIt.registerSingleton(FirebaseAnalytics.instance);
+    }
   }
 }

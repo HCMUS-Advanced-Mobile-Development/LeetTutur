@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/requests/change_password_request.dart';
 import 'package:leet_tutur/models/responses/auth_response.dart';
+import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/services/auth_service.dart';
 import 'package:mobx/mobx.dart';
 
@@ -24,37 +25,48 @@ abstract class _AuthStore with Store {
   String confirmPassword = '';
 
   @observable
-  ObservableFuture<AuthResponse>? authResponse;
+  ObservableFuture<AuthResponse>? authResponseFuture;
 
   @action
-  Future loginAsync(String email, String password) async =>
-      authResponse = ObservableFuture(_authService.loginAsync(email, password));
+  Future<AuthResponse> loginAsync(String email, String password) async =>
+      authResponseFuture =
+          ObservableFuture(_authService.loginAsync(email, password));
+
+  @action
+  Future<User> getUserInfoAsync() async {
+    var user = await _authService.getUserInfoAsync();
+    authResponseFuture?.value?.user = user;
+    return user;
+  }
 
   @action
   Future<AuthResponse> loginWithGoogleAsync(String token) async =>
-      authResponse = ObservableFuture(_authService.loginWithGoogleAsync(token));
+      authResponseFuture =
+          ObservableFuture(_authService.loginWithGoogleAsync(token));
 
   @action
   Future<AuthResponse> loginWithFacebookAsync(String token) async =>
-      authResponse = ObservableFuture(_authService.loginWithFacebookAsync(token));
+      authResponseFuture =
+          ObservableFuture(_authService.loginWithFacebookAsync(token));
 
   @action
-  Future retrieveLocalLoginResponseAsync() async => authResponse =
+  Future retrieveLocalLoginResponseAsync() async => authResponseFuture =
       ObservableFuture(_authService.retrieveLocalLoginResponseAsync());
 
   @action
-  Future registerAsync(String email, String password) async => authResponse =
-      ObservableFuture(_authService.registerAsync(email, password));
+  Future registerAsync(String email, String password) async =>
+      authResponseFuture =
+          ObservableFuture(_authService.registerAsync(email, password));
 
   @action
   Future forgotPasswordAsync(String email) async {
-    authResponse = null;
+    authResponseFuture = null;
     await _authService.forgotPasswordAsync(email);
   }
 
   @action
   Future refreshTokenAsync() async =>
-      authResponse = ObservableFuture(_authService.refreshTokenAsync());
+      authResponseFuture = ObservableFuture(_authService.refreshTokenAsync());
 
   Future changePasswordAsync({ChangePasswordRequest? request}) async =>
       await _authService.changePasswordAsync(request: request);

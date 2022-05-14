@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/stores/auth_store.dart';
+import 'package:leet_tutur/stores/ws_store.dart';
 import 'package:leet_tutur/ui/auth/widgets/logo_intro.dart';
 import 'package:leet_tutur/widgets/text_input.dart';
 import 'package:leet_tutur/widgets/text_password_input.dart';
@@ -26,6 +27,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _authStore = GetIt.instance.get<AuthStore>();
+  final _wsStore = GetIt.instance.get<WsStore>();
   final _logger = GetIt.instance.get<Logger>();
   final _googleSignIn = GetIt.instance.get<GoogleSignIn>();
   final _facebookAuth = GetIt.instance.get<FacebookAuth>();
@@ -40,9 +42,14 @@ class _LoginState extends State<Login> {
     _facebookAuth.logOut();
 
     _authStore.retrieveLocalLoginResponseAsync().then((value) {
-      if (_authStore.authResponse?.value?.tokens != null) {
+      if (_authStore.authResponseFuture?.value?.tokens != null) {
         _logger.i("Detect tokens in local shared preferences. Auto login.");
         Navigator.pushNamed(context, RouteConstants.homeTabs);
+
+        var user = _authStore.authResponseFuture?.value?.user;
+        if (user != null) {
+          _wsStore.loginWebSocket(user);
+        }
       }
     }).onError((error, stackTrace) {
       _logger.e(
@@ -203,7 +210,11 @@ class _LoginState extends State<Login> {
         );
 
         cancelableOperation.then(
-          (_) {
+          (result) {
+            // Connect web socket
+            var user = result.user!;
+            _wsStore.loginWebSocket(user);
+
             // Dismiss dialog
             Navigator.of(context, rootNavigator: true).pop();
             // Go to home

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/generated/l10n.dart';
+import 'package:leet_tutur/services/ws_service.dart';
 import 'package:leet_tutur/ui/chat_page/chat_page.dart';
 import 'package:leet_tutur/ui/courses_page/courses_page.dart';
 import 'package:leet_tutur/ui/schedule_page/schedule_page.dart';

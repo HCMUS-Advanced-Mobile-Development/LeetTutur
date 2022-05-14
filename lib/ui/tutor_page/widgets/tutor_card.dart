@@ -113,6 +113,7 @@ class _TutorCardState extends State<TutorCard> {
                       _tutorStore.tutorCountryCodeMap[
                               _tutor.country?.toUpperCase()] ??
                           "",
+                      overflow: TextOverflow.ellipsis,
                     );
                   },
                 ),
@@ -120,12 +121,14 @@ class _TutorCardState extends State<TutorCard> {
             ),
           ],
         ),
-        Center(
-          child: IconButton(
-            icon: _isFavorite
-                ? const Icon(Icons.favorite, color: Colors.red, size: 30)
-                : const Icon(Icons.favorite_border, size: 30),
-            onPressed: handleFavorite,
+        Flexible(
+          child: Center(
+            child: IconButton(
+              icon: _isFavorite
+                  ? const Icon(Icons.favorite, color: Colors.red, size: 30)
+                  : const Icon(Icons.favorite_border, size: 30),
+              onPressed: handleFavorite,
+            ),
           ),
         )
       ],

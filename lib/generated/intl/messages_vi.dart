@@ -22,12 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "advance": MessageLookupByLibrary.simpleMessage("Cao Thủ"),
+        "advance": MessageLookupByLibrary.simpleMessage("Chân Tiên"),
         "anyLevel": MessageLookupByLibrary.simpleMessage("Tay mơ"),
         "areYouSureWantToCancelClass": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc chắn muốn hủy lớp học không?"),
         "becomeTutor": MessageLookupByLibrary.simpleMessage("Trở thành gia sư"),
-        "beginners": MessageLookupByLibrary.simpleMessage("Hạ tân thủ"),
+        "beginners": MessageLookupByLibrary.simpleMessage("Luyện Khí"),
         "book": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy bỏ"),
         "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chi tiết khóa học"),
         "courses": MessageLookupByLibrary.simpleMessage("Khóa học"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
+        "daysAgo": MessageLookupByLibrary.simpleMessage("ngày trước"),
         "done": MessageLookupByLibrary.simpleMessage("Xong"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Không có tài khoản?"),
@@ -60,7 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("Họ và tên"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "hours": MessageLookupByLibrary.simpleMessage("Giờ"),
-        "intermediate": MessageLookupByLibrary.simpleMessage("Trung"),
+        "hoursAgo": MessageLookupByLibrary.simpleMessage("giờ trước"),
+        "intermediate": MessageLookupByLibrary.simpleMessage("Nguyên Anh"),
         "intro":
             MessageLookupByLibrary.simpleMessage("Nền tảng học 1 1 trực tuyến"),
         "isBooked": MessageLookupByLibrary.simpleMessage("Đã đặt"),
@@ -74,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logOut": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "minutes": MessageLookupByLibrary.simpleMessage("Phút"),
+        "minutesAgo": MessageLookupByLibrary.simpleMessage("phút trước"),
         "nation": MessageLookupByLibrary.simpleMessage("Quốc gia"),
         "newPassword": MessageLookupByLibrary.simpleMessage("Mật khẩu mới"),
         "no": MessageLookupByLibrary.simpleMessage("Không"),
@@ -88,8 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Vui lòng nhập đúng định dạng email"),
         "pleaseEnterSomeValue":
             MessageLookupByLibrary.simpleMessage("Vui lòng nhập giá trị"),
-        "preAdvance": MessageLookupByLibrary.simpleMessage("Hạ Cao thủ"),
-        "preIntermediate": MessageLookupByLibrary.simpleMessage("Hạ"),
+        "preAdvance": MessageLookupByLibrary.simpleMessage("Độ Kiếp"),
+        "preIntermediate": MessageLookupByLibrary.simpleMessage("Kết Đan"),
         "processing": MessageLookupByLibrary.simpleMessage("Đang xử lý"),
         "profile": MessageLookupByLibrary.simpleMessage("Hồ sơ"),
         "register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
@@ -123,9 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tutorDetails": MessageLookupByLibrary.simpleMessage("Chi tiết gia sư"),
         "upcomingClasses":
             MessageLookupByLibrary.simpleMessage("Các lớp học sắp tới"),
-        "upperBeginners":
-            MessageLookupByLibrary.simpleMessage("Thượng tân thủ"),
-        "upperIntermediate": MessageLookupByLibrary.simpleMessage("Thượng"),
+        "upperBeginners": MessageLookupByLibrary.simpleMessage("Trúc Cơ"),
+        "upperIntermediate": MessageLookupByLibrary.simpleMessage("Hoá Thần"),
         "waitTime": MessageLookupByLibrary.simpleMessage("Thời gian chờ đợi"),
         "wantToLearn": MessageLookupByLibrary.simpleMessage("Muốn học"),
         "whatYouAchieve":

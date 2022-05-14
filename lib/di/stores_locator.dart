@@ -5,6 +5,7 @@ import 'package:leet_tutur/stores/schedule_store.dart';
 import 'package:leet_tutur/stores/system_store.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
 import 'package:leet_tutur/stores/user_store.dart';
+import 'package:leet_tutur/stores/ws_store.dart';
 
 class StoresLocator {
   static void setUp() {
@@ -16,5 +17,6 @@ class StoresLocator {
     getIt.registerSingleton(CourseStore());
     getIt.registerSingleton(UserStore());
     getIt.registerSingleton(SystemStore());
+    getIt.registerSingleton(WsStore());
   }
 }
