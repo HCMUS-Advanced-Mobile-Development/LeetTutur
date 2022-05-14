@@ -41,13 +41,16 @@ class _MessageListState extends State<MessageList> {
         });
 
         // If not delay, it not gonna scroll to bottom
-        Future.delayed(Duration.zero, () {
-          _controller.animateTo(
-            _controller.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
-        });
+        Future.delayed(
+          const Duration(milliseconds: 500),
+          () {
+            _controller.animateTo(
+              _controller.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+            );
+          },
+        );
       }),
     );
 
