@@ -53,7 +53,7 @@ abstract class _TutorStore with Store {
           ObservableFuture(_tutorService.searchTutorsAsync(request: request));
 
   @action
-  Future getTutorDetail({String id = "0"}) async => tutorDetailFuture =
+  Future<Tutor> getTutorDetail({String id = "0"}) async => tutorDetailFuture =
       ObservableFuture(_tutorService.getTutorDetail(id: id));
 
   @action

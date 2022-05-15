@@ -133,7 +133,7 @@ mixin _$TutorStore on _TutorStore, Store {
       AsyncAction('_TutorStore.getTutorDetail', context: context);
 
   @override
-  Future<dynamic> getTutorDetail({String id = "0"}) {
+  Future<Tutor> getTutorDetail({String id = "0"}) {
     return _$getTutorDetailAsyncAction.run(() => super.getTutorDetail(id: id));
   }
 

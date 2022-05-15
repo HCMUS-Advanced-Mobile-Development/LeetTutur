@@ -6,6 +6,7 @@ import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
+import 'package:leet_tutur/stores/ws_store.dart';
 
 class TutorCard extends StatefulWidget {
   final Tutor tutor;
@@ -18,6 +19,7 @@ class TutorCard extends StatefulWidget {
 
 class _TutorCardState extends State<TutorCard> {
   final _tutorStore = GetIt.instance.get<TutorStore>();
+  final _wsStore = GetIt.instance.get<WsStore>();
 
   late final Tutor _tutor;
   late bool _isFavorite;
@@ -67,7 +69,7 @@ class _TutorCardState extends State<TutorCard> {
     _tutorStore.addToFavoriteTutorAsync(_tutor.userId);
   }
 
-  Future navigateToDetail(TapDownDetails _) async {
+  Future _navigateToDetail(TapDownDetails _) async {
     _tutorStore.selectedTutorId = _tutor.userId ?? "";
 
     await Navigator.pushNamed(context, RouteConstants.tutorDetail);
@@ -97,7 +99,7 @@ class _TutorCardState extends State<TutorCard> {
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              onTapDown: navigateToDetail,
+              onTapDown: _navigateToDetail,
             ),
             renderStars(),
             Row(
@@ -177,7 +179,7 @@ class _TutorCardState extends State<TutorCard> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-          onPressed: handleBookTutor,
+          onPressed: _handleBookTutor,
           child: Text(
             S.current.book.toUpperCase(),
             style: const TextStyle(
@@ -186,7 +188,7 @@ class _TutorCardState extends State<TutorCard> {
           ),
         ),
         TextButton(
-          onPressed: handleChatTutor,
+          onPressed: _handleChatTutor,
           child: Text(
             S.current.chat.toUpperCase(),
             style: const TextStyle(
@@ -198,9 +200,13 @@ class _TutorCardState extends State<TutorCard> {
     );
   }
 
-  void handleBookTutor() {
-    navigateToDetail(TapDownDetails());
+  void _handleBookTutor() {
+    _navigateToDetail(TapDownDetails());
   }
 
-  void handleChatTutor() {}
+  void _handleChatTutor() async {
+    final tutor = await _tutorStore.getTutorDetail(id: _tutor.userId ?? "");
+    _wsStore.chatPartner = tutor.user;
+    Navigator.pushNamed(context, RouteConstants.chatRoom);
+  }
 }
