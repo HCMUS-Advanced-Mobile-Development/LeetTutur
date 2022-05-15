@@ -23,7 +23,7 @@ abstract class _WsStore with Store {
 
   @observable
   ObservableList<ChatMessage> chatMessages = ObservableList.of([]);
-  
+
   void loginWebSocket(User user) {
     _wsService.loginWebSocket(user);
   }
@@ -31,7 +31,7 @@ abstract class _WsStore with Store {
   @action
   void retrieveChatList() {
     _wsService.retrieveChatList();
-    
+
     _wsService.registerEventListener("chat:returnRecentList", (data) {
       final recentListResponse = ChatRecentList.fromJson(data);
       chatList = ObservableList.of(recentListResponse.recentList ?? []);
@@ -43,7 +43,7 @@ abstract class _WsStore with Store {
   @action
   void retrieveChatMessages(User fromUser, User toUser) {
     _wsService.retrieveChatMessages(fromUser, toUser);
-    
+
     _wsService.registerEventListener("chat:returnMessages", (data) {
       var msg = ChatReturnMessage.fromJson(data);
       chatMessages = ObservableList.of(msg.messages ?? []);
@@ -51,4 +51,7 @@ abstract class _WsStore with Store {
       _logger.i("chat:returnMessages ${chatMessages.length} items");
     });
   }
+
+  void sendChatMessage(ChatMessage message) =>
+      _wsService.sendChatMessage(message);
 }

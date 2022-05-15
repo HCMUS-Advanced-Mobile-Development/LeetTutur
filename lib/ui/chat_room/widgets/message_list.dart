@@ -32,27 +32,7 @@ class _MessageListState extends State<MessageList> {
     _wsStore.retrieveChatMessages(
         _authStore.currentUser!, _wsStore.chatPartner!);
 
-    when(
-      (_) => _wsStore.chatMessages.isNotEmpty,
-      () => setState(() {
-        _items.addAll(_wsStore.chatMessages);
-        _items.asMap().forEach((index, value) {
-          _listKey.currentState!.insertItem(index);
-        });
-
-        // If not delay, it not gonna scroll to bottom
-        Future.delayed(
-          const Duration(milliseconds: 500),
-          () {
-            _controller.animateTo(
-              _controller.position.maxScrollExtent,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeOut,
-            );
-          },
-        );
-      }),
-    );
+    _initListItems();
 
     super.initState();
   }
@@ -67,38 +47,87 @@ class _MessageListState extends State<MessageList> {
   Widget build(BuildContext context) {
     final me = _authStore.currentUser!;
 
-    return AnimatedList(
-      key: _listKey,
-      controller: _controller,
-      shrinkWrap: true,
-      initialItemCount: _items.length,
-      itemBuilder: (context, index, animation) {
-        final message = _items[index];
-        final isSender = me.id == message.fromInfo?.id;
+    return ReactionBuilder(
+      builder: (BuildContext context) {
+        return reaction((_) => _wsStore.chatMessages,
+            (List<ChatMessage> chatMessages) {
+          if (chatMessages.isEmpty || chatMessages.length == _items.length) {
+            return;
+          }
 
-        return ScaleTransition(
-          alignment: isSender ? Alignment.topRight : Alignment.topLeft,
-          scale: animation,
-          child: ChatBubble(
-            margin: const EdgeInsets.only(top: 10),
-            backGroundColor: isSender ? _senderBg : _receiverBg,
+          if (chatMessages.length > _items.length) {
+            final indexOfNewItem = _items.length;
+            for (var i = indexOfNewItem; i < chatMessages.length; i++) {
+              _items.add(chatMessages[i]);
+              _listKey.currentState!.insertItem(i);
+            }
+
+            _scrollToBottom();
+          }
+        });
+      },
+      child: AnimatedList(
+        key: _listKey,
+        controller: _controller,
+        shrinkWrap: true,
+        initialItemCount: _items.length,
+        itemBuilder: (context, index, animation) {
+          final message = _items[index];
+          final isSender = me.id == message.fromInfo?.id;
+
+          return ScaleTransition(
             alignment: isSender ? Alignment.topRight : Alignment.topLeft,
-            clipper: ChatBubbleClipper1(
-              type:
-                  isSender ? BubbleType.sendBubble : BubbleType.receiverBubble,
-            ),
-            child: Container(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.7,
+            scale: animation,
+            child: ChatBubble(
+              margin: const EdgeInsets.only(top: 10),
+              backGroundColor: isSender ? _senderBg : _receiverBg,
+              alignment: isSender ? Alignment.topRight : Alignment.topLeft,
+              clipper: ChatBubbleClipper1(
+                type: isSender
+                    ? BubbleType.sendBubble
+                    : BubbleType.receiverBubble,
               ),
-              child: Text(
-                message.content ?? "",
-                style: const TextStyle(
-                  color: Colors.white,
+              child: Container(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.7,
+                ),
+                child: Text(
+                  message.content ?? "",
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-          ),
+          );
+        },
+      ),
+    );
+  }
+
+  void _initListItems() {
+    when(
+      (_) => _wsStore.chatMessages.isNotEmpty,
+      () => setState(() {
+        _items.addAll(_wsStore.chatMessages);
+        _items.asMap().forEach((index, value) {
+          _listKey.currentState!.insertItem(index);
+        });
+
+        _scrollToBottom();
+      }),
+    );
+  }
+
+  void _scrollToBottom() {
+    // If not delay, it not gonna scroll to bottom
+    Future.delayed(
+      const Duration(milliseconds: 500),
+      () {
+        _controller.animateTo(
+          _controller.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
         );
       },
     );

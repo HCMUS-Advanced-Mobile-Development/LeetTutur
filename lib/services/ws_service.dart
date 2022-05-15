@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/api_constants.dart';
+import 'package:leet_tutur/models/chat_message.dart';
 import 'package:leet_tutur/models/user.dart';
 import 'package:logger/logger.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO; // ignore: library_prefixes
@@ -17,7 +18,6 @@ class WsService implements Disposable {
       OptionBuilder().setTransports(['websocket']).build(),
     );
 
-    _socket.onAny((event, data) => _logger.i("Received event: " + event));
     _socket.onError((data) => _logger.wtf(data));
   }
 
@@ -40,6 +40,10 @@ class WsService implements Disposable {
       "fromId": fromUser.id,
       "toId": toUser.id,
     });
+  }
+
+  void sendChatMessage(ChatMessage message) {
+    _socket.emit("chat:sendMessage", message.toJson());
   }
 
   @override
