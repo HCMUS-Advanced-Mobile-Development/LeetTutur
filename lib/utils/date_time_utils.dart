@@ -31,7 +31,7 @@ class DateTimeUtils {
     final diff = now.difference(date);
 
     if (diff.inDays <= 1) {
-      if (diff.inHours <= 1) {
+      if (diff.inMinutes < 60) {
         return "${diff.inMinutes} ${S.current.minutesAgo}";
       } else {
         return "${diff.inHours} ${S.current.hoursAgo}";

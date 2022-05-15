@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/models/chat_message.dart';
 import 'package:leet_tutur/stores/auth_store.dart';
 import 'package:leet_tutur/stores/ws_store.dart';
+import 'package:leet_tutur/utils/date_time_utils.dart';
 import 'package:mobx/mobx.dart';
 
 class MessageList extends StatefulWidget {
@@ -49,22 +50,10 @@ class _MessageListState extends State<MessageList> {
 
     return ReactionBuilder(
       builder: (BuildContext context) {
-        return reaction((_) => _wsStore.chatMessages,
-            (List<ChatMessage> chatMessages) {
-          if (chatMessages.isEmpty || chatMessages.length == _items.length) {
-            return;
-          }
-
-          if (chatMessages.length > _items.length) {
-            final indexOfNewItem = _items.length;
-            for (var i = indexOfNewItem; i < chatMessages.length; i++) {
-              _items.add(chatMessages[i]);
-              _listKey.currentState!.insertItem(i);
-            }
-
-            _scrollToBottom();
-          }
-        });
+        return reaction(
+          (_) => _wsStore.chatMessages,
+          _reactToNewMessage,
+        );
       },
       child: AnimatedList(
         key: _listKey,
@@ -78,31 +67,68 @@ class _MessageListState extends State<MessageList> {
           return ScaleTransition(
             alignment: isSender ? Alignment.topRight : Alignment.topLeft,
             scale: animation,
-            child: ChatBubble(
-              margin: const EdgeInsets.only(top: 10),
-              backGroundColor: isSender ? _senderBg : _receiverBg,
-              alignment: isSender ? Alignment.topRight : Alignment.topLeft,
-              clipper: ChatBubbleClipper1(
-                type: isSender
-                    ? BubbleType.sendBubble
-                    : BubbleType.receiverBubble,
-              ),
-              child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.7,
-                ),
-                child: Text(
-                  message.content ?? "",
-                  style: const TextStyle(
-                    color: Colors.white,
+            child: Column(
+              children: [
+                ChatBubble(
+                  margin: const EdgeInsets.only(top: 10),
+                  backGroundColor: isSender ? _senderBg : _receiverBg,
+                  alignment: isSender ? Alignment.topRight : Alignment.topLeft,
+                  clipper: ChatBubbleClipper1(
+                    type: isSender
+                        ? BubbleType.sendBubble
+                        : BubbleType.receiverBubble,
+                  ),
+                  child: Container(
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width * 0.7,
+                    ),
+                    child: Text(
+                      message.content ?? "",
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: isSender ? 3 : 1,
+                      child: const SizedBox.shrink(),
+                    ),
+                    Expanded(
+                      flex: isSender ? 1 : 16,
+                      child: Text(
+                        DateTimeUtils.humanize(
+                          DateTime.parse(message.createdAt ?? ""),
+                        ),
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           );
         },
       ),
     );
+  }
+
+  void _reactToNewMessage(List<ChatMessage> chatMessages) {
+    if (chatMessages.isEmpty || chatMessages.length == _items.length) {
+      return;
+    }
+
+    if (chatMessages.length > _items.length) {
+      final indexOfNewItem = _items.length;
+      for (var i = indexOfNewItem; i < chatMessages.length; i++) {
+        _items.add(chatMessages[i]);
+        _listKey.currentState!.insertItem(i);
+      }
+
+      _scrollToBottom();
+    }
   }
 
   void _initListItems() {
