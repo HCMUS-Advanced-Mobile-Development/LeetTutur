@@ -3,14 +3,15 @@ import 'package:flag/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
+import 'package:leet_tutur/stores/ws_store.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/feedback_list.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/report_dialog.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/schedule_list.dart';
 import 'package:leet_tutur/ui/tutor_detail/widgets/tutor_video.dart';
-import 'package:leet_tutur/widgets/filter_chips.dart';
 import 'package:mobx/mobx.dart';
 import 'package:recase/recase.dart';
 
@@ -24,6 +25,7 @@ class TutorDetail extends StatefulWidget {
 class _TutorDetailState extends State<TutorDetail>
     with SingleTickerProviderStateMixin {
   final _tutorStore = GetIt.instance.get<TutorStore>();
+  final _wsStore = GetIt.instance.get<WsStore>();
   Tutor _tutor = Tutor();
 
   late TabController _tabController;
@@ -283,7 +285,10 @@ class _TutorDetailState extends State<TutorDetail>
     });
   }
 
-  void _handleChat() {}
+  void _handleChat() {
+    _wsStore.chatPartner = _tutor.user;
+    Navigator.pushNamed(context, RouteConstants.chatRoom);
+  }
 
   _handleReport() async {
     showDialog(
