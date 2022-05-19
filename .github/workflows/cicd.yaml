@@ -19,6 +19,9 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
+      - name: Remove previous arfifact
+        uses: joutvhu/delete-artifact@v1
+        
       - name: Build the APK
         run: flutter build apk --release
       - name: Upload artifact to Github
