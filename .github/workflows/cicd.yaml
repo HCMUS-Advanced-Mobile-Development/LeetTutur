@@ -18,12 +18,6 @@ jobs:
           flutter-version: 2.10.4
       - name: Install Flutter dependencies
         run: flutter pub get
-
-      - name: Remove previous artifact
-        uses: geekyeggo/delete-artifact@v1
-        with:
-          name: release-apk
-        
       - name: Build the APK
         run: flutter build apk --release
       - name: Upload artifact to Github
