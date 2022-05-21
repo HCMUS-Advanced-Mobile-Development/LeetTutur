@@ -6,16 +6,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:leet_tutur/constants/api_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/booking_info.dart';
 import 'package:leet_tutur/models/meet_info.dart';
 import 'package:leet_tutur/stores/schedule_store.dart';
+import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 import 'package:recase/recase.dart';
-import 'package:leet_tutur/utils/map_extensions.dart';
 
 class StudyRoom extends StatefulWidget {
   const StudyRoom({Key? key}) : super(key: key);

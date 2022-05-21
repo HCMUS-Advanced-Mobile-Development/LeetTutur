@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/stores/auth_store.dart';
 import 'package:leet_tutur/stores/ws_store.dart';
 import 'package:leet_tutur/ui/chat_room/widgets/chat_input.dart';
 import 'package:leet_tutur/ui/chat_room/widgets/message_list.dart';

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/booking_info.dart';
 import 'package:leet_tutur/models/requests/book_request.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
 import 'package:leet_tutur/models/responses/book_response.dart';

@@ -17,7 +17,6 @@ class _ChatUserState extends State<ChatUser> {
   @override
   Widget build(BuildContext context) {
     var chatMessage = widget.chatMessage;
-    var isOnline = chatMessage.partner?.isOnline ?? false;
     return Card(
       child: InkWell(
         onTap: widget.onTap,

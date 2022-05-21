@@ -16,7 +16,6 @@ import 'package:leet_tutur/di/services_locator.dart';
 import 'package:leet_tutur/di/stores_locator.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/my_app.dart';
-import 'package:leet_tutur/services/ws_service.dart';
 import 'package:leet_tutur/stores/system_store.dart';
 import 'package:leet_tutur/utils/firebase_options.dart';
 

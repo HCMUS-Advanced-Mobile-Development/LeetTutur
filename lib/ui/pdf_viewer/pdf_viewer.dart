@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/models/course.dart';
-import 'package:leet_tutur/models/topic.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 

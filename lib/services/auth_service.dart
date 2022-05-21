@@ -145,7 +145,7 @@ class AuthService {
   }
 
   Future changePasswordAsync({ChangePasswordRequest? request}) async {
-    var dioRes = await _dio.post(
+    await _dio.post(
       "/auth/change-password",
       data: {
         "newPassword": request?.newPassword,
