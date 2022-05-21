@@ -27,7 +27,7 @@ jobs:
       - name: Upload apk to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
-          target: $APK_NAME
+          target: ${{ env.APK_NAME }}
           credentials: ${{ secrets.GG_SERVICE_ACCOUNT }}
           folder: 1G2HRl_f7jq_VIJy3cMrOt7DkAYjW-ilm
 #  deploy_android:
