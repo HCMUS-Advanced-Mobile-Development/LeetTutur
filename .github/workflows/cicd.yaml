@@ -1,6 +1,8 @@
 # ci.yml
 name: CI-CD
 on: push
+env:
+  APK_NAME: LeetTutur build ${{ github.run_number }}.apk
 jobs:
   # CI
   build_android:
@@ -20,11 +22,12 @@ jobs:
         run: flutter pub get
       - name: Build the APK
         run: flutter build apk --release
-
+      - name: Change APK name
+        run: mv "build/app/outputs/apk/release/app-release.apk" "$APK_NAME"
       - name: Upload apk to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
-          target: build/app/outputs/apk/release/app-release.apk
+          target: $APK_NAME
           credentials: ${{ secrets.GG_SERVICE_ACCOUNT }}
           folder: 1G2HRl_f7jq_VIJy3cMrOt7DkAYjW-ilm
 #  deploy_android:
