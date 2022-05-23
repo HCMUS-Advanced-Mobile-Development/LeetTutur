@@ -84,9 +84,11 @@ class _TutorCardState extends State<TutorCard> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircleAvatar(
-          backgroundImage: Image.network(_tutor.avatar!).image,
-          radius: 50,
+        Expanded(
+          child: CircleAvatar(
+            backgroundImage: Image.network(_tutor.avatar!).image,
+            radius: 50,
+          ),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -123,7 +125,7 @@ class _TutorCardState extends State<TutorCard> {
             ),
           ],
         ),
-        Flexible(
+        Expanded(
           child: Center(
             child: IconButton(
               icon: _isFavorite
