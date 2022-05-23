@@ -23,7 +23,7 @@ jobs:
       - name: Build the APK
         run: flutter build apk --debug
       - name: Change APK name
-        run: mv "build/app/outputs/apk/debug/app-release.apk" "${{ env.APK_NAME }}"
+        run: mv "build/app/outputs/flutter-apk/app-debug.apk" "${{ env.APK_NAME }}"
       - name: Upload apk to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
