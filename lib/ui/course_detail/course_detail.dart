@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/course_detail/widgets/course_description.dart';
 import 'package:leet_tutur/ui/course_detail/widgets/course_explore.dart';
-import 'package:recase/recase.dart';
 
 class CourseDetail extends StatefulWidget {
   const CourseDetail({Key? key}) : super(key: key);
@@ -22,7 +20,11 @@ class _CourseDetailState extends State<CourseDetail> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(RouteConstants.courseDetail.titleCase),
+        title: Observer(
+          builder: (context) {
+            return Text(_courseStore.selectedCourse?.name ?? "");
+          }
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -20,8 +20,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
                   name: '_ScheduleStore.bookInfosGroupByTutorAndDate'))
           .value;
 
-  final _$scheduleResponseFutureAtom =
-      Atom(name: '_ScheduleStore.scheduleResponseFuture');
+  late final _$scheduleResponseFutureAtom =
+      Atom(name: '_ScheduleStore.scheduleResponseFuture', context: context);
 
   @override
   ObservableFuture<ScheduleResponse>? get scheduleResponseFuture {
@@ -37,8 +37,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$bookingListResponseFutureAtom =
-      Atom(name: '_ScheduleStore.bookingListResponseFuture');
+  late final _$bookingListResponseFutureAtom =
+      Atom(name: '_ScheduleStore.bookingListResponseFuture', context: context);
 
   @override
   ObservableFuture<BookingListResponse>? get bookingListResponseFuture {
@@ -54,8 +54,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$totalLearnedHoursFutureAtom =
-      Atom(name: '_ScheduleStore.totalLearnedHoursFuture');
+  late final _$totalLearnedHoursFutureAtom =
+      Atom(name: '_ScheduleStore.totalLearnedHoursFuture', context: context);
 
   @override
   ObservableFuture<Duration>? get totalLearnedHoursFuture {
@@ -71,8 +71,8 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$learnHistoryFutureAtom =
-      Atom(name: '_ScheduleStore.learnHistoryFuture');
+  late final _$learnHistoryFutureAtom =
+      Atom(name: '_ScheduleStore.learnHistoryFuture', context: context);
 
   @override
   ObservableFuture<BookingListResponse>? get learnHistoryFuture {
@@ -87,27 +87,43 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
     });
   }
 
-  final _$getScheduleAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getScheduleAsync');
+  late final _$selectedClassAtom =
+      Atom(name: '_ScheduleStore.selectedClass', context: context);
 
   @override
-  Future<dynamic> getScheduleAsync({String id = ""}) {
-    return _$getScheduleAsyncAsyncAction
-        .run(() => super.getScheduleAsync(id: id));
+  BookingInfo? get selectedClass {
+    _$selectedClassAtom.reportRead();
+    return super.selectedClass;
   }
 
-  final _$getBookingsListAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getBookingsListAsync');
+  @override
+  set selectedClass(BookingInfo? value) {
+    _$selectedClassAtom.reportWrite(value, super.selectedClass, () {
+      super.selectedClass = value;
+    });
+  }
+
+  late final _$getScheduleByTutorIdAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getScheduleByTutorIdAsync', context: context);
 
   @override
-  Future<dynamic> getBookingsListAsync(String tutorId,
+  Future<dynamic> getScheduleByTutorIdAsync({String id = ""}) {
+    return _$getScheduleByTutorIdAsyncAsyncAction
+        .run(() => super.getScheduleByTutorIdAsync(id: id));
+  }
+
+  late final _$getBookingsListAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getBookingsListAsync', context: context);
+
+  @override
+  Future<BookingListResponse> getBookingsListAsync(
       {BookingListRequest? request}) {
     return _$getBookingsListAsyncAsyncAction
-        .run(() => super.getBookingsListAsync(tutorId, request: request));
+        .run(() => super.getBookingsListAsync(request: request));
   }
 
-  final _$getTotalLearnedHoursAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getTotalLearnedHoursAsync');
+  late final _$getTotalLearnedHoursAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getTotalLearnedHoursAsync', context: context);
 
   @override
   Future<dynamic> getTotalLearnedHoursAsync() {
@@ -115,14 +131,31 @@ mixin _$ScheduleStore on _ScheduleStore, Store {
         .run(() => super.getTotalLearnedHoursAsync());
   }
 
-  final _$getLearnHistoryAsyncAsyncAction =
-      AsyncAction('_ScheduleStore.getLearnHistoryAsync');
+  late final _$getLearnHistoryAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.getLearnHistoryAsync', context: context);
 
   @override
-  Future<dynamic> getLearnHistoryAsync(
-      {BookingListRequest? bookingListRequest}) {
-    return _$getLearnHistoryAsyncAsyncAction.run(() =>
-        super.getLearnHistoryAsync(bookingListRequest: bookingListRequest));
+  Future<BookingListResponse> getLearnHistoryAsync(
+      {BookingListRequest? request}) {
+    return _$getLearnHistoryAsyncAsyncAction
+        .run(() => super.getLearnHistoryAsync(request: request));
+  }
+
+  late final _$bookAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.bookAsync', context: context);
+
+  @override
+  Future<BookResponse> bookAsync({BookRequest? request}) {
+    return _$bookAsyncAsyncAction.run(() => super.bookAsync(request: request));
+  }
+
+  late final _$cancelClassAsyncAsyncAction =
+      AsyncAction('_ScheduleStore.cancelClassAsync', context: context);
+
+  @override
+  Future<dynamic> cancelClassAsync({List<String>? scheduleDetailIds}) {
+    return _$cancelClassAsyncAsyncAction.run(
+        () => super.cancelClassAsync(scheduleDetailIds: scheduleDetailIds));
   }
 
   @override
@@ -132,6 +165,7 @@ scheduleResponseFuture: ${scheduleResponseFuture},
 bookingListResponseFuture: ${bookingListResponseFuture},
 totalLearnedHoursFuture: ${totalLearnedHoursFuture},
 learnHistoryFuture: ${learnHistoryFuture},
+selectedClass: ${selectedClass},
 bookInfosGroupByTutorAndDate: ${bookInfosGroupByTutorAndDate}
     ''';
   }

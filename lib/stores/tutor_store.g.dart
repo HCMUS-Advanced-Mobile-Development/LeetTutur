@@ -24,8 +24,8 @@ mixin _$TutorStore on _TutorStore, Store {
               name: '_TutorStore.favoriteTutorList'))
       .value;
 
-  final _$tutorResponseFutureAtom =
-      Atom(name: '_TutorStore.tutorResponseFuture');
+  late final _$tutorResponseFutureAtom =
+      Atom(name: '_TutorStore.tutorResponseFuture', context: context);
 
   @override
   ObservableFuture<TutorResponse>? get tutorResponseFuture {
@@ -40,38 +40,123 @@ mixin _$TutorStore on _TutorStore, Store {
     });
   }
 
-  final _$selectedTutorFutureAtom =
-      Atom(name: '_TutorStore.selectedTutorFuture');
+  late final _$selectedTutorIdAtom =
+      Atom(name: '_TutorStore.selectedTutorId', context: context);
 
   @override
-  ObservableFuture<Tutor>? get selectedTutorFuture {
-    _$selectedTutorFutureAtom.reportRead();
-    return super.selectedTutorFuture;
+  String get selectedTutorId {
+    _$selectedTutorIdAtom.reportRead();
+    return super.selectedTutorId;
   }
 
   @override
-  set selectedTutorFuture(ObservableFuture<Tutor>? value) {
-    _$selectedTutorFutureAtom.reportWrite(value, super.selectedTutorFuture, () {
-      super.selectedTutorFuture = value;
+  set selectedTutorId(String value) {
+    _$selectedTutorIdAtom.reportWrite(value, super.selectedTutorId, () {
+      super.selectedTutorId = value;
     });
   }
 
-  final _$searchTutorsAsyncAction = AsyncAction('_TutorStore.searchTutors');
+  late final _$tutorDetailFutureAtom =
+      Atom(name: '_TutorStore.tutorDetailFuture', context: context);
 
   @override
-  Future<dynamic> searchTutors({TutorRequest? request}) {
-    return _$searchTutorsAsyncAction
-        .run(() => super.searchTutors(request: request));
+  ObservableFuture<Tutor>? get tutorDetailFuture {
+    _$tutorDetailFutureAtom.reportRead();
+    return super.tutorDetailFuture;
   }
 
-  final _$getTutorDetailAsyncAction = AsyncAction('_TutorStore.getTutorDetail');
+  @override
+  set tutorDetailFuture(ObservableFuture<Tutor>? value) {
+    _$tutorDetailFutureAtom.reportWrite(value, super.tutorDetailFuture, () {
+      super.tutorDetailFuture = value;
+    });
+  }
+
+  late final _$tutorSpecialtyMapAtom =
+      Atom(name: '_TutorStore.tutorSpecialtyMap', context: context);
 
   @override
-  Future<dynamic> getTutorDetail({String id = "0"}) {
+  ObservableMap<String, String> get tutorSpecialtyMap {
+    _$tutorSpecialtyMapAtom.reportRead();
+    return super.tutorSpecialtyMap;
+  }
+
+  @override
+  set tutorSpecialtyMap(ObservableMap<String, String> value) {
+    _$tutorSpecialtyMapAtom.reportWrite(value, super.tutorSpecialtyMap, () {
+      super.tutorSpecialtyMap = value;
+    });
+  }
+
+  late final _$tutorCountryCodeMapAtom =
+      Atom(name: '_TutorStore.tutorCountryCodeMap', context: context);
+
+  @override
+  ObservableMap<String, String> get tutorCountryCodeMap {
+    _$tutorCountryCodeMapAtom.reportRead();
+    return super.tutorCountryCodeMap;
+  }
+
+  @override
+  set tutorCountryCodeMap(ObservableMap<String, String> value) {
+    _$tutorCountryCodeMapAtom.reportWrite(value, super.tutorCountryCodeMap, () {
+      super.tutorCountryCodeMap = value;
+    });
+  }
+
+  late final _$selectedSpecialtyAtom =
+      Atom(name: '_TutorStore.selectedSpecialty', context: context);
+
+  @override
+  String get selectedSpecialty {
+    _$selectedSpecialtyAtom.reportRead();
+    return super.selectedSpecialty;
+  }
+
+  @override
+  set selectedSpecialty(String value) {
+    _$selectedSpecialtyAtom.reportWrite(value, super.selectedSpecialty, () {
+      super.selectedSpecialty = value;
+    });
+  }
+
+  late final _$searchTutorsAsyncAsyncAction =
+      AsyncAction('_TutorStore.searchTutorsAsync', context: context);
+
+  @override
+  Future<TutorResponse> searchTutorsAsync({TutorRequest? request}) {
+    return _$searchTutorsAsyncAsyncAction
+        .run(() => super.searchTutorsAsync(request: request));
+  }
+
+  late final _$getTutorDetailAsyncAction =
+      AsyncAction('_TutorStore.getTutorDetail', context: context);
+
+  @override
+  Future<Tutor> getTutorDetail({String id = "0"}) {
     return _$getTutorDetailAsyncAction.run(() => super.getTutorDetail(id: id));
   }
 
-  final _$_TutorStoreActionController = ActionController(name: '_TutorStore');
+  late final _$getTutorSpecialtiesAsyncAsyncAction =
+      AsyncAction('_TutorStore.getTutorSpecialtiesAsync', context: context);
+
+  @override
+  Future<dynamic> getTutorSpecialtiesAsync() {
+    return _$getTutorSpecialtiesAsyncAsyncAction
+        .run(() => super.getTutorSpecialtiesAsync());
+  }
+
+  late final _$getTutorCountryAsyncAsyncAction =
+      AsyncAction('_TutorStore.getTutorCountryAsync', context: context);
+
+  @override
+  Future<Map<String, String>> getTutorCountryAsync() {
+    return _$getTutorCountryAsyncAsyncAction
+        .run(() => super.getTutorCountryAsync());
+  }
+
+  late final _$_TutorStoreActionController =
+      ActionController(name: '_TutorStore', context: context);
 
   @override
   void unSelectTutor() {
@@ -88,7 +173,11 @@ mixin _$TutorStore on _TutorStore, Store {
   String toString() {
     return '''
 tutorResponseFuture: ${tutorResponseFuture},
-selectedTutorFuture: ${selectedTutorFuture},
+selectedTutorId: ${selectedTutorId},
+tutorDetailFuture: ${tutorDetailFuture},
+tutorSpecialtyMap: ${tutorSpecialtyMap},
+tutorCountryCodeMap: ${tutorCountryCodeMap},
+selectedSpecialty: ${selectedSpecialty},
 rowOfTutor: ${rowOfTutor},
 favoriteTutorList: ${favoriteTutorList}
     ''';

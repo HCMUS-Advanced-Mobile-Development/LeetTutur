@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "426115119499",
+    "project_id": "let-tutor-kafka",
+    "storage_bucket": "let-tutor-kafka.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426115119499:android:6e5ce1c9c295602384978e",
+        "android_client_info": {
+          "package_name": "com.hcmus.leet_tutur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426115119499-cscubu1tauk3r4js0tjjdprsp6jsvhj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hcmus.leet_tutur",
+            "certificate_hash": "08891fe90fc40ac04f1f660f1cc5df4bf51e9ecd"
+          }
+        },
+        {
+          "client_id": "426115119499-1ttbntin0v4qajk4ig1gimvvnu7sacu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvNSDGB_M-C64vcTbX_Ct4xUGuWK2DPGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426115119499-1ttbntin0v4qajk4ig1gimvvnu7sacu1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "426115119499-medo8vkjd90eaqjevcl1cmgp9a77hdvi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hcmus.leetTutur"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

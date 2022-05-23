@@ -14,16 +14,15 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        child: SizedBox(
-          child: Column(
-            children: const [
-              LearningHours(),
-              SizedBox(height: 15),
-              UpcomingClasses(),
-            ],
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          LearningHours(),
+          SizedBox(height: 15),
+          Expanded(
+            child: UpcomingClasses(),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -1,4 +1,4 @@
 class SharedPreferencesConstants {
-  static const loginResponse = "loginResponse";
+  static const authResponse = "loginResponse";
   static const systemSettings = "systemSettings";
 }

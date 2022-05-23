@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:leet_tutur/constants/route_constants.dart';
+import 'package:leet_tutur/constants/shared_preferences_constants.dart';
+import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/widgets/square_button.dart';
 import 'package:recase/recase.dart';
-
-import '../../constants/route_constants.dart';
-import '../../generated/l10n.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -13,42 +17,95 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final _googleSignIn = GetIt.instance.get<GoogleSignIn>();
+  final _facebookAuth = GetIt.instance.get<FacebookAuth>();
+
   @override
   Widget build(BuildContext context) {
     const iconSize = 45.0;
+    final buttonSize = MediaQuery.of(context).size.width * 0.4;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 15,
-      ),
-      child: Wrap(
-        alignment: WrapAlignment.spaceEvenly,
-        children: [
-          SquareButton(
-            size: MediaQuery.of(context).size.width * 0.4,
-            icon: const Icon(
-              Icons.account_circle,
-              size: iconSize,
-            ),
-            text: Text(
-              S.current.profile.titleCase,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            onTap: _handlePressProfile,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 15,
+        ),
+        child: Align(
+          alignment: AlignmentDirectional.topCenter,
+          child: Wrap(
+            alignment: WrapAlignment.start,
+            children: [
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.account_circle,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.profile.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handlePressProfile,
+              ),
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.pattern,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.changePassword.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handleChangePassword,
+              ),
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.app_registration,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.becomeTutor.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline6,
+                ),
+                onTap: _handleBecomeTutor,
+              ),
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.phone_iphone,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.system.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handlePressSystemSettings,
+              ),
+              SquareButton(
+                size: buttonSize,
+                icon: const Icon(
+                  Icons.logout,
+                  size: iconSize,
+                ),
+                text: Text(
+                  S.current.logOut.titleCase,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _handleLogOut,
+              ),
+            ],
           ),
-          SquareButton(
-            size: MediaQuery.of(context).size.width * 0.4,
-            icon: const Icon(
-              Icons.phone_iphone,
-              size: iconSize,
-            ),
-            text: Text(
-              S.current.system.titleCase,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            onTap: _handlePressSystemSettings,
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -59,5 +116,27 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _handlePressSystemSettings() {
     Navigator.pushNamed(context, RouteConstants.systemSettings);
+  }
+
+  void _handleChangePassword() {
+    Navigator.pushNamed(context, RouteConstants.changePassword);
+  }
+
+  void _handleLogOut() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+
+      await Future.wait([
+        prefs.remove(SharedPreferencesConstants.authResponse),
+        _googleSignIn.signOut(),
+        _facebookAuth.logOut(),
+      ]);
+    } finally {
+      Navigator.pop(context);
+    }
+  }
+
+  void _handleBecomeTutor() {
+    throw UnimplementedError("We don't do that here!");
   }
 }

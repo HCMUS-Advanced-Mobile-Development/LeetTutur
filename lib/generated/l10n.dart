@@ -689,6 +689,286 @@ class S {
       args: [],
     );
   }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get processing {
+    return Intl.message(
+      'Processing',
+      name: 'processing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Successfully. Check Your Mail`
+  String get registerSuccessfullyCheckYourMail {
+    return Intl.message(
+      'Register Successfully. Check Your Mail',
+      name: 'registerSuccessfullyCheckYourMail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password. Please check your email`
+  String get resetPasswordCheckYourMail {
+    return Intl.message(
+      'Reset Password. Please check your email',
+      name: 'resetPasswordCheckYourMail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nothing Here`
+  String get nothingHere {
+    return Intl.message(
+      'Nothing Here',
+      name: 'nothingHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ups!! Some error occurred!!`
+  String get error {
+    return Intl.message(
+      'Ups!! Some error occurred!!',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is Booked`
+  String get isBooked {
+    return Intl.message(
+      'Is Booked',
+      name: 'isBooked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minutes`
+  String get minutes {
+    return Intl.message(
+      'Minutes',
+      name: 'minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Want to learn`
+  String get wantToLearn {
+    return Intl.message(
+      'Want to learn',
+      name: 'wantToLearn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn topics`
+  String get learnTopics {
+    return Intl.message(
+      'Learn topics',
+      name: 'learnTopics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test Preparations`
+  String get testPreparations {
+    return Intl.message(
+      'Test Preparations',
+      name: 'testPreparations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel class?`
+  String get areYouSureWantToCancelClass {
+    return Intl.message(
+      'Are you sure you want to cancel class?',
+      name: 'areYouSureWantToCancelClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password`
+  String get changePassword {
+    return Intl.message(
+      'Change password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field must be at least six characters long`
+  String get thisFieldMustBeMoreThanSixChar {
+    return Intl.message(
+      'This field must be at least six characters long',
+      name: 'thisFieldMustBeMoreThanSixChar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPassword {
+    return Intl.message(
+      'New Password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password successfully`
+  String get changePasswordSuccessfully {
+    return Intl.message(
+      'Change password successfully',
+      name: 'changePasswordSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logOut {
+    return Intl.message(
+      'Log Out',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Become Tutor`
+  String get becomeTutor {
+    return Intl.message(
+      'Become Tutor',
+      name: 'becomeTutor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes ago`
+  String get minutesAgo {
+    return Intl.message(
+      'minutes ago',
+      name: 'minutesAgo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hours ago`
+  String get hoursAgo {
+    return Intl.message(
+      'hours ago',
+      name: 'hoursAgo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days ago`
+  String get daysAgo {
+    return Intl.message(
+      'days ago',
+      name: 'daysAgo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

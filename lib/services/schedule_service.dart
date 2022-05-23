@@ -1,48 +1,65 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:leet_tutur/models/requests/book_request.dart';
 import 'package:leet_tutur/models/requests/booking_list_request.dart';
+import 'package:leet_tutur/models/responses/book_response.dart';
 import 'package:leet_tutur/models/responses/booking_list_response.dart';
 import 'package:leet_tutur/models/responses/schedule_response.dart';
 import 'package:logger/logger.dart';
 
 class ScheduleService {
+  final _dio = GetIt.instance.get<Dio>();
   final _logger = GetIt.instance.get<Logger>();
+  FirebaseAnalytics? _firebaseAnalytics;
+
+  ScheduleService() {
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.android) {
+      _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
+    }
+  }
 
   Future<ScheduleResponse> getScheduleByTutorIdAsync({String id = ""}) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    var res = await _dio.post("/schedule", data: {
+      "tutorId": id,
+    });
 
-    var tutorScheduleJson =
-        await rootBundle.loadString("assets/data/schedule.json");
+    // This operation is very heavy
+    var scheduleResponse = await compute((Response dioResponse) {
+      var scheduleResponse = ScheduleResponse.fromJson(dioResponse.data);
 
-    var scheduleResponse = ScheduleResponse.fromJson(
-        jsonDecode(tutorScheduleJson.replaceAll("\n", "")));
+      var schedules = scheduleResponse.data
+          ?.where((element) =>
+              element.startTimestamp! >= DateTime.now().millisecondsSinceEpoch)
+          .toList();
 
-    var schedules = scheduleResponse.data;
+      schedules?.sort(
+          (a, b) => a.startTimestamp?.compareTo(b.startTimestamp ?? 0) ?? 0);
 
-    schedules = schedules
-        ?.where((element) =>
-            element.startTimestamp! >= DateTime.now().millisecondsSinceEpoch)
-        .toList();
-    schedules?.sort(
-        (a, b) => a.startTimestamp?.compareTo(b.startTimestamp ?? 0) ?? 0);
+      scheduleResponse.data = schedules;
 
-    scheduleResponse.data = schedules;
+      return scheduleResponse;
+    }, res);
 
     _logger.i("Get schedule, found: ${scheduleResponse.data?.length} items");
 
     return scheduleResponse;
   }
 
-  Future<BookingListResponse> getBookingsListAsync(String tutorId,
+  Future<BookingListResponse> getBookingsListAsync(
       {BookingListRequest? request}) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    var dioRes = await _dio.get("/booking/list/student", queryParameters: {
+      "page": request?.page ?? 1,
+      "perPage": request?.perPage ?? 12,
+      "dateTimeGte":
+          request?.dateTimeGte ?? DateTime.now().millisecondsSinceEpoch,
+      "orderBy": request?.orderBy ?? "meeting",
+      "sortBy": request?.sortBy ?? "asc",
+    });
 
-    var bookingListResponseJson =
-        await rootBundle.loadString("assets/data/booking_class.json");
-    var bookingListResponse = BookingListResponse.fromJson(
-        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+    var bookingListResponse = BookingListResponse.fromJson(dioRes.data);
 
     _logger.i(
         "Get booking list. Found: ${bookingListResponse.data?.rows?.length} items");
@@ -51,32 +68,68 @@ class ScheduleService {
   }
 
   Future<Duration> getTotalLearnedHoursAsync() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    var dioRes = await _dio.get("/call/total");
+    var totalMinute = dioRes.data["total"] as int;
 
-    var bookingListResponseJson =
-        await rootBundle.loadString("assets/data/learn_hours.json");
-    var bookingListResponse = BookingListResponse.fromJson(
-        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+    _logger.i("Get total hours: ${totalMinute / 60}");
 
-    var totalPeriod = bookingListResponse.data?.count ?? 0;
-
-    _logger.i("Get total period: $totalPeriod");
-
-    return Duration(minutes: totalPeriod * 30);
+    return Duration(minutes: totalMinute);
   }
 
   Future<BookingListResponse> getLearnHistoryAsync(
-      {BookingListRequest? bookingListRequest}) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+      {BookingListRequest? request}) async {
+    var dioRes = await _dio.get("/booking/list/student", queryParameters: {
+      "page": request?.page ?? 1,
+      "perPage": request?.perPage ?? 12,
+      "dateTimeLte":
+          request?.dateTimeLte ?? DateTime.now().millisecondsSinceEpoch,
+      "orderBy": request?.orderBy ?? "meeting",
+      "sortBy": request?.sortBy ?? "desc",
+    });
 
-    var bookingListResponseJson =
-    await rootBundle.loadString("assets/data/learn_history.json");
-    var bookingListResponse = BookingListResponse.fromJson(
-        jsonDecode(bookingListResponseJson.replaceAll("\n", "")));
+    var bookingListResponse = BookingListResponse.fromJson(dioRes.data);
 
     _logger.i(
         "Get history list. Found: ${bookingListResponse.data?.rows?.length} items");
 
     return bookingListResponse;
+  }
+
+  Future<BookResponse> bookAsync({BookRequest? request}) async {
+    var dioRes = await _dio.post("/booking", data: request);
+    var response = BookResponse.fromJson(dioRes.data);
+
+    _logger.i(response.message);
+    _firebaseAnalytics?.logPurchase(
+      transactionId: response.data?.first.id,
+      items: response.data
+          ?.map(
+            (e) => AnalyticsEventItem(
+              itemId: e.scheduleDetailId,
+              itemName: "Booked Class",
+              currency: "USD",
+              price: 1,
+            ),
+          )
+          .toList(),
+    );
+
+    return response;
+  }
+
+  Future cancelClassAsync({List<String>? scheduleDetailIds}) async {
+    var dioRes = await _dio.delete(
+      "/booking",
+      data: {
+        "scheduleDetailIds": scheduleDetailIds,
+      },
+    );
+
+    _logger.i(dioRes.data["message"]);
+    scheduleDetailIds?.forEach((element) {
+      _firebaseAnalytics?.logRefund(
+        transactionId: element,
+      );
+    });
   }
 }

@@ -1,9 +1,12 @@
+import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/models/tutor.dart';
 import 'package:leet_tutur/stores/tutor_store.dart';
+import 'package:leet_tutur/stores/ws_store.dart';
 
 class TutorCard extends StatefulWidget {
   final Tutor tutor;
@@ -15,18 +18,19 @@ class TutorCard extends StatefulWidget {
 }
 
 class _TutorCardState extends State<TutorCard> {
-  final tutorStore = GetIt.instance.get<TutorStore>();
+  final _tutorStore = GetIt.instance.get<TutorStore>();
+  final _wsStore = GetIt.instance.get<WsStore>();
 
-  late final Tutor tutor;
-  late bool isFavorite;
+  late final Tutor _tutor;
+  late bool _isFavorite;
 
   @override
   void initState() {
     super.initState();
 
     setState(() {
-      tutor = widget.tutor;
-      isFavorite = tutorStore.isFavoriteTutor(tutor);
+      _tutor = widget.tutor;
+      _isFavorite = _tutorStore.isFavoriteTutor(_tutor);
     });
   }
 
@@ -44,7 +48,7 @@ class _TutorCardState extends State<TutorCard> {
                 renderTutorInfoHeader(),
                 renderSpecialties(),
                 Text(
-                  tutor.bio!,
+                  _tutor.bio!,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -59,12 +63,19 @@ class _TutorCardState extends State<TutorCard> {
 
   void handleFavorite() {
     setState(() {
-      isFavorite = !isFavorite;
+      _isFavorite = !_isFavorite;
     });
+
+    _tutorStore.addToFavoriteTutorAsync(_tutor.userId);
   }
 
-  void navigateToDetail(TapDownDetails tapDownDetails) {
-    Navigator.pushNamed(context, RouteConstants.tutorDetail);
+  Future _navigateToDetail(TapDownDetails _) async {
+    _tutorStore.selectedTutorId = _tutor.userId ?? "";
+
+    await Navigator.pushNamed(context, RouteConstants.tutorDetail);
+    setState(() {
+      _isFavorite = _tutorStore.isFavoriteTutor(_tutor);
+    });
   }
 
   Widget renderTutorInfoHeader() {
@@ -73,9 +84,11 @@ class _TutorCardState extends State<TutorCard> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircleAvatar(
-          backgroundImage: Image.network(tutor.avatar!).image,
-          radius: 50,
+        Expanded(
+          child: CircleAvatar(
+            backgroundImage: Image.network(_tutor.avatar!).image,
+            radius: 50,
+          ),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -83,24 +96,43 @@ class _TutorCardState extends State<TutorCard> {
           children: [
             GestureDetector(
               child: Text(
-                tutor.name!,
-                style: Theme.of(context).textTheme.headline6,
+                _tutor.name!,
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
-              onTapDown: navigateToDetail,
+              onTapDown: _navigateToDetail,
             ),
-            Text(
-              tutor.country!,
-              style: Theme.of(context).textTheme.bodyText1,
+            renderStars(),
+            Row(
+              children: [
+                Flag.fromString(
+                  _tutor.country ?? "",
+                  height: 16,
+                  width: 28,
+                ),
+                Observer(
+                  builder: (context) {
+                    return Text(
+                      _tutorStore.tutorCountryCodeMap[
+                              _tutor.country?.toUpperCase()] ??
+                          "",
+                      overflow: TextOverflow.ellipsis,
+                    );
+                  },
+                ),
+              ],
             ),
-            renderStars()
           ],
         ),
-        Center(
-          child: IconButton(
-            icon: tutor.isFavorite != null && tutor.isFavorite!
-                ? const Icon(Icons.favorite, color: Colors.red, size: 30)
-                : const Icon(Icons.favorite_border, size: 30),
-            onPressed: handleFavorite,
+        Expanded(
+          child: Center(
+            child: IconButton(
+              icon: _isFavorite
+                  ? const Icon(Icons.favorite, color: Colors.red, size: 30)
+                  : const Icon(Icons.favorite_border, size: 30),
+              onPressed: handleFavorite,
+            ),
           ),
         )
       ],
@@ -111,29 +143,35 @@ class _TutorCardState extends State<TutorCard> {
     return Row(
       children: [
         ...List.filled(
-            tutor.getStars(),
+            _tutor.getStars(),
             const Icon(
               Icons.star,
               color: Colors.amber,
             )),
-        ...List.filled(5 - tutor.getStars(), const Icon(Icons.star_border))
+        ...List.filled(5 - _tutor.getStars(), const Icon(Icons.star_border))
       ],
     );
   }
 
   Widget renderSpecialties() {
     return Wrap(
-        children: tutor.specialties
+        children: _tutor.specialties
                 ?.split(",")
-                .map((e) => Container(
-                    margin: const EdgeInsets.only(left: 5, right: 5),
-                    child: Chip(
-                      label: Text(e),
-                      backgroundColor: Theme.of(context).cardColor,
-                      shape: StadiumBorder(
-                          side: BorderSide(
-                              color: Theme.of(context).primaryColor)),
-                    )))
+                .map((e) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2),
+                      child: Container(
+                          margin: const EdgeInsets.only(left: 5, right: 5),
+                          child: Chip(
+                            label: Observer(builder: (context) {
+                              return Text(
+                                  _tutorStore.tutorSpecialtyMap[e] ?? "");
+                            }),
+                            backgroundColor: Theme.of(context).cardColor,
+                            shape: StadiumBorder(
+                                side: BorderSide(
+                                    color: Theme.of(context).primaryColor)),
+                          )),
+                    ))
                 .toList() ??
             []);
   }
@@ -143,16 +181,34 @@ class _TutorCardState extends State<TutorCard> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextButton(
-            onPressed: handleBookTutor,
-            child: Text(S.current.book.toUpperCase())),
+          onPressed: _handleBookTutor,
+          child: Text(
+            S.current.book.toUpperCase(),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
         TextButton(
-            onPressed: handleChatTutor,
-            child: Text(S.current.chat.toUpperCase())),
+          onPressed: _handleChatTutor,
+          child: Text(
+            S.current.chat.toUpperCase(),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ],
     );
   }
 
-  void handleBookTutor() {}
+  void _handleBookTutor() {
+    _navigateToDetail(TapDownDetails());
+  }
 
-  void handleChatTutor() {}
+  void _handleChatTutor() async {
+    final tutor = await _tutorStore.getTutorDetail(id: _tutor.userId ?? "");
+    _wsStore.chatPartner = tutor.user;
+    Navigator.pushNamed(context, RouteConstants.chatRoom);
+  }
 }

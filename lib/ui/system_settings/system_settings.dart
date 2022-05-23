@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/theme_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/stores/system_store.dart';
-import 'package:leet_tutur/utils/i18_utils.dart';
+import 'package:leet_tutur/constants/i18_constants.dart';
 import 'package:recase/recase.dart';
 
 class SystemSettings extends StatefulWidget {
@@ -52,9 +52,10 @@ class _SystemSettingsState extends State<SystemSettings> {
                 Observer(
                   builder: (context) {
                     return DropdownButton(
+                      hint: Text(S.current.level),
                       value: _systemStore.systemSettingFuture?.value?.language,
                       items: ["en", "vi"].map((e) {
-                        var languages = I18Utils.getDisplayLanguage(e);
+                        var languages = I18Constants.getDisplayLanguage(e);
                         return DropdownMenuItem(
                           child: Text(languages["nativeName"] ?? ""),
                           value: e,

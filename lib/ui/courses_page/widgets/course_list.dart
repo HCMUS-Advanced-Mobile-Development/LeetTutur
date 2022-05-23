@@ -5,7 +5,7 @@ import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/models/course.dart';
 import 'package:leet_tutur/stores/course_store.dart';
 import 'package:leet_tutur/ui/courses_page/widgets/course_card.dart';
-import 'package:leet_tutur/utils/iterable_extensions.dart';
+import 'package:leet_tutur/widgets/error_page.dart';
 import 'package:mobx/mobx.dart';
 
 class CourseList extends StatefulWidget {
@@ -28,31 +28,52 @@ class _CourseListState extends State<CourseList> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      var courses = _courseStore.courseResponseFuture?.value?.data?.rows ?? [];
-      var coursesGroupByCategory =
-          courses.groupBy((c) => c.categories?[0].key ?? "");
+      var coursesGroupByCategory = _courseStore.coursesByLevel;
 
-      return _courseStore.courseResponseFuture?.status == FutureStatus.fulfilled
-          ? ListView.separated(
+      switch(_courseStore.courseResponseFuture?.status) {
+        case FutureStatus.pending:
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        case FutureStatus.rejected:
+          return const Center(
+            child: ErrorPage(),
+          );
+        case FutureStatus.fulfilled:
+          return RefreshIndicator(
+            onRefresh: () async {
+              await _courseStore.getCoursesAsync();
+            },
+            child: ListView.separated(
               itemCount: coursesGroupByCategory.length,
               itemBuilder: (context, index) {
                 var coursesByLevel =
-                    coursesGroupByCategory.values.elementAt(index);
+                coursesGroupByCategory.values.elementAt(index);
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(coursesByLevel.first.categories?[0].title ?? "",
-                        style: Theme.of(context).textTheme.headline6),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      primary: false,
-                      itemCount: coursesByLevel.length,
-                      itemBuilder: (context, index) {
-                        return CourseCard(
-                          course: coursesByLevel[index],
-                          onTap: _handleTap,
-                        );
-                      },
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline6),
+                    SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        primary: false,
+                        itemCount: coursesByLevel.length,
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            width: 300,
+                            child: CourseCard(
+                              course: coursesByLevel[index],
+                              onTap: _handleTap,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 );
@@ -60,10 +81,13 @@ class _CourseListState extends State<CourseList> {
               separatorBuilder: (context, index) {
                 return const Divider();
               },
-            )
-          : const Center(
-              child: CircularProgressIndicator(),
-            );
+            ),
+          );
+        default:
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+      }
     });
   }
 

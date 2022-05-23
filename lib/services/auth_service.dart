@@ -1,89 +1,230 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:leet_tutur/constants/shared_preferences_constants.dart';
-import 'package:leet_tutur/models/responses/login_response.dart';
+import 'package:leet_tutur/models/requests/change_password_request.dart';
+import 'package:leet_tutur/models/responses/auth_response.dart';
+import 'package:leet_tutur/models/user.dart';
 import 'package:leet_tutur/utils/map_extensions.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final _logger = GetIt.instance.get<Logger>();
+  final _dio = GetIt.instance.get<Dio>();
+  FirebaseAnalytics? _firebaseAnalytics;
 
-  final jsonResponse = """
-  {
-          "user": {
-        "id": "f569c202-7bbf-4620-af77-ecc1419a6b28",
-        "email": "student@lettutor.com",
-        "name": "Trần Nam",
-        "avatar": "https://sandbox.api.lettutor.com/avatar/f569c202-7bbf-4620-af77-ecc1419a6b28avatar1644828460150.jpg",
-        "country": "VN",
-        "phone": "842499996508",
-        "roles": [
-        "student",
-        "CHANGE_PASSWORD"
-        ],
-        "language": "Albanian",
-        "birthday": "1999-06-01",
-        "isActivated": true,
-        "walletInfo": {
-        "id": "285396c8-2c82-4dbd-abca-af3e8d0b3a03",
-        "userId": "f569c202-7bbf-4620-af77-ecc1419a6b28",
-        "amount": "86700000",
-        "isBlocked": false,
-        "createdAt": "2021-10-19T13:08:04.697Z",
-        "updatedAt": "2022-03-23T05:12:29.672Z",
-        "bonus": 0
-        },
-        "courses": [],
-        "requireNote": null,
-        "level": "INTERMEDIATE",
-        "learnTopics": [
-        {
-        "id": 3,
-        "key": "english-for-kids",
-        "name": "English for Kids"
-        }
-        ],
-        "testPreparations": [],
-        "isPhoneActivated": true,
-        "timezone": 7
-        },
-        "tokens": {
-        "access": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNTY5YzIwMi03YmJmLTQ2MjAtYWY3Ny1lY2MxNDE5YTZiMjgiLCJpYXQiOjE2NDgwNDU2OTIsImV4cCI6MTY0ODEzMjA5MiwidHlwZSI6ImFjY2VzcyJ9.L6ddY_o3K6K5iumEl4CdCxa3fNcCoVPXPJXDZXyro2Q",
-        "expires": "2022-03-24T14:28:12.178Z"
-        },
-        "refresh": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNTY5YzIwMi03YmJmLTQ2MjAtYWY3Ny1lY2MxNDE5YTZiMjgiLCJpYXQiOjE2NDgwNDU2OTIsImV4cCI6MTY1MDYzNzY5MiwidHlwZSI6InJlZnJlc2gifQ.aejV4FbUI3ANXp4Yzy1mURKqHXiM6Zd0GXNnuNhs7CM",
-        "expires": "2022-04-22T14:28:12.178Z"
-        }
-        }
-    }""";
-
-  Future<LoginResponse> loginAsync(String username, String password) async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    var loginResponse = LoginResponse.fromJson(jsonDecode(jsonResponse));
-
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(
-        SharedPreferencesConstants.loginResponse, jsonEncode(loginResponse));
-
-    _logger.i(
-        "Save login response to shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: ${loginResponse.toJson().beautifyJson()}");
-
-    return loginResponse;
+  AuthService() {
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.android) {
+      _firebaseAnalytics = GetIt.instance.get<FirebaseAnalytics>();
+    }
   }
 
-  Future<LoginResponse> retrieveLocalLoginResponseAsync() async {
+  Future<AuthResponse> loginAsync(String email, String password) async {
+    try {
+      var res = await _dio
+          .post("/auth/login", data: {"email": email, "password": password});
+
+      var loginResponse = AuthResponse.fromJson(res.data);
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(
+          SharedPreferencesConstants.authResponse, jsonEncode(loginResponse));
+
+      _logger.i("""
+          Login successfully. Save login response to shared preferences. 
+          Key: ${SharedPreferencesConstants.authResponse}. 
+          Value: 
+          ${loginResponse.toJson().beautifyJson()}
+          """);
+      _firebaseAnalytics?.logLogin(
+        loginMethod: "Normal",
+      );
+
+      return loginResponse;
+    } on DioError catch (e) {
+      _logger.e("Login failed. ${e.message}");
+
+      rethrow;
+    }
+  }
+
+  Future<User> getUserInfoAsync() async {
+    try {
+      var dioRes = await _dio.get("/user/info");
+
+      return User.fromJson(dioRes.data["user"]);
+    } on DioError catch (e) {
+      _logger.e("getUserInfoAsync failed. ${e.message}");
+
+      rethrow;
+    }
+  }
+
+  Future<AuthResponse> retrieveLocalLoginResponseAsync() async {
     final prefs = await SharedPreferences.getInstance();
     var jsonString =
-        prefs.getString(SharedPreferencesConstants.loginResponse) ?? "{}";
+        prefs.getString(SharedPreferencesConstants.authResponse) ?? "{}";
 
     _logger.i(
-        "Read from shared preferences. Key: ${SharedPreferencesConstants.loginResponse}. Value: $jsonString");
+        "Read from shared preferences. Key: ${SharedPreferencesConstants.authResponse}. Value: $jsonString");
 
-    return LoginResponse.fromJson(jsonDecode(jsonString));
+    return AuthResponse.fromJson(jsonDecode(jsonString));
+  }
+
+  Future<AuthResponse> registerAsync(String email, String password) async {
+    try {
+      var res = await _dio.post("/auth/register", data: {
+        "email": email,
+        "password": password,
+      });
+
+      var authRes = AuthResponse.fromJson(res.data);
+
+      _logger.i("""
+          Register successfully.
+          ${authRes.toJson().beautifyJson()}
+          """);
+      _firebaseAnalytics?.logSignUp(signUpMethod: "Normal");
+
+      return authRes;
+    } on DioError catch (e) {
+      _logger.e("Register failed. ${e.message}");
+      rethrow;
+    }
+  }
+
+  Future forgotPasswordAsync(String email) async {
+    try {
+      var res = await _dio.post("/user/forgotPassword", data: {
+        "email": email,
+      });
+
+      _logger.i("""
+          Forget successfully.
+          ${res.data}
+          """);
+    } on DioError catch (e) {
+      _logger.e("Can't forget password. ${e.message}");
+      rethrow;
+    }
+  }
+
+  Future<AuthResponse> refreshTokenAsync() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      var jsonString =
+          prefs.getString(SharedPreferencesConstants.authResponse) ?? "{}";
+
+      var authRes = AuthResponse.fromJson(jsonDecode(jsonString));
+      var refreshToken = authRes.tokens?.refresh?.token ?? "";
+
+      var res = await _dio.post("/auth/refresh-token", data: {
+        "refreshToken": refreshToken,
+      });
+
+      authRes = AuthResponse.fromJson(res.data);
+
+      await prefs.setString(
+          SharedPreferencesConstants.authResponse, jsonEncode(authRes));
+
+      _logger.i("""
+          Refresh token successfully.
+          ${authRes.tokens?.toJson().beautifyJson()}
+          """);
+
+      return authRes;
+    } on DioError catch (e) {
+      _logger.e("Can't refresh token. ${e.message}");
+      rethrow;
+    }
+  }
+
+  Future changePasswordAsync({ChangePasswordRequest? request}) async {
+    await _dio.post(
+      "/auth/change-password",
+      data: {
+        "newPassword": request?.newPassword,
+        "password": request?.password,
+      },
+    );
+  }
+
+  Future<AuthResponse> loginWithGoogleAsync(String token) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Delete to avoid Dio Interceptor put this data to request
+      // which cause Bad Request err
+      await prefs.remove(SharedPreferencesConstants.authResponse);
+
+      var dioRes = await _dio.post(
+        "/auth/google",
+        data: {
+          "access_token": token,
+        },
+      );
+
+      var loginResponse = AuthResponse.fromJson(dioRes.data);
+
+      prefs.setString(
+          SharedPreferencesConstants.authResponse, jsonEncode(loginResponse));
+
+      _logger.i("""
+          Login successfully. Save login response to shared preferences. 
+          Key: ${SharedPreferencesConstants.authResponse}. 
+          Value: 
+          ${loginResponse.toJson().beautifyJson()}
+          """);
+      _firebaseAnalytics?.logLogin(
+        loginMethod: "Google",
+      );
+
+      return loginResponse;
+    } on DioError catch (e) {
+      _logger.e("Login failed. ${e.message}");
+
+      rethrow;
+    }
+  }
+
+  Future<AuthResponse> loginWithFacebookAsync(String token) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Delete to avoid Dio Interceptor put this data to request
+      // which cause Bad Request err
+      await prefs.remove(SharedPreferencesConstants.authResponse);
+
+      var dioRes = await _dio.post(
+        "/auth/facebook",
+        data: {
+          "access_token": token,
+        },
+      );
+
+      var loginResponse = AuthResponse.fromJson(dioRes.data);
+
+      prefs.setString(
+          SharedPreferencesConstants.authResponse, jsonEncode(loginResponse));
+
+      _logger.i("""
+          Login successfully. Save login response to shared preferences. 
+          Key: ${SharedPreferencesConstants.authResponse}. 
+          Value: 
+          ${loginResponse.toJson().beautifyJson()}
+          """);
+      _firebaseAnalytics?.logLogin(
+        loginMethod: "Facebook",
+      );
+
+      return loginResponse;
+    } on DioError catch (e) {
+      _logger.e("Login failed. ${e.message}");
+
+      rethrow;
+    }
   }
 }

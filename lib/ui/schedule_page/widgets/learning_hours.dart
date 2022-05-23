@@ -5,6 +5,7 @@ import 'package:leet_tutur/constants/route_constants.dart';
 import 'package:leet_tutur/generated/l10n.dart';
 import 'package:leet_tutur/stores/schedule_store.dart';
 import 'package:mobx/mobx.dart';
+import 'package:recase/recase.dart';
 
 class LearningHours extends StatefulWidget {
   const LearningHours({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _LearningHoursState extends State<LearningHours> {
 
                 return future?.status == FutureStatus.fulfilled
                     ? Text(
-                        "${duration.inHours} ${S.current.hours}",
+                        "${duration.inHours} ${S.current.hours.titleCase} ${duration.inMinutes % 60} ${S.current.minutes.titleCase}",
                         style: Theme.of(context).textTheme.headline6,
                         textAlign: TextAlign.center,
                       )

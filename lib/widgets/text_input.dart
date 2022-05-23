@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 class TextInput extends StatefulWidget {
   final String? hintText;
   final String? initialValue;
-  final void Function(String)? onChanged;
-  final String? Function(String?)? validator;
   final String? labelText;
   final bool? enabled;
+  final bool? readOnly;
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final void Function()? onTap;
 
   const TextInput(
       {Key? key,
@@ -14,7 +17,7 @@ class TextInput extends StatefulWidget {
       this.initialValue,
       this.onChanged,
       this.validator,
-      this.labelText, this.enabled})
+      this.labelText, this.enabled, this.controller, this.readOnly, this.onTap})
       : super(key: key);
 
   @override
@@ -24,13 +27,21 @@ class TextInput extends StatefulWidget {
 class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
+    var readOnly = widget.readOnly ?? false;
     return TextFormField(
+      controller: widget.controller,
       onChanged: widget.onChanged,
       validator: widget.validator,
       initialValue: widget.initialValue,
       enabled: widget.enabled,
+      readOnly: readOnly,
+      onTap: widget.onTap,
       decoration: InputDecoration(
-        border: const OutlineInputBorder(),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColor,
+          )
+        ),
         hintText: widget.hintText,
         fillColor: Theme.of(context).cardColor,
         filled: true,

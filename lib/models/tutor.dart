@@ -106,7 +106,7 @@ class Tutor {
       totalRating = feedbacks
           ?.map((e) => e.rating)
           .reduce((value, element) => value! + element!)
-          ?.floor() ??
+          ?.ceil() ??
           0;
     }
 

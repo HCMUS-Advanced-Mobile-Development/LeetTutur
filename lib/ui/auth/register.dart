@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'package:async/async.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -20,7 +20,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  final authStore = GetIt.instance.get<AuthStore>();
+  final _authStore = GetIt.instance.get<AuthStore>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -37,13 +37,14 @@ class _RegisterState extends State<Register> {
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/geometry-bg.png"),
-                    fit: BoxFit.cover),
+                  image: AssetImage("assets/images/geometry-bg.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  LogoIntro(),
+                  const LogoIntro(),
                   // USER INPUT
                   Observer(
                     builder: (BuildContext context) => Form(
@@ -51,18 +52,20 @@ class _RegisterState extends State<Register> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12.0, right: 12.0),
                         child: Column(children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 32,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                            padding:
+                                const EdgeInsets.only(top: 4.0, bottom: 4.0),
                             child: TextInput(
                               hintText: S.current.enterMail,
-                              initialValue: authStore.email,
-                              onChanged: (value) => {authStore.email = value},
+                              initialValue: _authStore.email,
+                              onChanged: (value) => _authStore.email = value,
                               validator: (value) {
                                 if (isNull(value) || !isEmail(value!)) {
-                                  return S.current.pleaseEnterCorrectEmailFormat;
+                                  return S
+                                      .current.pleaseEnterCorrectEmailFormat;
                                 }
 
                                 return null;
@@ -70,11 +73,12 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                            padding:
+                                const EdgeInsets.only(top: 4.0, bottom: 4.0),
                             child: TextPasswordInput(
                               hintText: S.current.enterPassword,
-                              initialValue: authStore.password,
-                              onChanged: (value) => {authStore.password = value},
+                              initialValue: _authStore.password,
+                              onChanged: (value) => _authStore.password = value,
                               validator: (value) {
                                 if (isNull(value)) {
                                   return S.current.pleaseEnterSomeValue;
@@ -85,17 +89,18 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+                            padding:
+                                const EdgeInsets.only(top: 4.0, bottom: 4.0),
                             child: TextPasswordInput(
                               hintText: S.current.confirmPassword,
                               onChanged: (value) =>
-                                  {authStore.confirmPassword = value},
+                                  {_authStore.confirmPassword = value},
                               validator: (value) {
                                 if (isNull(value)) {
                                   return S.current.pleaseEnterSomeValue;
                                 }
 
-                                if (authStore.password != value) {
+                                if (_authStore.password != value) {
                                   return S.current.yourPasswordIsInCorrect;
                                 }
 
@@ -103,7 +108,7 @@ class _RegisterState extends State<Register> {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           Row(
@@ -129,7 +134,68 @@ class _RegisterState extends State<Register> {
 
   void _handleRegister() {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, RouteConstants.login);
+      try {
+        var cancelableOperation = CancelableOperation.fromFuture(
+          _authStore.registerAsync(_authStore.email, _authStore.password),
+        );
+
+        cancelableOperation.then((_) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(S.current.registerSuccessfullyCheckYourMail),
+          ));
+          // Dismiss dialog
+          Navigator.of(context, rootNavigator: true).pop();
+          // Go to login
+          Navigator.pushNamed(context, RouteConstants.login);
+        });
+
+        showDialog<void>(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext dialogContext) {
+            var haveMsgToSpeak = false;
+            var msg = "";
+
+            return StatefulBuilder(builder: (context, setDialogState) {
+              cancelableOperation.then(
+                (_) {},
+                onError: (err, trace) {
+                  setDialogState(() {
+                    haveMsgToSpeak = true;
+                    if (err is DioError) {
+                      msg = err.response?.data["message"];
+                    }
+                  });
+                },
+              );
+
+              return AlertDialog(
+                title: Center(child: Text(S.current.processing.titleCase)),
+                content: Align(
+                  heightFactor: 1,
+                  alignment: Alignment.center,
+                  child: !haveMsgToSpeak
+                      ? const CircularProgressIndicator()
+                      : Text(msg),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text(S.current.cancel.toUpperCase()),
+                    onPressed: () {
+                      if (cancelableOperation.isCompleted) {
+                        Navigator.of(context, rootNavigator: true).pop();
+                      }
+                      cancelableOperation.cancel();
+                    },
+                  ),
+                ],
+              );
+            });
+          },
+        );
+      } on DioError {
+        rethrow;
+      }
     }
   }
 }
